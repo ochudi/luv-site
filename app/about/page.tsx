@@ -1,8 +1,9 @@
 "use client"
 
 import { motion, useScroll, useTransform } from "framer-motion"
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import Image from "next/image"
+import { Volume2, VolumeX } from "lucide-react"
 
 export default function AboutPage() {
   const containerRef = useRef(null)
@@ -15,40 +16,61 @@ export default function AboutPage() {
   const y2 = useTransform(scrollYProgress, [0, 1], [0, -200])
   const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.8, 0.6])
 
+  const [muted, setMuted] = useState(true)
+
   return (
     <div className="relative">
       {/* Hero Section */}
-      <section ref={containerRef} className="relative h-[70vh] flex items-center justify-center overflow-hidden">
-        <motion.div style={{ y: y1, opacity }} className="absolute inset-0 z-0">
-          <Image
-            src="/placeholder.svg?height=1080&width=1920"
-            alt="Company headquarters"
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-black/50 dark:bg-black/70" />
-        </motion.div>
+      <section
+      ref={containerRef}
+      className="relative h-[70vh] flex items-center justify-center overflow-hidden group"
+    >
+      {/* Video Background */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        className="absolute inset-0 z-0"
+      >
+        <video
+          src="/videos/about.mp4"
+          autoPlay
+          loop
+          playsInline
+          muted={muted}
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/50 dark:bg-black/70" />
+      </motion.div>
 
-        <div className="relative z-10 container mx-auto px-4 text-center">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-5xl md:text-7xl font-bold text-white mb-6"
-          >
-            OUR STORY
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl text-white/80 max-w-2xl mx-auto"
-          >
-            Pioneering luxury experiences since 2004
-          </motion.p>
-        </div>
-      </section>
+      {/* Mute Button */}
+      <button
+        onClick={() => setMuted((prev) => !prev)}
+        className="absolute bottom-6 right-6 z-10 p-2 rounded-full bg-white/80 hover:bg-white text-black transition-opacity opacity-0 group-hover:opacity-100"
+      >
+        {muted ? <VolumeX className="h-5 w-5" /> : <Volume2 className="h-5 w-5" />}
+      </button>
+
+      {/* Content */}
+      <div className="relative z-10 container mx-auto px-4 text-center">
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-5xl md:text-7xl font-bold text-white mb-6"
+        >
+          OUR STORY
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="text-xl text-white/80 max-w-2xl mx-auto"
+        >
+          Pioneering luxury experiences since 2004
+        </motion.p>
+      </div>
+    </section>
 
       {/* Content Sections */}
       <section className="py-24 bg-background">
@@ -159,6 +181,21 @@ export default function AboutPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
+              {
+                name: "Alex Morgan",
+                title: "Chief Executive Officer",
+                delay: 0.2,
+              },
+              {
+                name: "Sam Taylor",
+                title: "Chief Operations Officer",
+                delay: 0.4,
+              },
+              {
+                name: "Jordan Lee",
+                title: "Chief Innovation Officer",
+                delay: 0.6,
+              },
               {
                 name: "Alex Morgan",
                 title: "Chief Executive Officer",

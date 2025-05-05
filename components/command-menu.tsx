@@ -21,15 +21,15 @@ const routes = [
     name: "About",
   },
   {
-    path: "/beneath-the-surface",
-    name: "Beneath the Surface",
+    path: "/stories",
+    name: "Stories",
   },
   {
-    path: "/beneath-the-surface/yacht-charter/subsea-thrills-submarine-treasure-hunt-legend",
+    path: "/stories/yacht-charter/subsea-thrills-submarine-treasure-hunt-legend",
     name: "Submarine Treasure Hunt",
   },
   {
-    path: "/beneath-the-surface/yco-news/team-talk-holly-bottau-interview",
+    path: "/stories/yco-news/team-talk-holly-bottau-interview",
     name: "Holly Bottau Interview",
   },
 ]
