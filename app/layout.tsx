@@ -1,29 +1,59 @@
-import type React from "react"
-import type { Metadata } from "next"
-import { Inter } from "next/font/google"
-import "./globals.css"
-import { ThemeProvider } from "@/components/theme-provider"
-import Header from "@/components/header"
-import Footer from "@/components/footer"
-import { CommandMenu } from "@/components/command-menu"
+import type React from "react";
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
+import { ThemeProvider } from "@/components/theme-provider";
+import Header from "@/components/header";
+import Footer from "@/components/footer";
+import { CommandMenu } from "@/components/command-menu";
 
-const inter = Inter({ subsets: ["latin"] })
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Y.Modern | Luxury Experience",
-  description: "Experience luxury and innovation with Y.Modern",
-    generator: 'v0.dev'
-}
+  title: "Life Upside View",
+  description:
+    "Life Upside View Mental Health Foundation provides inspiring real-life stories, mental health resources, self-help tools, and access to professional support to empower individuals on their wellness journey.",
+  keywords:
+    "mental health, mental wellness, self-help, emotional support, mental health resources, therapy access, mental resilience, personal growth, life challenges, mental well-being",
+  openGraph: {
+    title:
+      "Life Upside View Mental Health Foundation | Empowering Mental Well-being",
+    description:
+      "Join a supportive community sharing real-life stories, mental health resources, and self-help tools to promote mental resilience and well-being.",
+    url: "https://lifeupsideview.org",
+    type: "website",
+    images: [
+      {
+        url: "https://lifeupsideview.org/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Life Upside View Mental Health Foundation",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title:
+      "Life Upside View Mental Health Foundation | Mental Wellness & Support",
+    description:
+      "Discover inspiring stories, mental health resources, and self-help tools to support your well-being.",
+    images: ["https://lifeupsideview.org/og-image.jpg"],
+  },
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.className} antialiased`}>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange={false}>
+        <ThemeProvider
+          attribute="class"
+          enableSystem
+          disableTransitionOnChange={false}
+        >
           <div className="flex min-h-screen flex-col">
             <Header />
             <main className="flex-1">{children}</main>
@@ -33,9 +63,7 @@ export default function RootLayout({
         </ThemeProvider>
       </body>
     </html>
-  )
+  );
 }
 
-
-
-import './globals.css'
+import "./globals.css";
