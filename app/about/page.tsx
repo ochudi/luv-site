@@ -1,76 +1,80 @@
-"use client"
+"use client";
 
-import { motion, useScroll, useTransform } from "framer-motion"
-import { useRef, useState } from "react"
-import Image from "next/image"
-import { Volume2, VolumeX } from "lucide-react"
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef, useState } from "react";
+import Image from "next/image";
+import { Volume2, VolumeX } from "lucide-react";
 
 export default function AboutPage() {
-  const containerRef = useRef(null)
+  const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"],
-  })
+  });
 
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, 200])
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, -200])
-  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.8, 0.6])
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, 200]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, -200]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.8, 0.6]);
 
-  const [muted, setMuted] = useState(true)
+  const [muted, setMuted] = useState(true);
 
   return (
     <div className="relative">
       {/* Hero Section */}
       <section
-      ref={containerRef}
-      className="relative h-[70vh] flex items-center justify-center overflow-hidden group"
-    >
-      {/* Video Background */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-        className="absolute inset-0 z-0"
+        ref={containerRef}
+        className="relative h-[70vh] flex items-center justify-center overflow-hidden group"
       >
-        <video
-          src="/videos/about.mp4"
-          autoPlay
-          loop
-          playsInline
-          muted={muted}
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-black/50 dark:bg-black/70" />
-      </motion.div>
-
-      {/* Mute Button */}
-      <button
-        onClick={() => setMuted((prev) => !prev)}
-        className="absolute bottom-6 right-6 z-10 p-2 rounded-full bg-white/80 hover:bg-white text-black transition-opacity opacity-0 group-hover:opacity-100"
-      >
-        {muted ? <VolumeX className="h-5 w-5" /> : <Volume2 className="h-5 w-5" />}
-      </button>
-
-      {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 text-center">
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+        {/* Video Background */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
-          className="text-5xl md:text-7xl font-bold text-white mb-6"
+          className="absolute inset-0 z-0"
         >
-          OUR STORY
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-xl text-white/80 max-w-2xl mx-auto"
+          <video
+            src="/videos/about.mp4"
+            autoPlay
+            loop
+            playsInline
+            muted={muted}
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/50 dark:bg-black/70" />
+        </motion.div>
+
+        {/* Mute Button */}
+        <button
+          onClick={() => setMuted((prev) => !prev)}
+          className="absolute bottom-6 right-6 z-10 p-2 rounded-full bg-white/80 hover:bg-white text-black transition-opacity opacity-0 group-hover:opacity-100"
         >
-          Pioneering luxury experiences since 2004
-        </motion.p>
-      </div>
-    </section>
+          {muted ? (
+            <VolumeX className="h-5 w-5" />
+          ) : (
+            <Volume2 className="h-5 w-5" />
+          )}
+        </button>
+
+        {/* Content */}
+        <div className="relative z-10 container mx-auto px-4 text-center">
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-5xl md:text-7xl font-bold text-white mb-6"
+          >
+            OUR STORY
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-xl text-white/80 max-w-2xl mx-auto"
+          >
+            Real people. Honest stories. Healing together.
+          </motion.p>
+        </div>
+      </section>
 
       {/* Content Sections */}
       <section className="py-24 bg-background">
@@ -83,15 +87,19 @@ export default function AboutPage() {
               viewport={{ once: true, margin: "-100px" }}
               className="mb-16"
             >
-              <h2 className="text-3xl md:text-5xl font-bold mb-6">WHO WE ARE</h2>
+              <h2 className="text-3xl md:text-5xl font-bold mb-6">
+                WHO WE ARE
+              </h2>
               <p className="text-lg text-muted-foreground mb-4">
-                Founded on the principles of excellence and innovation, our company has grown from a small team of
-                passionate individuals to a global leader in luxury experiences.
+                Life Upside View is a heartfelt initiative driven by a simple
+                truth: stories heal. We are a collective of advocates, artists,
+                and everyday people committed to creating space for
+                vulnerability, reflection, and transformation.
               </p>
               <p className="text-lg text-muted-foreground">
-                We believe in pushing boundaries, challenging conventions, and creating moments that last a lifetime.
-                Our commitment to quality and attention to detail sets us apart in an industry where excellence is the
-                standard.
+                Through storytelling and community dialogue, we work to
+                destigmatize mental health, spotlight human resilience, and
+                offer hope — especially in places where silence often wins.
               </p>
             </motion.div>
           </div>
@@ -104,7 +112,12 @@ export default function AboutPage() {
               viewport={{ once: true, margin: "-100px" }}
               className="relative h-[500px]"
             >
-              <Image src="/placeholder.svg?height=1000&width=800" alt="Our team" fill className="object-cover" />
+              <Image
+                src="/images/site/mission.jpg"
+                alt="Our team"
+                fill
+                className="object-cover"
+              />
             </motion.div>
             <motion.div
               initial={{ opacity: 0, x: 50 }}
@@ -112,14 +125,18 @@ export default function AboutPage() {
               transition={{ duration: 0.8 }}
               viewport={{ once: true, margin: "-100px" }}
             >
-              <h3 className="text-2xl md:text-3xl font-bold mb-6">OUR MISSION</h3>
+              <h3 className="text-2xl md:text-3xl font-bold mb-6">
+                OUR MISSION
+              </h3>
               <p className="text-lg text-muted-foreground mb-4">
-                To redefine luxury by creating experiences that transcend expectations and inspire a sense of wonder and
-                discovery.
+                To amplify lived experiences and elevate conversations around
+                mental health, trauma, and healing — especially within African
+                communities and underrepresented voices.
               </p>
               <p className="text-lg text-muted-foreground">
-                We are committed to sustainability, innovation, and excellence in everything we do. Our goal is to leave
-                a positive impact on the world while delivering unparalleled experiences to our clients.
+                We strive to normalize emotional honesty, honor pain and joy
+                equally, and build spaces where people feel seen, heard, and
+                valued — just as they are.
               </p>
             </motion.div>
           </div>
@@ -132,22 +149,29 @@ export default function AboutPage() {
               viewport={{ once: true, margin: "-100px" }}
               className="order-2 md:order-1"
             >
-              <h3 className="text-2xl md:text-3xl font-bold mb-6">OUR VALUES</h3>
+              <h3 className="text-2xl md:text-3xl font-bold mb-6">
+                OUR VALUES
+              </h3>
               <ul className="space-y-4 text-lg text-muted-foreground">
                 <li>
-                  <strong>Excellence:</strong> We strive for perfection in every detail.
+                  <strong>Empathy:</strong> We listen with compassion and lead
+                  with kindness.
                 </li>
                 <li>
-                  <strong>Innovation:</strong> We constantly push boundaries and explore new possibilities.
+                  <strong>Authenticity:</strong> Every voice matters, and every
+                  story is valid.
                 </li>
                 <li>
-                  <strong>Integrity:</strong> We operate with honesty, transparency, and respect.
+                  <strong>Community:</strong> Healing doesn’t happen in
+                  isolation — we show up together.
                 </li>
                 <li>
-                  <strong>Sustainability:</strong> We are committed to responsible practices that protect our planet.
+                  <strong>Transparency:</strong> We share our truths and honor
+                  others’ with respect.
                 </li>
                 <li>
-                  <strong>Passion:</strong> We are driven by a genuine love for what we do.
+                  <strong>Resilience:</strong> We believe in the human spirit’s
+                  ability to rise and rebuild.
                 </li>
               </ul>
             </motion.div>
@@ -158,7 +182,12 @@ export default function AboutPage() {
               viewport={{ once: true, margin: "-100px" }}
               className="relative h-[500px] order-1 md:order-2"
             >
-              <Image src="/placeholder.svg?height=1000&width=800" alt="Our values" fill className="object-cover" />
+              <Image
+                src="/images/site/values.jpg"
+                alt="Our values"
+                fill
+                className="object-cover"
+              />
             </motion.div>
           </div>
         </div>
@@ -173,43 +202,71 @@ export default function AboutPage() {
             viewport={{ once: true, margin: "-100px" }}
             className="max-w-3xl mx-auto"
           >
-            <h2 className="text-3xl md:text-5xl font-bold mb-6">OUR LEADERSHIP</h2>
+            <h2 className="text-3xl md:text-5xl font-bold mb-6">
+              OUR LEADERSHIP
+            </h2>
             <p className="text-lg text-muted-foreground mb-12">
-              Meet the visionaries who guide our company toward excellence.
+              Meet the people behind Life Upside View — storytellers, advocates,
+              and everyday changemakers committed to mental wellness and
+              meaningful connection.
             </p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                name: "Alex Morgan",
-                title: "Chief Executive Officer",
+                name: "Ernest Nwachukwu",
+                title: "Founder & Mental Health Advocate",
+                imageUrl: "/images/team/ernest.png",
                 delay: 0.2,
               },
               {
-                name: "Sam Taylor",
-                title: "Chief Operations Officer",
+                name: "Ruqaiyah Umar Shuwa Esq.",
+                title: "Legal Advisor & Mental Health Advocate",
+                imageUrl: "/images/team/ruqaiyah.png",
                 delay: 0.4,
               },
               {
-                name: "Jordan Lee",
-                title: "Chief Innovation Officer",
+                name: "Omkar Khadamkar",
+                title: "UX Designer & Story Strategist",
+                imageUrl: "/images/team/omkar.png",
                 delay: 0.6,
               },
               {
-                name: "Alex Morgan",
-                title: "Chief Executive Officer",
-                delay: 0.2,
+                name: "Sa'adatu Ali Shuwa",
+                title: "HR Advisor & Well-being Advocate",
+                imageUrl: "/images/team/saadatu.png",
+                delay: 0.8,
               },
               {
-                name: "Sam Taylor",
-                title: "Chief Operations Officer",
-                delay: 0.4,
+                name: "Chinedu Michael Dike",
+                title: "Medical Advisor & Family Doctor",
+                imageUrl: "/images/team/chinedu.png",
+                delay: 1.0,
               },
               {
-                name: "Jordan Lee",
-                title: "Chief Innovation Officer",
-                delay: 0.6,
+                name: "Abdulwahab Umar Shuwa",
+                title: "Tech Volunteer & Mental Health Promoter",
+                imageUrl: "/images/team/abdulwahab.png",
+                delay: 1.2,
+              },
+              {
+                name: "Happiness (Patience) Enogela",
+                title: "Team Support & Content Contributor",
+                imageUrl: "/images/team/happiness.png",
+                delay: 1.4,
+              },
+              {
+                name: "Ogieriakhi Osasogie Fredrick",
+                title: "Social Media Manager",
+                imageUrl: "/images/team/fredrick.png",
+                delay: 1.6,
+              },
+              {
+                name: "Chukwudi Ofoma",
+                title: "Software Engineer & Tech Lead",
+                imageUrl: "/images/team/chukwudi.png",
+                delay: 1.8,
               },
             ].map((person, index) => (
               <motion.div
@@ -218,10 +275,16 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: person.delay }}
                 viewport={{ once: true, margin: "-100px" }}
-                className="bg-card p-8"
+                className="bg-card p-8 text-center"
               >
-                <div className="relative h-[300px] mb-6">
-                  <Image src="/placeholder.svg?height=600&width=400" alt={person.name} fill className="object-cover" />
+                <div className="flex justify-center mb-6">
+                  <Image
+                    src={person.imageUrl}
+                    alt={person.name}
+                    width={300}
+                    height={300}
+                    className="object-cover"
+                  />
                 </div>
                 <h3 className="text-xl font-bold mb-2">{person.name}</h3>
                 <p className="text-muted-foreground">{person.title}</p>
@@ -231,6 +294,5 @@ export default function AboutPage() {
         </div>
       </section>
     </div>
-  )
+  );
 }
-

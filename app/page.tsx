@@ -99,18 +99,21 @@ export default function Home() {
             {[
               {
                 title: "REFLECT",
+                url: "/reflect",
                 description:
                   "Dive into shared insights that can help change the way you see life.",
                 delay: 0.2,
               },
               {
                 title: "EXPLORE",
+                url: "/explore",
                 description:
                   "Discover new ideas and perspectives through resources that can uplift your mood.",
                 delay: 0.4,
               },
               {
                 title: "EVOLVE",
+                url: "/evolve",
                 description:
                   "Transform your mindset and embrace the unexpected in everyday moments.",
                 delay: 0.6,
@@ -127,7 +130,7 @@ export default function Home() {
                 <h3 className="text-2xl font-bold mb-4">{item.title}</h3>
                 <p className="text-muted-foreground mb-6">{item.description}</p>
                 <Link
-                  href="#"
+                  href={item.url}
                   className="inline-flex items-center text-primary hover:underline"
                 >
                   LEARN MORE <ArrowRight className="ml-2 h-4 w-4" />
@@ -170,7 +173,7 @@ export default function Home() {
               className="flex-1 relative h-[400px] w-full"
             >
               <Image
-                src="/placeholder.svg?height=800&width=600"
+                src="/images/site/beyond.jpg"
                 alt="A new perspective"
                 fill
                 className="object-cover"
@@ -193,7 +196,7 @@ export default function Home() {
               ARE YOU READY TO SEE DIFFERENTLY?
             </h2>
             <Button size="lg" className="rounded-none">
-              JOIN THE JOURNEY
+              <Link href="/stories/all-stories">JOIN THE JOURNEY</Link>
             </Button>
           </motion.div>
         </div>

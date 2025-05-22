@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
@@ -46,7 +47,12 @@ export default function Header() {
       <div className="container mx-auto px-4 flex items-center justify-between">
         {/* Logo (Always Visible) */}
         <Link href="/" className="text-2xl font-bold text-primary z-50">
-          LUV
+          <Image
+            src="/images/site/logo.png"
+            alt="Underwater scene"
+            width={140}
+            height={40}
+          />
         </Link>
 
         {/* Desktop Navigation */}

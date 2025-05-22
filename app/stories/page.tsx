@@ -6,29 +6,60 @@ import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
-export default function BeneathTheSurfacePage() {
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
     },
-  }
+  },
+}
 
-  const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.8 } },
-  }
+const item = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+}
 
+const stories = [
+  {
+    href: "/stories/from-broken-bones-to-unbreakable-dreams",
+    title: "From Broken Bones To Unbreakable Dreams",
+    description: "My Journey Through Adversity",
+    image: "/images/covers/fbbtud.png",
+    alt: "Cover image for From Broken Bones To Unbreakable Dreams",
+  },
+  {
+    href: "/stories/my-upside-view-of-sickle-cell-anemia",
+    title: "My Upside View of Sickle Cell Anemia",
+    description: "A personal look at living with Sickle Cell",
+    image: "/images/covers/muvossa.png",
+    alt: "Cover image for My Upside View of Sickle Cell Anemia",
+  },
+  {
+    href: "/stories/saffiyas-story-part-1-2",
+    title: "Saffiya’s Story: Part 1 & 2",
+    description: "Courage through complexity",
+    image: "/images/covers/ssp12.png",
+    alt: "Cover image for Saffiya’s Story",
+  },
+  {
+    href: "/stories/supported-by-my-fears",
+    title: "Supported by my Fears",
+    description: "Finding strength through struggle",
+    image: "/images/covers/sbmf.png",
+    alt: "Cover image for Supported by my Fears",
+  },
+]
+
+export default function BeneathTheSurfacePage() {
   return (
     <div className="relative">
       {/* Hero Section */}
       <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/placeholder.svg?height=1080&width=1920"
+            src="/images/site/stories.jpg"
             alt="Underwater scene"
             fill
             className="object-cover"
@@ -52,7 +83,7 @@ export default function BeneathTheSurfacePage() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-xl text-white/80 max-w-2xl mx-auto"
           >
-            Discover the hidden stories and experiences that define us
+            Real stories of navigating the unseen — and finding light in it
           </motion.p>
         </div>
       </section>
@@ -67,9 +98,9 @@ export default function BeneathTheSurfacePage() {
             viewport={{ once: true, margin: "-100px" }}
             className="max-w-4xl mx-auto text-center mb-16"
           >
-            <h2 className="text-3xl md:text-5xl font-bold mb-6">STORIES THAT INSPIRE</h2>
+            <h2 className="text-3xl md:text-5xl font-bold mb-6">STORIES THAT HEAL</h2>
             <p className="text-lg text-muted-foreground">
-              Explore the extraordinary experiences, innovations, and adventures that make our company unique.
+              Reflections, reckonings, and revelations — told by those who’ve lived them.
             </p>
           </motion.div>
 
@@ -80,80 +111,25 @@ export default function BeneathTheSurfacePage() {
             viewport={{ once: true, margin: "-100px" }}
             className="grid grid-cols-1 md:grid-cols-2 gap-8"
           >
-            <motion.div variants={item} className="group">
-              <Link
-                href="/stories/yacht-charter/subsea-thrills-submarine-treasure-hunt-legend"
-                className="block"
-              >
-                <div className="relative h-[400px] mb-6 overflow-hidden">
-                  <Image
-                    src="/placeholder.svg?height=800&width=1200"
-                    alt="Submarine adventure"
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-                  <div className="absolute bottom-0 left-0 p-6">
-                    <h3 className="text-2xl font-bold text-white mb-2">SUBSEA THRILLS: SUBMARINE TREASURE HUNT</h3>
-                    <p className="text-white/80">An underwater adventure like no other</p>
+            {stories.map((story, index) => (
+              <motion.div key={index} variants={item} className="group">
+                <Link href={story.href} className="block">
+                  <div className="relative h-[400px] mb-6 overflow-hidden">
+                    <Image
+                      src={story.image}
+                      alt={story.alt}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+                    <div className="absolute bottom-0 left-0 p-6">
+                      <h3 className="text-2xl font-bold text-white mb-2">{story.title}</h3>
+                      <p className="text-white/80">{story.description}</p>
+                    </div>
                   </div>
-                </div>
-              </Link>
-            </motion.div>
-
-            <motion.div variants={item} className="group">
-              <Link href="/stories/yco-news/team-talk-holly-bottau-interview" className="block">
-                <div className="relative h-[400px] mb-6 overflow-hidden">
-                  <Image
-                    src="/placeholder.svg?height=800&width=1200"
-                    alt="Team interview"
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-                  <div className="absolute bottom-0 left-0 p-6">
-                    <h3 className="text-2xl font-bold text-white mb-2">TEAM TALK: HOLLY BOTTAU INTERVIEW</h3>
-                    <p className="text-white/80">Meet the people behind our success</p>
-                  </div>
-                </div>
-              </Link>
-            </motion.div>
-
-            <motion.div variants={item} className="group">
-              <Link href="#" className="block">
-                <div className="relative h-[400px] mb-6 overflow-hidden">
-                  <Image
-                    src="/placeholder.svg?height=800&width=1200"
-                    alt="Innovation story"
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-                  <div className="absolute bottom-0 left-0 p-6">
-                    <h3 className="text-2xl font-bold text-white mb-2">INNOVATION AT SEA</h3>
-                    <p className="text-white/80">How we're revolutionizing the industry</p>
-                  </div>
-                </div>
-              </Link>
-            </motion.div>
-
-            <motion.div variants={item} className="group">
-              <Link href="#" className="block">
-                <div className="relative h-[400px] mb-6 overflow-hidden">
-                  <Image
-                    src="/placeholder.svg?height=800&width=1200"
-                    alt="Sustainability story"
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-                  <div className="absolute bottom-0 left-0 p-6">
-                    <h3 className="text-2xl font-bold text-white mb-2">SUSTAINABILITY COMMITMENT</h3>
-                    <p className="text-white/80">Our journey toward a better future</p>
-                  </div>
-                </div>
-              </Link>
-            </motion.div>
+                </Link>
+              </motion.div>
+            ))}
           </motion.div>
 
           <motion.div
@@ -164,7 +140,7 @@ export default function BeneathTheSurfacePage() {
             className="text-center mt-16"
           >
             <Button asChild size="lg" className="rounded-none">
-              <Link href="#">
+              <Link href="/stories/all-stories">
                 VIEW ALL STORIES <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
@@ -172,6 +148,7 @@ export default function BeneathTheSurfacePage() {
         </div>
       </section>
 
+      {/* Subscribe Section */}
       <section className="py-24 bg-muted">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center gap-12">
@@ -184,7 +161,7 @@ export default function BeneathTheSurfacePage() {
             >
               <h2 className="text-3xl md:text-5xl font-bold mb-6">DIVE DEEPER</h2>
               <p className="text-lg text-muted-foreground mb-8">
-                Subscribe to our newsletter to receive exclusive stories, insights, and offers directly to your inbox.
+                Get fresh stories, small wins, and honest voices in your inbox — every few weeks.
               </p>
               <form className="flex flex-col sm:flex-row gap-4">
                 <input
@@ -217,4 +194,3 @@ export default function BeneathTheSurfacePage() {
     </div>
   )
 }
-
