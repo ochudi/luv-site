@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { stories } from "@/lib/stories"; // <-- ✅ import here
+import { stories } from "@/lib/stories";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
