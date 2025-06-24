@@ -162,15 +162,15 @@ export default function AboutPage() {
                   story is valid.
                 </li>
                 <li>
-                  <strong>Community:</strong> Healing doesn’t happen in
+                  <strong>Community:</strong> Healing doesn't happen in
                   isolation — we show up together.
                 </li>
                 <li>
                   <strong>Transparency:</strong> We share our truths and honor
-                  others’ with respect.
+                  others' with respect.
                 </li>
                 <li>
-                  <strong>Resilience:</strong> We believe in the human spirit’s
+                  <strong>Resilience:</strong> We believe in the human spirit's
                   ability to rise and rebuild.
                 </li>
               </ul>
@@ -268,26 +268,31 @@ export default function AboutPage() {
                 imageUrl: "/images/team/chukwudi.png",
                 delay: 1.8,
               },
-            ].map((person, index) => (
+            ].map((member, idx) => (
               <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 50 }}
+                key={member.name}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: person.delay }}
+                transition={{ duration: 0.7, delay: member.delay }}
                 viewport={{ once: true, margin: "-100px" }}
-                className="bg-card p-8 text-center"
+                className="relative aspect-square w-full bg-black/80 overflow-hidden group shadow-xl"
               >
-                <div className="flex justify-center mb-6">
-                  <Image
-                    src={person.imageUrl}
-                    alt={person.name}
-                    width={300}
-                    height={300}
-                    className="object-cover"
-                  />
+                <Image
+                  src={member.imageUrl}
+                  alt={member.name}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                <div className="absolute inset-0 flex flex-col items-center justify-center px-4">
+                  <span className="text-2xl md:text-3xl font-extrabold text-white drop-shadow-lg text-center">
+                    {member.name}
+                  </span>
+                  <span className="text-md md:text-lg font-medium text-white/80 drop-shadow text-center mt-2">
+                    {member.title}
+                  </span>
                 </div>
-                <h3 className="text-xl font-bold mb-2">{person.name}</h3>
-                <p className="text-muted-foreground">{person.title}</p>
               </motion.div>
             ))}
           </div>

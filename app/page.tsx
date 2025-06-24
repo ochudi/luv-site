@@ -54,19 +54,11 @@ export default function Home() {
           >
             YOU&apos;RE NOT ALONE
           </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-xl md:text-2xl text-white/80 max-w-2xl mx-auto mb-8"
-          >
-            See the world through a different lens and embrace the beauty of the
-            unknown.
-          </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
+            className="mt-20"
           >
             <SearchHero />
           </motion.div>
