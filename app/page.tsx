@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import SearchHero from "@/components/SearchHero";
 
 export default function Home() {
   const ref = useRef(null);
@@ -67,11 +68,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            <Button asChild size="lg" className="rounded-none">
-              <Link href="/about">
-                DISCOVER MORE <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
+            <SearchHero />
           </motion.div>
         </motion.div>
       </section>
