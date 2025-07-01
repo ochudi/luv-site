@@ -162,11 +162,14 @@ export default function Home() {
               viewport={{ once: true, margin: "-100px" }}
               className="flex-1 relative h-[400px] w-full"
             >
-              <Image
-                src="/images/site/beyond.jpg"
-                alt="A new perspective"
-                fill
-                className="object-cover"
+              <video
+                src="/videos/beyond.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="object-cover w-full h-full rounded"
+                style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
               />
             </motion.div>
           </div>
