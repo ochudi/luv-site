@@ -2,6 +2,35 @@ import { Story } from "@/types/story";
 
 export const stories: Story[] = [
   {
+    title: "From Okada Rider to Chevening Scholar",
+    description:
+      "A powerful true story of how one rain-soaked day and a single question set me on the path from Lagos streets to a UK scholarship.",
+    slug: "from-okada-rider-to-chevening-scholar",
+    coverImage: "/images/covers/fortcs.png",
+    images: [
+      "/images/stories/fortcs/1.png",
+      "/images/stories/fortcs/2.png",
+      "/images/stories/fortcs/3.png",
+    ],
+    content: [
+      "In 2016, while most of my classmates were relaxing during breaks, I was navigating the busy streets of Lagos as an Okada rider. That mindset of independence had pushed me there – I was one of those stubborn students who believed in working to earn their own school fees, rain or shine.",
+      "I remember that day like it was yesterday. It was that time of the year when Lagos rains show up without invitation, disrupting everyone's plans. The morning air was thick with humidity as I climbed onto my old, rusty Okada after buying tickets from the Agbero. The sky above was turning dark and angry, like it was holding back tears it couldn't contain much longer.",
+      'Along the roads, passengers were getting desperate, hands waving frantically, voices rising above the rumble of thunder: "Okada! Okada!" These were the moments I secretly loved – when the impending rain meant I could choose my passengers and charge a little extra. I spotted two ladies who looked like sisters, headed to the Passport Office in Amuo Odofin. Perfect: two passengers, double money.',
+      "As I weaved through Lagos' notorious traffic, dodging potholes and impatient danfos, I caught snippets of their conversation. They were discussing something about studying abroad when one sentence pierced through the traffic noise: \"they will sponsor all the expenses of my Master's Degree in the UK.\"",
+      "My ears perked up. \"So people wey go pay all person's school fees still dey this country?\" I couldn't help asking, my curiosity getting the better of me.",
+      'The younger sister\'s response was quick and cutting: "Ah! wetin concern Aboki with scholarship, abeg dey do your work!" Her words stung, but I kept quiet. If only she knew I was a university student beneath these rain-soaked clothes.',
+      "But then something beautiful happened. The elder sister – God bless her kind heart – turned towards me. She explained patiently about opportunities that could take young Nigerians abroad to study, all expenses paid. She was heading to the passport office that very morning for her Chevening Scholarship interview at the British Embassy.",
+      "I fell into deep thought, nearly missing a speed bump. Me, riding Okada in the rain to fund my education, while there were people willing to sponsor studies abroad? The money they paid me at the passport office barely registered – my mind was stuck on two words that would change my life: CHEVENING and REQUIREMENTS.",
+      'That day, the rain poured mercilessly. It soaked through my clothes and washed off my Okada, but it couldn\'t wash away those two words that had lodged themselves firmly in my mind. Back in my wooden room in B1 Close, 7th Avenue Festac Town, I grabbed a piece of paper and wrote them down – "Chivinin" at first, until I later learned the correct spelling.',
+      "When I returned to school, I became a man on a mission. I researched every single requirement for the scholarship and pursued them like my life depended on it. I threw myself into volunteer work, pushed harder for that first-class degree, and took on leadership roles in various university associations and organizations. Every move was calculated, every opportunity seized.",
+      "Today, Alhamdulillah, I'm one of just 32 scholars selected for the 2024–2025 Chevening Awards, chosen from over 11,000 Nigerian applicants. The journey wasn't easy – competing against 70,000 candidates worldwide for a scholarship with less than 2% acceptance rate required everything I had and more. But here I am, preparing to study LL.M in International Human Rights Law at the University of Essex, UK.",
+      "For the past seven years, I've worked with national and international organizations, fighting for the rights of internally displaced persons, refugees, illegally detained people, prisoners, women, and children. These experiences have fueled my passion for human rights law. At Essex, I'll be studying at one of the world's most respected institutions in this field, connecting with experts who can help me make an even bigger impact back home.",
+      "The journey from that rain-soaked Okada rider to Chevening Scholar has taught me this: never be afraid to ask questions, even when others might dismiss you. That one question I asked on a rainy Lagos morning changed everything. And always strive to approach people with kindness, respect, and understanding, because if I was rude to my passengers, I wouldn’t have gotten the life-changing information from the passenger.",
+      "To those reading this who dream of similar opportunities – the Chevening Scholarship isn't just about funding your education. It's your ticket into a global community of over 57,000 leaders who are changing the world. If you're eligible, visit www.chevening.org and apply.",
+      "Remember this: your current circumstances don't define your future. That Okada rider in the rain is now heading to the UK for his Master's degree. Be bold enough to believe in the possibility of your dreams, regardless of where you are or what people say about you. Your story, no matter how humble, could be the inspiration someone else needs to keep pushing forward.",
+    ],
+  },
+  {
     title: "A Break From Despair",
     description:
       "How a girl broke free from near depression and found strength in faith, struggle, and self-discovery.",
