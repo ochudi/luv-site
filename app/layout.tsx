@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { CommandMenu } from "@/components/command-menu";
+import FloatingBotButton from "@/components/FloatingBotButton";
 
 const workSans = Work_Sans({
   subsets: ["latin"],
@@ -66,6 +67,7 @@ export default function RootLayout({
             <Footer />
             <CommandMenu />
           </div>
+          <FloatingBotButton />
         </ThemeProvider>
       </body>
     </html>

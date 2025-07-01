@@ -63,7 +63,13 @@ export default function Header() {
               href={item.path}
               className={cn(
                 "text-md font-semibold transition-colors hover:text-primary",
-                pathname === item.path ? "text-primary" : "text-white"
+                scrolled
+                  ? pathname === item.path
+                    ? "text-primary"
+                    : "text-foreground"
+                  : pathname === item.path
+                  ? "text-primary"
+                  : "text-white"
               )}
             >
               {item.name}
@@ -74,7 +80,13 @@ export default function Header() {
         {/* Desktop Actions */}
         <div className="hidden md:flex items-center space-x-4">
           <ThemeToggle />
-          <Button className="rounded-none">TALK TO US</Button>
+          <a
+            href="https://paystack.shop/pay/life-upside-view"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Button className="rounded-sm">Donate</Button>
+          </a>
         </div>
 
         {/* Mobile Menu Toggle */}
@@ -128,9 +140,15 @@ export default function Header() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: navItems.length * 0.1 }}
               >
-                <Button size="lg" className="rounded-none mt-4">
-                  TALK TO US
-                </Button>
+                <a
+                  href="https://paystack.shop/pay/life-upside-view"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Button size="lg" className="rounded-none mt-4">
+                    Donate
+                  </Button>
+                </a>
               </motion.div>
             </nav>
           </motion.div>

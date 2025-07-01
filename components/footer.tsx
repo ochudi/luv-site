@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Twitter, Youtube } from "lucide-react";
 
 export default function Footer() {
   const navSections = [
@@ -30,10 +30,9 @@ export default function Footer() {
   ];
 
   const socialLinks = [
-    { href: "#", label: "Facebook", icon: Facebook },
-    { href: "#", label: "Instagram", icon: Instagram },
-    { href: "#", label: "Twitter", icon: Twitter },
-    { href: "#", label: "LinkedIn", icon: Linkedin },
+    { href: "https://www.instagram.com/life_upside_view/", label: "Instagram", icon: Instagram },
+    { href: "https://x.com/lifeUpsideView", label: "X (Formerly Twitter)", icon: Twitter },
+    { href: "https://youtube.com/@life_upside_view", label: "YouTube", icon: Youtube },
   ];
 
   return (
@@ -75,6 +74,8 @@ export default function Footer() {
                 <Link
                   key={label}
                   href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-foreground transition-colors"
                   aria-label={label}
                 >
