@@ -3,6 +3,18 @@
 import Link from "next/link";
 import { Facebook, Instagram, Linkedin, Twitter, Youtube } from "lucide-react";
 
+// TikTok SVG icon component
+const TikTokIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    viewBox="0 0 256 256"
+    fill="currentColor"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <path d="M232 72.9v36.2a103.88 103.88 0 01-56.3-16.5v73.6a88 88 0 11-88-88h8v36.3a51.89 51.89 0 00-8-.6 52 52 0 1052 52V24h36.3a67.61 67.61 0 0048.7 48.9z" />
+  </svg>
+);
+
 export default function Footer() {
   const navSections = [
     {
@@ -32,9 +44,48 @@ export default function Footer() {
   ];
 
   const socialLinks = [
-    { href: "https://www.instagram.com/life_upside_view/", label: "Instagram", icon: Instagram, color: "#E1306C", hover: "#B22556" },
-    { href: "https://x.com/lifeUpsideView", label: "X (Formerly Twitter)", icon: Twitter, color: "#1DA1F2", hover: "#1877C9" },
-    { href: "https://youtube.com/@life_upside_view", label: "YouTube", icon: Youtube, color: "#FF0000", hover: "#B20000" },
+    {
+      href: "https://www.instagram.com/life_upside_view/",
+      label: "Instagram",
+      icon: Instagram,
+      color: "#E1306C",
+      hover: "#B22556",
+    },
+    {
+      href: "https://x.com/lifeUpsideView",
+      label: "X (Formerly Twitter)",
+      icon: Twitter,
+      color: "#1DA1F2",
+      hover: "#1877C9",
+    },
+    {
+      href: "https://youtube.com/@life_upside_view",
+      label: "YouTube",
+      icon: Youtube,
+      color: "#FF0000",
+      hover: "#B20000",
+    },
+    {
+      href: "https://www.facebook.com/LifeUpsideView",
+      label: "Facebook",
+      icon: Facebook,
+      color: "#1877F3",
+      hover: "#145DB2",
+    },
+    {
+      href: "https://www.linkedin.com/company/life-upside-view-mental-health-foundation/",
+      label: "LinkedIn",
+      icon: Linkedin,
+      color: "#0A66C2",
+      hover: "#004182",
+    },
+    {
+      href: "https://www.tiktok.com/@life.upside.view",
+      label: "TikTok",
+      icon: TikTokIcon,
+      color: "#000000",
+      hover: "#25F4EE",
+    },
   ];
 
   return (
@@ -45,7 +96,8 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-bold mb-4">LIFE UPSIDE VIEW</h3>
             <p className="text-muted-foreground">
-              Sharing real stories, offering resources, and providing support to help you navigate life's challenges.
+              Sharing real stories, offering resources, and providing support to
+              help you navigate life's challenges.
             </p>
           </div>
 
@@ -94,7 +146,8 @@ export default function Footer() {
               ))}
             </div>
             <p className="text-muted-foreground">
-              Join our community. Subscribe for inspiring stories and mental health insights.
+              Join our community. Subscribe for inspiring stories and mental
+              health insights.
             </p>
           </div>
         </div>
@@ -102,7 +155,8 @@ export default function Footer() {
         {/* Footer Bottom */}
         <div className="border-t border-border mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-muted-foreground text-center">
-            &copy; {new Date().getFullYear()} Life Upside View Mental Health Foundation. All rights reserved.
+            &copy; {new Date().getFullYear()} Life Upside View Mental Health
+            Foundation. All rights reserved.
           </p>
           <p className="text-sm text-muted-foreground mt-4 md:mt-0">
             Created to inspire, support, and uplift.
