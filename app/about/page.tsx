@@ -258,7 +258,7 @@ export default function AboutPage() {
               },
               {
                 name: "Happiness Enogela",
-                title: "Content Manager",
+                title: "Team Support & Content Manager",
                 country: "Nigeria",
                 imageUrl: "/images/team/happiness.svg",
                 delay: 1.4,
