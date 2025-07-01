@@ -52,7 +52,8 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-5xl md:text-7xl lg:text-9xl font-bold text-white mb-6"
           >
-            YOU&apos;RE NOT ALONE
+            YOU&apos;RE NOT<br />
+            ALONE
           </motion.h1>
           <motion.div
             initial={{ opacity: 0, y: 20 }}

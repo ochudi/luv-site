@@ -63,7 +63,7 @@ export default function Header() {
               href={item.path}
               className={cn(
                 "text-md font-semibold transition-colors hover:text-primary",
-                pathname === item.path ? "text-primary" : "text-foreground/70"
+                pathname === item.path ? "text-primary" : "text-white"
               )}
             >
               {item.name}

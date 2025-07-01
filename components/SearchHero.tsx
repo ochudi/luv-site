@@ -123,8 +123,8 @@ export default function SearchHero() {
       className="w-full flex flex-col items-center"
     >
       <div className="w-full max-w-2xl mx-auto flex flex-col items-center px-2 relative">
-        <div className="relative w-full flex items-center bg-white/80 backdrop-blur-md shadow-xl rounded-full border border-white/60 focus-within:ring-2 focus-within:ring-yellow-300 transition-all duration-300">
-          <span className="absolute left-6 top-1/2 -translate-y-1/2 text-gray-400 cursor-pointer z-10" onClick={handleSearch}>
+        <div className="relative w-full flex items-center shadow-xl rounded-sm border-2 border-yellow-300 focus-within:ring-2 focus-within:ring-yellow-300 transition-all duration-300">
+          <span className="absolute left-6 top-1/2 -translate-y-1/2 text-white cursor-pointer z-10" onClick={handleSearch}>
             <Search className="h-7 w-7" />
           </span>
           <input
@@ -146,13 +146,13 @@ export default function SearchHero() {
                 setHighlightIdx((i) => Math.max(i - 1, 0));
               }
             }}
-            placeholder={animatedPlaceholder || "Search Life Upside View..."}
-            className="w-full pl-16 pr-8 py-5 bg-transparent text-gray-900 placeholder-gray-500 font-semibold text-xl md:text-2xl rounded-full outline-none border-none focus:ring-0 transition-all duration-300"
+            placeholder={animatedPlaceholder}
+            className="w-full pl-16 pr-8 py-5 bg-transparent text-white placeholder-gray-300 font-semibold text-xl md:text-2xl rounded-full outline-none border-none focus:ring-0 transition-all duration-300"
             autoComplete="off"
             aria-label="Search Life Upside View"
           />
           <button
-            className="absolute right-4 top-1/2 -translate-y-1/2 bg-yellow-400 text-black font-bold text-lg px-6 py-3 rounded-full shadow-md hover:bg-yellow-300 transition-all duration-200"
+            className="absolute right-4 top-1/2 -translate-y-1/2 bg-white text-black font-bold text-lg px-6 py-3 rounded-sm shadow-md hover:bg-yellow-300 transition-all duration-200"
             onClick={handleSearch}
             aria-label="Search"
             type="button"

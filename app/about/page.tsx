@@ -212,60 +212,69 @@ export default function AboutPage() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
               {
                 name: "Ernest Nwachukwu",
                 title: "Founder & Mental Health Advocate",
-                imageUrl: "/images/team/ernest.png",
+                country: "Nigeria",
+                imageUrl: "/images/team/ernest.svg",
                 delay: 0.2,
               },
               {
-                name: "Ruqaiyah Umar Shuwa Esq.",
+                name: "Ruqaiyah Umar Shuwa",
                 title: "Legal Advisor & Mental Health Advocate",
-                imageUrl: "/images/team/ruqaiyah.png",
+                country: "Nigeria",
+                imageUrl: "/images/team/ruqaiyah.svg",
                 delay: 0.4,
               },
               {
                 name: "Omkar Khadamkar",
                 title: "UX Designer & Story Strategist",
-                imageUrl: "/images/team/omkar.png",
+                country: "India",
+                imageUrl: "/images/team/omkar.svg",
                 delay: 0.6,
               },
               {
                 name: "Sa'adatu Ali Shuwa",
                 title: "HR Advisor & Well-being Advocate",
-                imageUrl: "/images/team/saadatu.png",
+                country: "Nigeria",
+                imageUrl: "/images/team/saadatu.svg",
                 delay: 0.8,
               },
               {
                 name: "Chinedu Michael Dike",
                 title: "Medical Advisor & Family Doctor",
-                imageUrl: "/images/team/chinedu.png",
+                country: "Nigeria",
+                imageUrl: "/images/team/chinedu.svg",
                 delay: 1.0,
               },
               {
                 name: "Abdulwahab Umar Shuwa",
                 title: "Tech Volunteer & Mental Health Promoter",
-                imageUrl: "/images/team/abdulwahab.png",
+                country: "Nigeria",
+                imageUrl: "/images/team/abdulwahab.svg",
                 delay: 1.2,
               },
               {
-                name: "Happiness (Patience) Enogela",
-                title: "Team Support & Content Contributor",
-                imageUrl: "/images/team/happiness.png",
+                name: "Happiness Enogela",
+                title: "Content Manager",
+                country: "Nigeria",
+                imageUrl: "/images/team/happiness.svg",
                 delay: 1.4,
               },
               {
-                name: "Ogieriakhi Osasogie Fredrick",
+                name: "Ogieriakhi Fredrick",
                 title: "Social Media Manager",
-                imageUrl: "/images/team/fredrick.png",
+                country: "Nigeria",
+                imageUrl: "/images/team/fredrick.svg",
                 delay: 1.6,
               },
               {
                 name: "Chukwudi Ofoma",
                 title: "Software Engineer & Tech Lead",
-                imageUrl: "/images/team/chukwudi.png",
+                country: "Nigeria",
+                imageUrl: "/images/team/chukwudi.svg",
                 delay: 1.8,
               },
             ].map((member, idx) => (
@@ -291,6 +300,9 @@ export default function AboutPage() {
                   </span>
                   <span className="text-md md:text-lg font-medium text-white/80 drop-shadow text-center mt-2">
                     {member.title}
+                  </span>
+                  <span className="text-md md:text-lg font-medium text-white/80 drop-shadow text-center mt-2">
+                    {member.country}
                   </span>
                 </div>
               </motion.div>
