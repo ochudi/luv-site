@@ -7,6 +7,7 @@ import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { CommandMenu } from "@/components/command-menu";
 import FloatingBotButton from "@/components/FloatingBotButton";
+import { Toaster } from "@/components/ui/toaster"
 
 const workSans = Work_Sans({
   subsets: ["latin"],
@@ -68,6 +69,7 @@ export default function RootLayout({
             <CommandMenu />
           </div>
           <FloatingBotButton />
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>

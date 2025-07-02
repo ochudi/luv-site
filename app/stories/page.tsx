@@ -5,6 +5,8 @@ import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { useToast } from "@/hooks/use-toast"
+import React from "react"
 
 const container = {
   hidden: { opacity: 0 },
@@ -38,10 +40,10 @@ const stories = [
   },
   {
     href: "/stories/saffiyas-story-part-1-2",
-    title: "Saffiya’s Story: Part 1 & 2",
+    title: "Saffiya's Story: Part 1 & 2",
     description: "Courage through complexity",
     image: "/images/covers/ssp12.png",
-    alt: "Cover image for Saffiya’s Story",
+    alt: "Cover image for Saffiya's Story",
   },
   {
     href: "/stories/supported-by-my-fears",
@@ -53,6 +55,9 @@ const stories = [
 ]
 
 export default function BeneathTheSurfacePage() {
+  const { toast } = useToast();
+  const [email, setEmail] = React.useState("");
+
   return (
     <div className="relative">
       {/* Hero Section */}
@@ -100,7 +105,7 @@ export default function BeneathTheSurfacePage() {
           >
             <h2 className="text-3xl md:text-5xl font-bold mb-6">STORIES THAT HEAL</h2>
             <p className="text-lg text-muted-foreground">
-              Reflections, reckonings, and revelations — told by those who’ve lived them.
+              Reflections, reckonings, and revelations — told by those who've lived them.
             </p>
           </motion.div>
 
@@ -163,10 +168,22 @@ export default function BeneathTheSurfacePage() {
               <p className="text-lg text-muted-foreground mb-8">
                 Get fresh stories, small wins, and honest voices in your inbox — every few weeks.
               </p>
-              <form className="flex flex-col sm:flex-row gap-4">
+              <form
+                className="flex flex-col sm:flex-row gap-4"
+                onSubmit={e => {
+                  e.preventDefault();
+                  toast({
+                    title: "Subscribed!",
+                    description: "Thank you for subscribing to our newsletter.",
+                  });
+                  setEmail("");
+                }}
+              >
                 <input
                   type="email"
                   placeholder="Your email address"
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
                   className="flex h-10 w-full rounded-none border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                 />
                 <Button type="submit" className="rounded-none">
@@ -181,11 +198,14 @@ export default function BeneathTheSurfacePage() {
               viewport={{ once: true, margin: "-100px" }}
               className="flex-1 relative h-[400px] w-full"
             >
-              <Image
-                src="/placeholder.svg?height=800&width=600"
-                alt="Newsletter subscription"
-                fill
-                className="object-cover"
+              <video
+                src="/videos/beyond.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="object-cover w-full h-full absolute inset-0"
+                style={{ objectFit: 'cover' }}
               />
             </motion.div>
           </div>

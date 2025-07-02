@@ -37,7 +37,7 @@ export default function PrivacyPolicyPage() {
           </section>
           <section>
             <h2 className="text-xl font-semibold mb-2">Access to Your Personal Information</h2>
-            <p>You are entitled to view, amend, or delete the personal information that we hold. Email your request to our data protection officer <b>Revens</b> at <a href="mailto:revenserom@gmail.com" className="text-yellow-600 underline">revenserom@gmail.com</a> and we will work with you to remove any of your personal data we may have.</p>
+            <p>You are entitled to view, amend, or delete the personal information that we hold. Email your request to our data protection officer <b>Revens</b> at <a href="mailto:dataprotection@lifeupsideview.org" className="text-yellow-600 underline">dataprotection@lifeupsideview.org</a> and we will work with you to remove any of your personal data we may have.</p>
           </section>
           <section>
             <h2 className="text-xl font-semibold mb-2">Changes to Our Privacy Policy</h2>

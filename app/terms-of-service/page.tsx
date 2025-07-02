@@ -40,7 +40,7 @@ export default function TermsOfServicePage() {
           </section>
           <section>
             <h2 className="text-xl font-semibold mb-2">Contact</h2>
-            <p>If you have any questions about these Terms, please contact us at <a href="mailto:revenserom@gmail.com" className="text-yellow-600 underline">revenserom@gmail.com</a>.</p>
+            <p>If you have any questions about these Terms, please contact us at <a href="mailto:dataprotection@lifeupsideview.org" className="text-yellow-600 underline">dataprotection@lifeupsideview.org</a>.</p>
           </section>
         </div>
       </div>
