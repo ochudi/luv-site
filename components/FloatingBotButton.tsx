@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Bot } from "lucide-react";
+import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@/components/ui/tooltip";
 
 const categories = [
   { value: "Issue", label: "Issue" },
@@ -50,13 +51,24 @@ export default function FloatingBotButton() {
               <span>Talk to Us</span>
             </button>
           ) : (
-            <Button
-              size="lg"
-              aria-label="Open bot"
-              className="rounded-full w-14 h-14 shadow-lg bg-gradient-to-br from-yellow-400 to-yellow-500 text-white flex items-center justify-center p-0 transition-all duration-300"
-            >
-              <Bot size={28} />
-            </Button>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <DialogTrigger asChild>
+                    <Button
+                      size="lg"
+                      aria-label="Open bot"
+                      className="rounded-full w-14 h-14 shadow-lg bg-gradient-to-br from-yellow-400 to-yellow-500 text-white flex items-center justify-center p-0 transition-all duration-900 animate-bounce"
+                    >
+                      <Bot size={28} />
+                    </Button>
+                  </DialogTrigger>
+                </TooltipTrigger>
+                <TooltipContent side="top" className="bg-white text-yellow-400 font-semibold pointer-events-none">
+                  Talk to Us
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           )}
         </DialogTrigger>
         <DialogContent
