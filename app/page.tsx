@@ -131,23 +131,25 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-24 bg-muted">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-center gap-12">
+      <section className="relative overflow-x-clip">
+        <div className="max-w-full mx-0 flex flex-col items-start min-h-[160vh] md:min-h-[120vh]">
+          {/* Text Block */}
+          <div
+            className="w-full md:w-1/2 mx-auto mt-[40px] md:mt-10 md:ml-10 md:mr-auto z-10"
+            style={{ position: 'sticky', top: 150 }}
+          >
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true, margin: "-100px" }}
-              className="flex-1"
+              className="md:bg-transparent px-6 md:px-0 pt-6 pb-8 md:pt-0 md:pb-0"
             >
-              <h2 className="text-3xl md:text-5xl font-bold mb-6">
+              <h2 className="text-3xl md:text-7xl font-bold mb-6">
                 SEE BEYOND
               </h2>
               <p className="text-lg text-muted-foreground mb-8">
-                Stories, experiences, and lessons from those who have dared to
-                look at life differently. Step outside the usual and explore
-                what lies beyond.
+                Stories, experiences, and lessons from those who have dared to look at life differently. Step outside the usual and explore what lies beyond.
               </p>
               <Button asChild variant="outline" className="rounded-none">
                 <Link href="/stories">
@@ -155,12 +157,19 @@ export default function Home() {
                 </Link>
               </Button>
             </motion.div>
+          </div>
+          {/* Video Block (sticky under header) */}
+          <div
+            className="w-full md:w-2/3 mx-auto mt-20 md:mt-20 md:ml-auto md:mr-0 z-20"
+            style={{ position: 'sticky', top: 180 }}
+          >
             <motion.div
-              initial={{ opacity: 0, x: 50 }}
+              initial={{ opacity: 0, x: 100 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 1 }}
               viewport={{ once: true, margin: "-100px" }}
-              className="flex-1 relative h-[400px] w-full"
+              className="w-full h-[300px] md:h-[80vh] flex items-center justify-end"
+              style={{ zIndex: 20 }}
             >
               <video
                 src="/videos/beyond.mp4"
@@ -168,8 +177,14 @@ export default function Home() {
                 loop
                 muted
                 playsInline
-                className="object-cover w-full h-full rounded"
-                style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+                className="object-cover w-full h-full shadow-xl rounded"
+                style={{
+                  maxHeight: '80vh',
+                  minHeight: '300px',
+                  width: '100%',
+                  position: 'relative',
+                  right: 0,
+                }}
               />
             </motion.div>
           </div>
