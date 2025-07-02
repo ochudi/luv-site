@@ -36,9 +36,9 @@ export default function Footer() {
     {
       title: "LEGAL",
       links: [
-        { href: "#", label: "Privacy Policy" },
-        { href: "#", label: "Terms of Service" },
-        { href: "#", label: "Cookie Policy" },
+        { href: "/privacy-policy", label: "Privacy Policy" },
+        { href: "/terms-of-service", label: "Terms of Service" },
+        { href: "/cookie-policy", label: "Cookie Policy" },
       ],
     },
   ];
@@ -158,8 +158,12 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} Life Upside View Mental Health
             Foundation. All rights reserved.
           </p>
-          <p className="text-sm text-muted-foreground mt-4 md:mt-0">
-            Created to inspire, support, and uplift.
+          <p className="text-sm text-muted-foreground mt-4 md:mt-0 flex flex-wrap gap-x-4 gap-y-2 items-center">
+            <Link href="/privacy-policy" className="hover:underline hover:text-foreground transition-colors" aria-label="Privacy Policy">Privacy Policy</Link>
+            <span className="hidden md:inline">|</span>
+            <Link href="/terms-of-service" className="hover:underline hover:text-foreground transition-colors" aria-label="Terms of Service">Terms of Service</Link>
+            <span className="hidden md:inline">|</span>
+            <Link href="/cookie-policy" className="hover:underline hover:text-foreground transition-colors" aria-label="Cookie Policy">Cookie Policy</Link>
           </p>
         </div>
       </div>
