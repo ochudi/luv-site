@@ -7,6 +7,8 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import SearchHero from "@/components/SearchHero";
+import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
+import { BookOpen, PencilLine, HeartHandshake } from "lucide-react";
 
 export default function Home() {
   const ref = useRef(null);
@@ -203,9 +205,38 @@ export default function Home() {
             <h2 className="text-3xl md:text-5xl font-bold mb-8">
               ARE YOU READY TO SEE DIFFERENTLY?
             </h2>
-            <Button size="lg" className="rounded-none">
-              <Link href="/stories/all-stories">JOIN THE JOURNEY</Link>
-            </Button>
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button size="lg" className="rounded-none font-bold">
+                  JOIN THE JOURNEY
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent align="center" className="w-80 p-0 border-none shadow-2xl">
+                <div className="flex flex-col divide-y divide-muted-foreground/10">
+                  <a href="/stories/all-stories" className="flex items-center gap-4 p-5 hover:bg-muted transition rounded-t-md group focus:outline-none" tabIndex={0}>
+                    <BookOpen className="h-7 w-7 text-yellow-500 group-hover:scale-110 transition-transform" />
+                    <div className="text-left">
+                      <div className="font-semibold text-lg">Read Stories</div>
+                      <div className="text-sm text-muted-foreground">Inspiring journeys from our community</div>
+                    </div>
+                  </a>
+                  <a href="/write" className="flex items-center gap-4 p-5 hover:bg-muted transition group focus:outline-none" tabIndex={0}>
+                    <PencilLine className="h-7 w-7 text-yellow-500 group-hover:scale-110 transition-transform" />
+                    <div className="text-left">
+                      <div className="font-semibold text-lg">Share Experiences</div>
+                      <div className="text-sm text-muted-foreground">Write and share your own story</div>
+                    </div>
+                  </a>
+                  <a href="/volunteer" className="flex items-center gap-4 p-5 hover:bg-muted transition rounded-b-md group focus:outline-none" tabIndex={0}>
+                    <HeartHandshake className="h-7 w-7 text-yellow-500 group-hover:scale-110 transition-transform" />
+                    <div className="text-left">
+                      <div className="font-semibold text-lg">Volunteer</div>
+                      <div className="text-sm text-muted-foreground">Join us in making a difference</div>
+                    </div>
+                  </a>
+                </div>
+              </PopoverContent>
+            </Popover>
           </motion.div>
         </div>
       </section>

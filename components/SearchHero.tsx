@@ -75,6 +75,7 @@ export default function SearchHero() {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [highlightIdx, setHighlightIdx] = useState(-1);
   const inputRef = useRef<HTMLInputElement>(null);
+  const [isInputFocused, setIsInputFocused] = useState(false);
 
   // Animated placeholder suggestions
   const animatedSuggestions = [
@@ -115,6 +116,21 @@ export default function SearchHero() {
     setHighlightIdx(-1);
   }, [input, showSuggestions]);
 
+  // On mobile, scroll input into view on focus
+  const handleFocus = () => {
+    setShowSuggestions(true);
+    setIsInputFocused(true);
+    if (window.innerWidth < 768 && inputRef.current) {
+      setTimeout(() => {
+        inputRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 100);
+    }
+  };
+  const handleBlur = () => {
+    setTimeout(() => setShowSuggestions(false), 150);
+    setIsInputFocused(false);
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
@@ -122,8 +138,8 @@ export default function SearchHero() {
       transition={{ duration: 0.8, delay: 0.2 }}
       className="w-full flex flex-col items-center"
     >
-      <div className="w-full max-w-2xl mx-auto flex flex-col items-center px-2 relative">
-        <div className="relative w-full flex items-center shadow-xl rounded-sm border-2 border-yellow-300 focus-within:ring-2 focus-within:ring-yellow-300 transition-all duration-300">
+      <div className={`w-full max-w-2xl mx-auto flex flex-col items-center px-2 relative ${isInputFocused ? 'z-50' : ''}`}>
+        <div className={`relative w-full flex items-center shadow-xl rounded-sm border-2 border-yellow-300 focus-within:ring-2 focus-within:ring-yellow-300 transition-all duration-300 ${isInputFocused ? 'py-2 md:py-0' : ''}`}>
           <span className="absolute left-6 top-1/2 -translate-y-1/2 text-white cursor-pointer z-10" onClick={handleSearch}>
             <Search className="h-7 w-7" />
           </span>
@@ -135,8 +151,8 @@ export default function SearchHero() {
               setInput(e.target.value);
               setShowSuggestions(true);
             }}
-            onFocus={() => setShowSuggestions(true)}
-            onBlur={() => setTimeout(() => setShowSuggestions(false), 150)}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
                 handleSearch();
@@ -147,7 +163,7 @@ export default function SearchHero() {
               }
             }}
             placeholder={animatedPlaceholder}
-            className="w-full pl-16 pr-8 py-5 bg-transparent text-white placeholder-gray-300 font-semibold text-xl md:text-2xl rounded-full outline-none border-none focus:ring-0 transition-all duration-300"
+            className={`w-full pl-16 pr-8 ${isInputFocused ? 'py-3 text-base md:text-xl' : 'py-5 text-xl md:text-2xl'} bg-transparent text-white placeholder-gray-300 font-semibold rounded-full outline-none border-none focus:ring-0 transition-all duration-300`}
             autoComplete="off"
             aria-label="Search Life Upside View"
           />
