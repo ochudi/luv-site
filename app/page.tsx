@@ -5,7 +5,6 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
 import SearchHero from "@/components/SearchHero";
 import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
 import { BookOpen, PencilLine, HeartHandshake } from "lucide-react";
@@ -44,28 +43,21 @@ export default function Home() {
         </div>
 
         {/* Foreground Content */}
-        <motion.div
-          style={{ opacity, scale, y }}
+        <div
           className="relative z-10 container mx-auto px-4 text-center"
         >
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+          <div
             className="text-5xl md:text-7xl lg:text-9xl font-bold text-white mb-6"
           >
             YOU&apos;RE NOT<br />
             ALONE
-          </motion.h1>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+          </div>
+          <div
             className="mt-20"
           >
             <SearchHero />
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </section>
 
       {/* Content Sections */}

@@ -76,6 +76,7 @@ export default function SearchHero() {
   const [highlightIdx, setHighlightIdx] = useState(-1);
   const inputRef = useRef<HTMLInputElement>(null);
   const [isInputFocused, setIsInputFocused] = useState(false);
+  const searchBarRef = useRef<HTMLDivElement>(null);
 
   // Animated placeholder suggestions
   const animatedSuggestions = [
@@ -116,10 +117,19 @@ export default function SearchHero() {
     setHighlightIdx(-1);
   }, [input, showSuggestions]);
 
-  // On mobile, scroll input into view on focus
+  // On focus, scroll search bar just under the header
   const handleFocus = () => {
     setShowSuggestions(true);
     setIsInputFocused(true);
+    if (searchBarRef.current) {
+      // Scroll so the search bar is just under the header (top-16 = 64px)
+      const headerHeight = 64; // px, adjust if your header is taller
+      const rect = searchBarRef.current.getBoundingClientRect();
+      const scrollY = window.scrollY + rect.top - headerHeight;
+      if (Math.abs(window.scrollY - scrollY) > 8) {
+        window.scrollTo({ top: scrollY, behavior: 'smooth' });
+      }
+    }
     if (window.innerWidth < 768 && inputRef.current) {
       setTimeout(() => {
         inputRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -131,89 +141,199 @@ export default function SearchHero() {
     setIsInputFocused(false);
   };
 
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, delay: 0.2 }}
-      className="w-full flex flex-col items-center"
-    >
-      <div className={`w-full max-w-2xl mx-auto flex flex-col items-center px-2 relative ${isInputFocused ? 'z-50' : ''}`}>
-        <div className={`relative w-full flex items-center shadow-xl rounded-sm border-2 border-yellow-300 focus-within:ring-2 focus-within:ring-yellow-300 transition-all duration-300 ${isInputFocused ? 'py-2 md:py-0' : ''}`}>
-          <span className="absolute left-6 top-1/2 -translate-y-1/2 text-white cursor-pointer z-10" onClick={handleSearch}>
-            <Search className="h-7 w-7" />
-          </span>
-          <input
-            ref={inputRef}
-            type="text"
-            value={input}
-            onChange={(e) => {
-              setInput(e.target.value);
-              setShowSuggestions(true);
-            }}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                handleSearch();
-              } else if (e.key === "ArrowDown") {
-                setHighlightIdx((i) => Math.min(i + 1, filtered.length - 1));
-              } else if (e.key === "ArrowUp") {
-                setHighlightIdx((i) => Math.max(i - 1, 0));
-              }
-            }}
-            placeholder={animatedPlaceholder}
-            className={`w-full pl-16 pr-8 ${isInputFocused ? 'py-3 text-base md:text-xl' : 'py-5 text-xl md:text-2xl'} bg-transparent text-white placeholder-gray-300 font-semibold rounded-full outline-none border-none focus:ring-0 transition-all duration-300`}
-            autoComplete="off"
-            aria-label="Search Life Upside View"
-          />
-          <button
-            className="absolute right-4 top-1/2 -translate-y-1/2 bg-white text-black font-bold text-lg px-6 py-3 rounded-sm shadow-md hover:bg-yellow-300 transition-all duration-200"
-            onClick={handleSearch}
-            aria-label="Search"
-            type="button"
-          >
-            Search
-          </button>
+  // Overlay blur handler
+  const handleOverlayClick = () => {
+    if (inputRef.current) {
+      inputRef.current.blur();
+    }
+    setShowSuggestions(false);
+  };
+
+  // Prevent body scroll when search is focused
+  useEffect(() => {
+    if (isInputFocused) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+    return () => {
+      document.body.classList.remove("overflow-hidden");
+    };
+  }, [isInputFocused]);
+
+  // If input is focused, render with sticky positioning under the header
+  if (isInputFocused) {
+    return (
+      <>
+        <div
+          className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm transition-all duration-300"
+          onClick={handleOverlayClick}
+          aria-label="Close search overlay"
+        />
+        <div ref={searchBarRef} className="w-full flex flex-col items-center z-50 sticky top-16 left-0 right-0" style={{ maxWidth: '100vw' }}>
+          <div className="w-full max-w-2xl mx-auto flex flex-col items-center px-2 relative z-50">
+            <div className="relative w-full flex items-center shadow-xl rounded-sm border-2 border-yellow-300 focus-within:ring-2 focus-within:ring-yellow-300 transition-all duration-300 py-2 bg-white">
+              <span className="absolute left-6 top-1/2 -translate-y-1/2 text-yellow-500 cursor-pointer z-10" onClick={handleSearch}>
+                <Search className="h-7 w-7" />
+              </span>
+              <input
+                ref={inputRef}
+                type="text"
+                value={input}
+                onChange={(e) => {
+                  setInput(e.target.value);
+                  setShowSuggestions(true);
+                }}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    handleSearch();
+                  } else if (e.key === "ArrowDown") {
+                    setHighlightIdx((i) => Math.min(i + 1, filtered.length - 1));
+                  } else if (e.key === "ArrowUp") {
+                    setHighlightIdx((i) => Math.max(i - 1, 0));
+                  }
+                }}
+                placeholder={animatedPlaceholder}
+                className="w-full pl-16 pr-8 py-3 text-base bg-white text-black placeholder-gray-400 font-semibold rounded-full outline-none border-none focus:ring-0 transition-all duration-300"
+                autoComplete="off"
+                aria-label="Search Life Upside View"
+                style={{ background: '#fff', color: '#222' }}
+              />
+              <button
+                className="absolute right-4 top-1/2 -translate-y-1/2 bg-yellow-500 text-white font-bold text-lg px-6 py-3 rounded-sm shadow-md hover:bg-yellow-600 transition-all duration-200"
+                onClick={handleSearch}
+                aria-label="Search"
+                type="button"
+              >
+                Search
+              </button>
+            </div>
+            {/* Suggestions dropdown */}
+            <AnimatePresence>
+              {showSuggestions && filtered.length > 0 && (
+                <ul
+                  className="absolute left-0 right-0 mt-4 bg-white border border-gray-200 rounded-2xl shadow-2xl z-20 max-h-64 overflow-y-auto"
+                  style={{ top: '100%', marginTop: '1rem' }}
+                >
+                  {Object.entries(grouped).map(([type, items]) => (
+                    <li key={type} className="px-6 pt-3 pb-1 text-xs font-bold text-gray-500 uppercase tracking-wider">
+                      {type}
+                      <ul>
+                        {items.map((item, i) => (
+                          <li
+                            key={item.key}
+                            className={`px-2 py-3 cursor-pointer text-gray-900 font-semibold text-lg transition-all duration-200 rounded-xl mx-2 my-1 flex items-center gap-2 ${
+                              i === highlightIdx ? "bg-yellow-300 text-gray-900" : "hover:bg-yellow-100"
+                            }`}
+                            onMouseDown={() => {
+                              router.push(item.href);
+                              setShowSuggestions(false);
+                            }}
+                            onMouseEnter={() => setHighlightIdx(i)}
+                          >
+                            <span>{item.label}</span>
+                            <span className="text-xs text-gray-500 font-normal">{item.description}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </AnimatePresence>
+          </div>
         </div>
-        {/* Suggestions dropdown */}
-        <AnimatePresence>
-          {showSuggestions && filtered.length > 0 && (
-            <motion.ul
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 10 }}
-              transition={{ duration: 0.2 }}
-              className="absolute left-0 right-0 mt-4 bg-white/95 backdrop-blur-md border border-gray-200 rounded-2xl shadow-2xl z-20 max-h-64 overflow-y-auto"
-              style={{ top: '100%', marginTop: '1rem' }}
+      </>
+    );
+  }
+
+  return (
+    <>
+      {isInputFocused && (
+        <div
+          className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm transition-all duration-300"
+          onClick={handleOverlayClick}
+          aria-label="Close search overlay"
+        />
+      )}
+      <div className={`w-full flex flex-col items-center ${isInputFocused ? 'z-50 fixed left-0 right-0 top-8' : ''}`}
+        style={isInputFocused ? { maxWidth: '100vw' } : {}}>
+        <div className={`w-full max-w-2xl mx-auto flex flex-col items-center px-2 relative ${isInputFocused ? 'z-50' : ''}`}>
+          <div className={`relative w-full flex items-center shadow-xl rounded-sm border-2 border-yellow-300 focus-within:ring-2 focus-within:ring-yellow-300 transition-all duration-300 ${isInputFocused ? 'py-2 bg-white' : ''}`}>
+            <span className={`absolute left-6 top-1/2 -translate-y-1/2 ${isInputFocused ? 'text-yellow-500' : 'text-white'} cursor-pointer z-10`} onClick={handleSearch}>
+              <Search className="h-7 w-7" />
+            </span>
+            <input
+              ref={inputRef}
+              type="text"
+              value={input}
+              onChange={(e) => {
+                setInput(e.target.value);
+                setShowSuggestions(true);
+              }}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  handleSearch();
+                } else if (e.key === "ArrowDown") {
+                  setHighlightIdx((i) => Math.min(i + 1, filtered.length - 1));
+                } else if (e.key === "ArrowUp") {
+                  setHighlightIdx((i) => Math.max(i - 1, 0));
+                }
+              }}
+              placeholder={animatedPlaceholder}
+              className={`w-full pl-16 pr-8 ${isInputFocused ? 'py-3 text-base bg-white text-black' : 'py-5 text-xl md:text-2xl bg-transparent text-white'} placeholder-gray-400 font-semibold rounded-full outline-none border-none focus:ring-0 transition-all duration-300`}
+              autoComplete="off"
+              aria-label="Search Life Upside View"
+              style={isInputFocused ? { background: '#fff', color: '#222' } : {}}
+            />
+            <button
+              className={`absolute right-4 top-1/2 -translate-y-1/2 font-bold text-lg px-6 py-3 rounded-sm shadow-md hover:bg-yellow-300 transition-all duration-200 ${isInputFocused ? 'bg-yellow-500 text-white' : 'bg-white text-black'}`}
+              onClick={handleSearch}
+              aria-label="Search"
+              type="button"
             >
-              {Object.entries(grouped).map(([type, items]) => (
-                <li key={type} className="px-6 pt-3 pb-1 text-xs font-bold text-gray-500 uppercase tracking-wider">
-                  {type}
-                  <ul>
-                    {items.map((item, i) => (
-                      <li
-                        key={item.key}
-                        className={`px-2 py-3 cursor-pointer text-gray-900 font-semibold text-lg transition-all duration-200 rounded-xl mx-2 my-1 flex items-center gap-2 ${
-                          i === highlightIdx ? "bg-yellow-300 text-gray-900" : "hover:bg-yellow-100"
-                        }`}
-                        onMouseDown={() => {
-                          router.push(item.href);
-                          setShowSuggestions(false);
-                        }}
-                        onMouseEnter={() => setHighlightIdx(i)}
-                      >
-                        <span>{item.label}</span>
-                        <span className="text-xs text-gray-500 font-normal">{item.description}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </li>
-              ))}
-            </motion.ul>
-          )}
-        </AnimatePresence>
+              Search
+            </button>
+          </div>
+          {/* Suggestions dropdown */}
+          <AnimatePresence>
+            {showSuggestions && filtered.length > 0 && (
+              <ul
+                className={`absolute left-0 right-0 mt-4 border border-gray-200 rounded-2xl shadow-2xl z-20 max-h-64 overflow-y-auto ${isInputFocused ? 'bg-white' : 'bg-white/95 backdrop-blur-md'}`}
+                style={{ top: '100%', marginTop: '1rem' }}
+              >
+                {Object.entries(grouped).map(([type, items]) => (
+                  <li key={type} className="px-6 pt-3 pb-1 text-xs font-bold text-gray-500 uppercase tracking-wider">
+                    {type}
+                    <ul>
+                      {items.map((item, i) => (
+                        <li
+                          key={item.key}
+                          className={`px-2 py-3 cursor-pointer text-gray-900 font-semibold text-lg transition-all duration-200 rounded-xl mx-2 my-1 flex items-center gap-2 ${
+                            i === highlightIdx ? "bg-yellow-300 text-gray-900" : "hover:bg-yellow-100"
+                          }`}
+                          onMouseDown={() => {
+                            router.push(item.href);
+                            setShowSuggestions(false);
+                          }}
+                          onMouseEnter={() => setHighlightIdx(i)}
+                        >
+                          <span>{item.label}</span>
+                          <span className="text-xs text-gray-500 font-normal">{item.description}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </AnimatePresence>
+        </div>
       </div>
-    </motion.div>
+    </>
   );
 } 
