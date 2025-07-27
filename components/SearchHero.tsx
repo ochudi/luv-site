@@ -201,14 +201,14 @@ export default function SearchHero() {
                 aria-label="Search Life Upside View"
                 style={{ background: '#fff', color: '#222' }}
               />
-              <button
-                className="absolute right-4 top-1/2 -translate-y-1/2 bg-yellow-500 text-white font-bold text-lg px-6 py-3 rounded-sm shadow-md hover:bg-yellow-600 transition-all duration-200"
-                onClick={handleSearch}
-                aria-label="Search"
-                type="button"
-              >
-                Search
-              </button>
+                          <button
+              className="absolute right-4 top-1/2 -translate-y-1/2 bg-yellow-500 text-white font-bold text-lg px-6 py-3 rounded-sm shadow-md hover:bg-yellow-600 transition-all duration-200 hidden md:block"
+              onClick={handleSearch}
+              aria-label="Search"
+              type="button"
+            >
+              Search
+            </button>
             </div>
             {/* Suggestions dropdown */}
             <AnimatePresence>
@@ -291,7 +291,7 @@ export default function SearchHero() {
               style={isInputFocused ? { background: '#fff', color: '#222' } : {}}
             />
             <button
-              className={`absolute right-4 top-1/2 -translate-y-1/2 font-bold text-lg px-6 py-3 rounded-sm shadow-md hover:bg-yellow-300 transition-all duration-200 ${isInputFocused ? 'bg-yellow-500 text-white' : 'bg-white text-black'}`}
+              className={`absolute right-4 top-1/2 -translate-y-1/2 font-bold text-lg px-6 py-3 rounded-sm shadow-md hover:bg-yellow-300 transition-all duration-200 hidden md:block ${isInputFocused ? 'bg-yellow-500 text-white' : 'bg-white text-black'}`}
               onClick={handleSearch}
               aria-label="Search"
               type="button"
