@@ -54,18 +54,6 @@ export default function AboutPage() {
             <Volume2 className="h-5 w-5" />
           )}
         </button>
-
-        {/* Content */}
-        <div className="relative z-10 container mx-auto px-4 text-center">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-5xl md:text-7xl font-bold text-white mb-6"
-          >
-            OUR STORY
-          </motion.h1>
-        </div>
       </section>
 
       {/* Content Sections */}
