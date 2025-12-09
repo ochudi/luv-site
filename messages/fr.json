@@ -1,0 +1,219 @@
+{
+  "navigation": {
+    "home": "ACCUEIL",
+    "about": "À PROPOS",
+    "stories": "HISTOIRES",
+    "donate": "Faire un don"
+  },
+  "common": {
+    "search": "Rechercher",
+    "readMore": "Lire la suite",
+    "loading": "Chargement...",
+    "learnMore": "EN SAVOIR PLUS",
+    "explore": "EXPLORER",
+    "back": "RETOUR",
+    "next": "SUIVANT",
+    "previous": "PRÉCÉDENT"
+  },
+  "search": {
+    "button": "Rechercher",
+    "placeholder": {
+      "1": "Histoires de résilience",
+      "2": "Ressources en santé mentale",
+      "3": "Réseaux de soutien",
+      "4": "Croissance personnelle",
+      "5": "Outils de bien-être",
+      "6": "Expériences de vie réelle"
+    },
+    "categories": {
+      "page": "Page",
+      "section": "Section",
+      "story": "Histoire"
+    },
+    "noResults": "Aucun résultat trouvé."
+  },
+  "talkToUs": {
+    "title": "Parlez-nous",
+    "description": "Partagez un problème, un message ou une histoire. Votre message sera envoyé à notre équipe par e-mail.",
+    "category": "Catégorie",
+    "message": "Message",
+    "messagePlaceholder": "Tapez votre message ici...",
+    "send": "Envoyer",
+    "dismiss": "Fermer",
+    "categories": {
+      "issue": "Problème",
+      "message": "Message",
+      "story": "Histoire"
+    }
+  },
+  "hero": {
+    "title": "VOUS N'ÊTES PAS",
+    "titleLine2": "SEUL",
+    "searchPlaceholder": "Rechercher des histoires, des sujets ou des ressources..."
+  },
+  "home": {
+    "newWayToSee": {
+      "title": "UNE NOUVELLE FAÇON DE VOIR",
+      "description": "Life Upside View consiste à changer de perspective et à voir le monde sous un angle différent."
+    },
+    "reflect": {
+      "title": "RÉFLÉCHIR",
+      "description": "Plongez dans des idées partagées qui peuvent vous aider à changer votre vision de la vie."
+    },
+    "exploreSection": {
+      "title": "EXPLORER",
+      "description": "Découvrez de nouvelles idées et perspectives à travers des ressources qui peuvent améliorer votre humeur."
+    },
+    "evolve": {
+      "title": "ÉVOLUER",
+      "description": "Transformez votre état d'esprit et embrassez l'inattendu dans les moments quotidiens."
+    },
+    "seeBeyond": {
+      "title": "VOIR AU-DELÀ",
+      "description": "Des histoires, des expériences et des leçons de ceux qui ont osé regarder la vie différemment. Sortez de l'ordinaire et explorez ce qui se trouve au-delà."
+    },
+    "readyToSeeDifferently": {
+      "title": "ÊTES-VOUS PRÊT À VOIR DIFFÉREMMENT ?",
+      "joinButton": "REJOIGNEZ LE VOYAGE"
+    },
+    "joinOptions": {
+      "readStories": {
+        "title": "Lire des histoires",
+        "description": "Des parcours inspirants de notre communauté"
+      },
+      "shareExperiences": {
+        "title": "Partager des expériences",
+        "description": "Écrivez et partagez votre propre histoire"
+      },
+      "volunteer": {
+        "title": "Faire du bénévolat",
+        "description": "Rejoignez-nous pour faire la différence"
+      }
+    }
+  },
+  "stories": {
+    "pageTitle": "SOUS LA SURFACE",
+    "pageSubtitle": "De vraies histoires de navigation dans l'invisible — et de trouver la lumière en elle",
+    "storiesThatHeal": "DES HISTOIRES QUI GUÉRISSENT",
+    "storiesThatHealDesc": "Réflexions, comptes et révélations — racontés par ceux qui les ont vécus.",
+    "viewAllStories": "VOIR TOUTES LES HISTOIRES",
+    "allStories": "TOUTES LES HISTOIRES",
+    "allStoriesDesc": "Lisez toutes les histoires inspirantes, honnêtes et profondément personnelles partagées sur Life Upside View.",
+    "backToStories": "RETOUR AUX HISTOIRES",
+    "previousStory": "HISTOIRE PRÉCÉDENTE",
+    "nextStory": "HISTOIRE SUIVANTE",
+    "diveDeeperTitle": "PLONGEZ PLUS PROFONDÉMENT",
+    "diveDeeperDesc": "Recevez des histoires fraîches, de petites victoires et des voix honnêtes dans votre boîte de réception — toutes les quelques semaines.",
+    "emailPlaceholder": "Votre adresse e-mail",
+    "subscribe": "S'ABONNER",
+    "subscribed": "Abonné !",
+    "subscribedDesc": "Merci de vous être abonné à notre newsletter."
+  },
+  "footer": {
+    "explore": "EXPLORER",
+    "resources": "RESSOURCES",
+    "legal": "JURIDIQUE",
+    "home": "Accueil",
+    "about": "À propos",
+    "stories": "Histoires",
+    "selfHelp": "Auto-assistance",
+    "mentalHealthCheckUps": "Bilans de santé mentale",
+    "findSupport": "Trouver du soutien",
+    "privacyPolicy": "Politique de confidentialité",
+    "termsOfService": "Conditions d'utilisation",
+    "cookiePolicy": "Politique des cookies",
+    "followUs": "SUIVEZ-NOUS",
+    "stayConnected": "Restez connecté et rejoignez la conversation.",
+    "getInvolved": "PARTICIPEZ",
+    "volunteer": "Faire du bénévolat",
+    "donate": "Faire un don",
+    "shareYourStory": "Partagez votre histoire",
+    "copyright": "© {year} Fondation Life Upside View pour la santé mentale. Tous droits réservés."
+  },
+  "about": {
+    "whoWeAre": "QUI NOUS SOMMES",
+    "whoWeAreDesc1": "Life Upside View est une initiative sincère animée par une vérité simple : les histoires guérissent. Nous sommes un collectif de défenseurs, d'artistes et de gens ordinaires engagés à créer un espace pour la vulnérabilité, la réflexion et la transformation.",
+    "whoWeAreDesc2": "Grâce à la narration et au dialogue communautaire, nous œuvrons pour déstigmatiser la santé mentale, mettre en lumière la résilience humaine et offrir de l'espoir — en particulier dans les endroits où le silence l'emporte souvent.",
+    "ourMission": "NOTRE MISSION",
+    "ourMissionDesc1": "Amplifier les expériences vécues et élever les conversations autour de la santé mentale, des traumatismes et de la guérison — en particulier au sein des communautés africaines et des voix sous-représentées.",
+    "ourMissionDesc2": "Nous nous efforçons de normaliser l'honnêteté émotionnelle, d'honorer la douleur et la joie de manière égale, et de construire des espaces où les gens se sentent vus, entendus et valorisés — tels qu'ils sont.",
+    "ourValues": "NOS VALEURS",
+    "empathy": "Empathie :",
+    "empathyDesc": "Nous écoutons avec compassion et dirigeons avec gentillesse.",
+    "authenticity": "Authenticité :",
+    "authenticityDesc": "Chaque voix compte et chaque histoire est valide.",
+    "community": "Communauté :",
+    "communityDesc": "La guérison ne se produit pas dans l'isolement — nous nous présentons ensemble.",
+    "transparency": "Transparence :",
+    "transparencyDesc": "Nous partageons nos vérités et honorons celles des autres avec respect.",
+    "resilience": "Résilience :",
+    "resilienceDesc": "Nous croyons en la capacité de l'esprit humain à se relever et à se reconstruire.",
+    "ourLeadership": "NOTRE LEADERSHIP",
+    "ourLeadershipDesc": "Rencontrez les personnes derrière Life Upside View — conteurs, défenseurs et agents de changement engagés pour le bien-être mental et les connexions significatives.",
+    "teamMembers": {
+      "ernest": {
+        "name": "Ernest Nwachukwu",
+        "title": "Fondateur et défenseur de la santé mentale",
+        "country": "Nigéria"
+      },
+      "ruqaiyah": {
+        "name": "Ruqaiyah Umar Shuwa",
+        "title": "Conseillère juridique et défenseure de la santé mentale",
+        "country": "Nigéria"
+      },
+      "omkar": {
+        "name": "Omkar Khadamkar",
+        "title": "Designer UX et stratège d'histoires",
+        "country": "Inde"
+      },
+      "saadatu": {
+        "name": "Sa'adatu Ali Shuwa",
+        "title": "Conseillère RH et défenseure du bien-être",
+        "country": "Nigéria"
+      },
+      "chinedu": {
+        "name": "Chinedu Michael Dike",
+        "title": "Conseiller médical et médecin de famille",
+        "country": "Nigéria"
+      },
+      "abdulwahab": {
+        "name": "Abdulwahab Umar Shuwa",
+        "title": "Bénévole technique et promoteur de la santé mentale",
+        "country": "Nigéria"
+      },
+      "happiness": {
+        "name": "Happiness Enogela",
+        "title": "Soutien d'équipe et gestionnaire de contenu",
+        "country": "Nigéria"
+      },
+      "fredrick": {
+        "name": "Ogieriakhi Fredrick",
+        "title": "Gestionnaire des médias sociaux",
+        "country": "Nigéria"
+      },
+      "chukwudi": {
+        "name": "Chukwudi Ofoma",
+        "title": "Ingénieur logiciel et responsable technique",
+        "country": "Nigéria"
+      }
+    }
+  },
+  "featuredStories": {
+    "story1": {
+      "title": "Des os brisés aux rêves incassables",
+      "description": "Mon voyage à travers l'adversité"
+    },
+    "story2": {
+      "title": "Ma vue renversée de la drépanocytose",
+      "description": "Un regard personnel sur la vie avec la drépanocytose"
+    },
+    "story3": {
+      "title": "L'histoire de Saffiya : Parties 1 et 2",
+      "description": "Le courage à travers la complexité"
+    },
+    "story4": {
+      "title": "Soutenu par mes peurs",
+      "description": "Trouver la force à travers la lutte"
+    }
+  }
+}

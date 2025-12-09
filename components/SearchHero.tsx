@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { AnimatePresence } from "framer-motion";
 import { Search } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 // Unified search data: ensure unique keys by appending type
 const SEARCH_DATA = [
@@ -70,6 +71,7 @@ function useTypewriter(words: string[], typingSpeed = 80, pause = 1200) {
 }
 
 export default function SearchHero() {
+  const t = useTranslations('search');
   const router = useRouter();
   const [input, setInput] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(false);
@@ -80,12 +82,12 @@ export default function SearchHero() {
 
   // Animated placeholder suggestions
   const animatedSuggestions = [
-    "Stories of Resilience",
-    "Mental Health Resources",
-    "Support Networks",
-    "Personal Growth",
-    "Well-being Tools",
-    "Real Life Experiences",
+    t('placeholder.1'),
+    t('placeholder.2'),
+    t('placeholder.3'),
+    t('placeholder.4'),
+    t('placeholder.5'),
+    t('placeholder.6'),
   ];
   const animatedPlaceholder = useTypewriter(animatedSuggestions);
 
@@ -204,10 +206,10 @@ export default function SearchHero() {
                           <button
               className="absolute right-4 top-1/2 -translate-y-1/2 bg-yellow-500 text-white font-bold text-lg px-6 py-3 rounded-sm shadow-md hover:bg-yellow-600 transition-all duration-200 hidden md:block"
               onClick={handleSearch}
-              aria-label="Search"
+              aria-label={t('button')}
               type="button"
             >
-              Search
+              {t('button')}
             </button>
             </div>
             {/* Suggestions dropdown */}
@@ -293,10 +295,10 @@ export default function SearchHero() {
             <button
               className={`absolute right-4 top-1/2 -translate-y-1/2 font-bold text-lg px-6 py-3 rounded-sm shadow-md hover:bg-yellow-300 transition-all duration-200 hidden md:block ${isInputFocused ? 'bg-yellow-500 text-white' : 'bg-white text-black'}`}
               onClick={handleSearch}
-              aria-label="Search"
+              aria-label={t('button')}
               type="button"
             >
-              Search
+              {t('button')}
             </button>
           </div>
           {/* Suggestions dropdown */}

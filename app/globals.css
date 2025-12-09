@@ -116,3 +116,29 @@ html {
   }
 }
 
+/* Mobile landscape fixes */
+@media (max-width: 932px) and (orientation: landscape) {
+  .hero-section {
+    height: auto !important;
+    min-height: 100vh !important;
+    align-items: flex-start !important;
+    padding-top: 6rem !important;
+    padding-bottom: 3rem !important;
+  }
+  
+  .hero-content {
+    padding-top: 2rem !important;
+  }
+  
+  .hero-title {
+    font-size: 2.5rem !important;
+    line-height: 2.75rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+  
+  .hero-search {
+    margin-top: 2rem !important;
+    margin-bottom: 2rem !important;
+  }
+}
+

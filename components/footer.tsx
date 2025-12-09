@@ -1,7 +1,8 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { Facebook, Instagram, Linkedin, Twitter, Youtube } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 // TikTok SVG icon component
 const TikTokIcon = (props: React.SVGProps<SVGSVGElement>) => (
@@ -16,29 +17,31 @@ const TikTokIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 export default function Footer() {
+  const t = useTranslations('footer');
+  
   const navSections = [
     {
-      title: "EXPLORE",
+      titleKey: "explore",
       links: [
-        { href: "/", label: "Home" },
-        { href: "/about", label: "About" },
-        { href: "/stories", label: "Stories" },
+        { href: "/", labelKey: "home" },
+        { href: "/about", labelKey: "about" },
+        { href: "/stories", labelKey: "stories" },
       ],
     },
     {
-      title: "RESOURCES",
+      titleKey: "resources",
       links: [
-        { href: "/self-help", label: "Self-Help" },
-        { href: "/check-ups", label: "Mental Health Check-Ups" },
-        { href: "/support", label: "Find Support" },
+        { href: "/self-help", labelKey: "selfHelp" },
+        { href: "/check-ups", labelKey: "mentalHealthCheckUps" },
+        { href: "/support", labelKey: "findSupport" },
       ],
     },
     {
-      title: "LEGAL",
+      titleKey: "legal",
       links: [
-        { href: "/privacy-policy", label: "Privacy Policy" },
-        { href: "/terms-of-service", label: "Terms of Service" },
-        { href: "/cookie-policy", label: "Cookie Policy" },
+        { href: "/privacy-policy", labelKey: "privacyPolicy" },
+        { href: "/terms-of-service", labelKey: "termsOfService" },
+        { href: "/cookie-policy", labelKey: "cookiePolicy" },
       ],
     },
   ];
@@ -103,16 +106,16 @@ export default function Footer() {
 
           {/* Navigation Links */}
           {navSections.map((section) => (
-            <div key={section.title}>
-              <h3 className="text-lg font-bold mb-4">{section.title}</h3>
+            <div key={section.titleKey}>
+              <h3 className="text-lg font-bold mb-4">{t(section.titleKey)}</h3>
               <ul className="space-y-2">
                 {section.links.map((link) => (
-                  <li key={link.label}>
+                  <li key={link.labelKey}>
                     <Link
                       href={link.href}
                       className="text-muted-foreground hover:text-foreground transition-colors"
                     >
-                      {link.label}
+                      {t(link.labelKey)}
                     </Link>
                   </li>
                 ))}
@@ -155,15 +158,14 @@ export default function Footer() {
         {/* Footer Bottom */}
         <div className="border-t border-border mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-muted-foreground text-center">
-            &copy; {new Date().getFullYear()} Life Upside View Mental Health
-            Foundation. All rights reserved.
+            {t('copyright', { year: new Date().getFullYear() })}
           </p>
           <p className="text-sm text-muted-foreground mt-4 md:mt-0 flex flex-wrap gap-x-4 gap-y-2 items-center">
-            <Link href="/privacy-policy" className="hover:underline hover:text-foreground transition-colors" aria-label="Privacy Policy">Privacy Policy</Link>
+            <Link href="/privacy-policy" className="hover:underline hover:text-foreground transition-colors" aria-label="Privacy Policy">{t('privacyPolicy')}</Link>
             <span className="hidden md:inline">|</span>
-            <Link href="/terms-of-service" className="hover:underline hover:text-foreground transition-colors" aria-label="Terms of Service">Terms of Service</Link>
+            <Link href="/terms-of-service" className="hover:underline hover:text-foreground transition-colors" aria-label="Terms of Service">{t('termsOfService')}</Link>
             <span className="hidden md:inline">|</span>
-            <Link href="/cookie-policy" className="hover:underline hover:text-foreground transition-colors" aria-label="Cookie Policy">Cookie Policy</Link>
+            <Link href="/cookie-policy" className="hover:underline hover:text-foreground transition-colors" aria-label="Cookie Policy">{t('cookiePolicy')}</Link>
           </p>
         </div>
       </div>

@@ -5,14 +5,16 @@ import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, Dialog
 import { Button } from "@/components/ui/button";
 import { Bot } from "lucide-react";
 import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@/components/ui/tooltip";
+import { useTranslations } from "next-intl";
 
 const categories = [
-  { value: "Issue", label: "Issue" },
-  { value: "Message", label: "Message" },
-  { value: "Story", label: "Story" },
+  { value: "Issue", translationKey: "categories.issue" },
+  { value: "Message", translationKey: "categories.message" },
+  { value: "Story", translationKey: "categories.story" },
 ];
 
 export default function FloatingBotButton() {
+  const t = useTranslations('talkToUs');
   const [category, setCategory] = useState(categories[0].value);
   const [message, setMessage] = useState("");
   const [scrolled, setScrolled] = useState(false);
@@ -48,7 +50,7 @@ export default function FloatingBotButton() {
               style={{ boxShadow: "0 4px 24px 0 rgba(0,0,0,0.10)" }}
             >
               <Bot size={22} className="mr-2 text-white" />
-              <span>Talk to Us</span>
+              <span>{t('title')}</span>
             </button>
           ) : (
             <TooltipProvider>
@@ -65,7 +67,7 @@ export default function FloatingBotButton() {
                   </DialogTrigger>
                 </TooltipTrigger>
                 <TooltipContent side="top" className="bg-white text-yellow-400 font-semibold pointer-events-none">
-                  Talk to Us
+                  {t('title')}
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
@@ -83,46 +85,46 @@ export default function FloatingBotButton() {
             <DialogHeader>
               <DialogTitle className="flex items-center gap-2 text-lg font-bold bg-gradient-to-r from-yellow-400 to-yellow-500 bg-clip-text text-transparent">
                 <Bot size={20} className="text-yellow-500" />
-                Talk to Us
+                {t('title')}
               </DialogTitle>
               <DialogDescription className="text-gray-500">
-                Share an issue, message, or story. Your message will be sent to our team via email.
+                {t('description')}
               </DialogDescription>
             </DialogHeader>
             <form onSubmit={e => { e.preventDefault(); handleSend(); }}>
               <div className="mb-4 mt-2">
-                <label htmlFor="category" className="block mb-1 font-medium text-gray-700">Category</label>
+                <label htmlFor="category" className="block mb-1 font-medium text-gray-700">{t('category')}</label>
                 <select
                   id="category"
                   className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400"
                   value={category}
                   onChange={e => setCategory(e.target.value)}
                   required
-                  aria-label="Select category"
+                  aria-label={t('category')}
                 >
                   {categories.map(cat => (
-                    <option key={cat.value} value={cat.value}>{cat.label}</option>
+                    <option key={cat.value} value={cat.value}>{t(cat.translationKey)}</option>
                   ))}
                 </select>
               </div>
               <div className="mb-4">
-                <label htmlFor="message" className="block mb-1 font-medium text-gray-700">Message</label>
+                <label htmlFor="message" className="block mb-1 font-medium text-gray-700">{t('message')}</label>
                 <textarea
                   id="message"
                   className="w-full border border-gray-300 rounded px-3 py-2 min-h-[100px] focus:outline-none focus:ring-2 focus:ring-yellow-400"
                   value={message}
                   onChange={e => setMessage(e.target.value)}
                   required
-                  placeholder="Type your message here..."
-                  aria-label="Type your message here"
+                  placeholder={t('messagePlaceholder')}
+                  aria-label={t('messagePlaceholder')}
                 />
               </div>
               <DialogFooter className="flex gap-2 mt-4">
                 <Button type="submit" disabled={!message.trim()} className="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-4 py-2 rounded shadow">
-                  Send
+                  {t('send')}
                 </Button>
                 <DialogClose asChild>
-                  <Button type="button" variant="ghost" className="text-gray-500 hover:text-gray-700">Dismiss</Button>
+                  <Button type="button" variant="ghost" className="text-gray-500 hover:text-gray-700">{t('dismiss')}</Button>
                 </DialogClose>
               </DialogFooter>
             </form>

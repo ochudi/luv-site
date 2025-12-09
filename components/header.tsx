@@ -1,25 +1,27 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
+import { Link, usePathname } from "@/i18n/routing";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { cn } from "@/lib/utils";
-
-const navItems = [
-  { name: "HOME", path: "/" },
-  { name: "ABOUT", path: "/about" },
-  { name: "STORIES", path: "/stories" },
-];
+import { useTranslations } from "next-intl";
 
 export default function Header() {
+  const t = useTranslations('navigation');
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+
+  const navItems = [
+    { nameKey: "home", path: "/" },
+    { nameKey: "about", path: "/about" },
+    { nameKey: "stories", path: "/stories" },
+  ];
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
@@ -72,25 +74,27 @@ export default function Header() {
                   : "text-white"
               )}
             >
-              {item.name}
+              {t(item.nameKey)}
             </Link>
           ))}
         </nav>
 
         {/* Desktop Actions */}
-        <div className="hidden md:flex items-center space-x-4">
+        <div className="hidden md:flex items-center space-x-2">
+          <LanguageSwitcher />
           <ThemeToggle />
           <a
             href="https://paystack.shop/pay/life-upside-view"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Button className="rounded-sm">Donate</Button>
+            <Button className="rounded-sm">{t('donate')}</Button>
           </a>
         </div>
 
         {/* Mobile Menu Toggle */}
-        <div className="flex md:hidden items-center space-x-4">
+        <div className="flex md:hidden items-center space-x-2">
+          <LanguageSwitcher />
           <ThemeToggle />
           <button
             onClick={() => setIsOpen(!isOpen)}
@@ -131,7 +135,7 @@ export default function Header() {
                     )}
                     onClick={() => setIsOpen(false)}
                   >
-                    {item.name}
+                    {t(item.nameKey)}
                   </Link>
                 </motion.div>
               ))}
@@ -146,7 +150,7 @@ export default function Header() {
                   rel="noopener noreferrer"
                 >
                   <Button size="lg" className="rounded-none mt-4">
-                    Donate
+                    {t('donate')}
                   </Button>
                 </a>
               </motion.div>
