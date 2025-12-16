@@ -31,23 +31,32 @@ export default function LanguageSwitcher() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon" className="h-9 w-9">
+        <Button variant="ghost" size="sm" className="h-9 px-3 gap-2 font-semibold">
           <Languages className="h-4 w-4" />
+          <span className="text-xs font-bold uppercase">{locale}</span>
           <span className="sr-only">Switch language</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent align="end" className="min-w-[160px]">
         <DropdownMenuItem
           onClick={() => switchLanguage('en')}
-          className={locale === 'en' ? 'bg-accent' : ''}
+          className={`cursor-pointer ${locale === 'en' ? 'bg-accent font-semibold' : ''}`}
         >
-          English
+          <span className="flex items-center gap-3 w-full">
+            <span className="text-lg font-bold">EN</span>
+            <span className="flex-1">English</span>
+            {locale === 'en' && <span className="text-yellow-500">✓</span>}
+          </span>
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={() => switchLanguage('fr')}
-          className={locale === 'fr' ? 'bg-accent' : ''}
+          className={`cursor-pointer ${locale === 'fr' ? 'bg-accent font-semibold' : ''}`}
         >
-          Français
+          <span className="flex items-center gap-3 w-full">
+            <span className="text-lg font-bold">FR</span>
+            <span className="flex-1">Français</span>
+            {locale === 'fr' && <span className="text-yellow-500">✓</span>}
+          </span>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

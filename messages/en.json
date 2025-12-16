@@ -46,6 +46,33 @@
       "story": "Story"
     }
   },
+  "evolve": {
+    "title": "EVOLVE",
+    "subtitle": "Growth is not a destination, but a way of seeing. Transform your mindset, one moment at a time.",
+    "smallWins": "Small Wins Journal",
+    "lessonsFromAdversity": "Lessons from Adversity",
+    "mentalToolkit": "Your Mental Toolkit",
+    "cardDescription": "Explore reflections, tools, and guidance that help you build resilience and embrace the unexpected.",
+    "learnMore": "Learn More"
+  },
+  "explore": {
+    "title": "EXPLORE",
+    "subtitle": "Discover new perspectives and resources that lift your mood and invite deeper curiosity.",
+    "guidedJournals": "Guided Journals",
+    "wellnessPlaylists": "Wellness Playlists",
+    "mindfulArticles": "Mindful Articles",
+    "cardDescription": "Thoughtfully curated tools and content to inspire, educate, and support your emotional well-being.",
+    "exploreNow": "Explore Now"
+  },
+  "reflect": {
+    "title": "REFLECT",
+    "subtitle": "Dive into shared insights that help you see life in new ways — with clarity, grace, and deeper meaning.",
+    "lettingGo": "Letting Go of Control",
+    "beautyInUncertainty": "The Beauty in Uncertainty",
+    "learningFromStillness": "Learning from Stillness",
+    "cardDescription": "Insightful thoughts from the lived experiences of people navigating mental health and growth.",
+    "readMore": "Read More"
+  },
   "hero": {
     "title": "YOU'RE NOT",
     "titleLine2": "ALONE",
@@ -110,6 +137,10 @@
     "subscribedDesc": "Thank you for subscribing to our newsletter."
   },
   "footer": {
+    "brand": "LIFE UPSIDE VIEW",
+    "brandDescription": "Sharing real stories, offering resources, and providing support to help you navigate life's challenges.",
+    "connectWithUs": "CONNECT WITH US",
+    "connectDescription": "Join our community. Subscribe for inspiring stories and mental health insights.",
     "explore": "EXPLORE",
     "resources": "RESOURCES",
     "legal": "LEGAL",
@@ -214,6 +245,58 @@
     "story4": {
       "title": "Supported by my Fears",
       "description": "Finding strength through struggle"
+    }
+  },
+  "policies": {
+    "backToHome": "← Back to Home",
+    "privacyPolicy": {
+      "title": "Privacy Policy",
+      "whoWeAre": "Who We Are",
+      "whoWeAreText": "At lifeupsideview.org, we are committed to maintaining the trust and confidence of all visitors to our website. We do not sell, rent, or trade email lists with other companies and businesses for marketing purposes. This Privacy Policy provides detailed information on when and why we collect personal information, how we use it, the limited conditions under which we may disclose it to others, and how we keep it secure.",
+      "cookies": "Cookies",
+      "cookiesText": "We may set and access cookies on your computer to provide our system with the basic information required to deliver the services you request. Cookies can be cleared at any time from your internet browser settings.",
+      "googleAnalytics": "Google Analytics",
+      "googleAnalyticsText": "When someone visits lifeupsideview.org, we use a third-party service, Google Analytics, to collect standard internet log information and details of visitor behaviour patterns. This information is processed in a way which does not identify anyone. We do not make, and do not allow Google to make, any attempt to find out the identities of visitors to our website.",
+      "websiteComments": "Website Comments",
+      "websiteCommentsText": "When someone visits lifeupsideview.org, there may be an ability to submit comments on particular articles or pages. When comments are submitted, you are entitled to use aliases or information that completely hides your identity. Relevant details (name, email, website) that you provide are stored to display your comment back to you and to anyone viewing the comment sections. We do not verify information entered nor do we require verification.",
+      "thirdParties": "Third Parties",
+      "thirdPartiesText": "There may be some circumstances where your IP address, geographic location, and other browser-related details may be shared with third-party companies. We may share your above-mentioned data with third-party companies from time to time.",
+      "accessToInfo": "Access to Your Personal Information",
+      "accessToInfoText": "You are entitled to view, amend, or delete the personal information that we hold. Email your request to our data protection officer Revens at dataprotection@lifeupsideview.org and we will work with you to remove any of your personal data we may have.",
+      "changes": "Changes to Our Privacy Policy",
+      "changesText": "We may make changes to our Privacy Policy in the future; the most current version will govern our processing of your personal data and will always be available to you. If we make a material change, we will notify you by update or email, where possible. By continuing to access or use our services, you agree to be bound to the terms of our Privacy Policy."
+    },
+    "termsOfService": {
+      "title": "Terms of Service",
+      "introduction": "Introduction",
+      "introductionText": "Welcome to lifeupsideview.org. By accessing or using our website, you agree to comply with and be bound by these Terms of Service. Please read them carefully.",
+      "acceptance": "Acceptance of Terms",
+      "acceptanceText": "By using this site, you signify your acceptance of these terms. If you do not agree, please do not use our site. We reserve the right to update or change these terms at any time.",
+      "userResponsibilities": "User Responsibilities",
+      "userResponsibilitiesText": "You agree to use this site only for lawful purposes and in a way that does not infringe the rights of, restrict, or inhibit anyone else's use and enjoyment of the site.",
+      "intellectualProperty": "Intellectual Property",
+      "intellectualPropertyText": "All content on this site, including text, graphics, logos, and images, is the property of lifeupsideview.org or its content suppliers and is protected by copyright laws. Unauthorized use is prohibited.",
+      "limitation": "Limitation of Liability",
+      "limitationText": "We do our best to ensure the accuracy of information on this site, but we make no warranties or guarantees. We are not liable for any loss or damage arising from your use of the site.",
+      "changes": "Changes to Terms",
+      "changesText": "We may update these Terms of Service from time to time. Continued use of the site after any changes constitutes your acceptance of the new terms.",
+      "contact": "Contact",
+      "contactText": "If you have any questions about these Terms, please contact us at dataprotection@lifeupsideview.org."
+    },
+    "cookiePolicy": {
+      "title": "Cookie Policy",
+      "whatAreCookies": "What Are Cookies?",
+      "whatAreCookiesText": "Cookies are small text files stored on your device by your browser when you visit websites. They help websites remember your preferences and improve your experience.",
+      "howWeUse": "How We Use Cookies",
+      "howWeUseText": "We use cookies to understand how you interact with our site, remember your preferences, and enhance your experience. Some cookies are essential for the site to function properly.",
+      "managing": "Managing Cookies",
+      "managingText": "You can control and delete cookies through your browser settings. Please note that disabling cookies may affect the functionality of our website.",
+      "thirdParty": "Third-Party Cookies",
+      "thirdPartyText": "Some cookies may be set by third-party services we use, such as analytics providers. We do not control these cookies, and you should check the respective third-party websites for more information.",
+      "changes": "Changes to This Policy",
+      "changesText": "We may update this Cookie Policy from time to time. Any changes will be posted on this page, and your continued use of the site constitutes acceptance of those changes.",
+      "contact": "Contact",
+      "contactText": "If you have any questions about our Cookie Policy, please contact us at dataprotection@lifeupsideview.org."
     }
   }
 }

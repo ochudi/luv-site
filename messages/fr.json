@@ -46,6 +46,33 @@
       "story": "Histoire"
     }
   },
+  "evolve": {
+    "title": "ÉVOLUER",
+    "subtitle": "La croissance n'est pas une destination, mais une façon de voir. Transformez votre mentalité, un moment à la fois.",
+    "smallWins": "Journal des petites victoires",
+    "lessonsFromAdversity": "Leçons de l'adversité",
+    "mentalToolkit": "Votre boîte à outils mentale",
+    "cardDescription": "Explorez des réflexions, des outils et des conseils qui vous aident à développer la résilience et à embrasser l'inattendu.",
+    "learnMore": "En savoir plus"
+  },
+  "explore": {
+    "title": "EXPLORER",
+    "subtitle": "Découvrez de nouvelles perspectives et ressources qui améliorent votre humeur et invitent à une curiosité plus profonde.",
+    "guidedJournals": "Journaux guidés",
+    "wellnessPlaylists": "Playlists de bien-être",
+    "mindfulArticles": "Articles de pleine conscience",
+    "cardDescription": "Outils et contenus soigneusement sélectionnés pour inspirer, éduquer et soutenir votre bien-être émotionnel.",
+    "exploreNow": "Explorer maintenant"
+  },
+  "reflect": {
+    "title": "RÉFLÉCHIR",
+    "subtitle": "Plongez dans des idées partagées qui vous aident à voir la vie de nouvelles façons — avec clarté, grâce et sens profond.",
+    "lettingGo": "Lâcher prise du contrôle",
+    "beautyInUncertainty": "La beauté dans l'incertitude",
+    "learningFromStillness": "Apprendre de l'immobilité",
+    "cardDescription": "Pensées perspicaces tirées des expériences vécues de personnes naviguant la santé mentale et la croissance.",
+    "readMore": "Lire la suite"
+  },
   "hero": {
     "title": "VOUS N'ÊTES PAS",
     "titleLine2": "SEUL",
@@ -110,6 +137,10 @@
     "subscribedDesc": "Merci de vous être abonné à notre newsletter."
   },
   "footer": {
+    "brand": "LIFE UPSIDE VIEW",
+    "brandDescription": "Partager de vraies histoires, offrir des ressources et fournir un soutien pour vous aider à naviguer dans les défis de la vie.",
+    "connectWithUs": "CONNECTEZ-VOUS AVEC NOUS",
+    "connectDescription": "Rejoignez notre communauté. Abonnez-vous pour des histoires inspirantes et des informations sur la santé mentale.",
     "explore": "EXPLORER",
     "resources": "RESSOURCES",
     "legal": "JURIDIQUE",
@@ -214,6 +245,58 @@
     "story4": {
       "title": "Soutenu par mes peurs",
       "description": "Trouver la force à travers la lutte"
+    }
+  },
+  "policies": {
+    "backToHome": "← Retour à l'accueil",
+    "privacyPolicy": {
+      "title": "Politique de confidentialité",
+      "whoWeAre": "Qui nous sommes",
+      "whoWeAreText": "Chez lifeupsideview.org, nous nous engageons à maintenir la confiance de tous les visiteurs de notre site Web. Nous ne vendons, ne louons ni n'échangeons des listes de courriels avec d'autres entreprises à des fins de marketing. Cette politique de confidentialité fournit des informations détaillées sur quand et pourquoi nous collectons des informations personnelles, comment nous les utilisons, les conditions limitées dans lesquelles nous pouvons les divulguer à d'autres, et comment nous les gardons en sécurité.",
+      "cookies": "Cookies",
+      "cookiesText": "Nous pouvons définir et accéder à des cookies sur votre ordinateur pour fournir à notre système les informations de base nécessaires pour fournir les services que vous demandez. Les cookies peuvent être effacés à tout moment à partir des paramètres de votre navigateur Internet.",
+      "googleAnalytics": "Google Analytics",
+      "googleAnalyticsText": "Lorsque quelqu'un visite lifeupsideview.org, nous utilisons un service tiers, Google Analytics, pour collecter des informations de journal Internet standard et des détails sur les modèles de comportement des visiteurs. Ces informations sont traitées de manière à n'identifier personne. Nous ne faisons pas, et ne permettons pas à Google de faire, aucune tentative pour découvrir l'identité des visiteurs de notre site Web.",
+      "websiteComments": "Commentaires sur le site Web",
+      "websiteCommentsText": "Lorsque quelqu'un visite lifeupsideview.org, il peut y avoir la possibilité de soumettre des commentaires sur des articles ou des pages particulières. Lorsque des commentaires sont soumis, vous avez le droit d'utiliser des alias ou des informations qui cachent complètement votre identité. Les détails pertinents (nom, courriel, site Web) que vous fournissez sont stockés pour afficher votre commentaire à vous et à toute personne consultant les sections de commentaires. Nous ne vérifions pas les informations saisies et n'exigeons pas de vérification.",
+      "thirdParties": "Tiers",
+      "thirdPartiesText": "Il peut y avoir des circonstances où votre adresse IP, votre emplacement géographique et d'autres détails liés au navigateur peuvent être partagés avec des sociétés tierces. Nous pouvons partager vos données mentionnées ci-dessus avec des sociétés tierces de temps à autre.",
+      "accessToInfo": "Accès à vos informations personnelles",
+      "accessToInfoText": "Vous avez le droit de consulter, de modifier ou de supprimer les informations personnelles que nous détenons. Envoyez votre demande à notre responsable de la protection des données Revens à dataprotection@lifeupsideview.org et nous travaillerons avec vous pour supprimer toutes vos données personnelles que nous pourrions avoir.",
+      "changes": "Modifications de notre politique de confidentialité",
+      "changesText": "Nous pouvons apporter des modifications à notre politique de confidentialité à l'avenir ; la version la plus récente régira notre traitement de vos données personnelles et sera toujours disponible pour vous. Si nous apportons un changement important, nous vous en informerons par mise à jour ou par courriel, si possible. En continuant à accéder ou à utiliser nos services, vous acceptez d'être lié aux termes de notre politique de confidentialité."
+    },
+    "termsOfService": {
+      "title": "Conditions d'utilisation",
+      "introduction": "Introduction",
+      "introductionText": "Bienvenue sur lifeupsideview.org. En accédant ou en utilisant notre site Web, vous acceptez de vous conformer à ces conditions d'utilisation. Veuillez les lire attentivement.",
+      "acceptance": "Acceptation des conditions",
+      "acceptanceText": "En utilisant ce site, vous signifiez votre acceptation de ces conditions. Si vous n'êtes pas d'accord, veuillez ne pas utiliser notre site. Nous nous réservons le droit de mettre à jour ou de modifier ces conditions à tout moment.",
+      "userResponsibilities": "Responsabilités de l'utilisateur",
+      "userResponsibilitiesText": "Vous acceptez d'utiliser ce site uniquement à des fins légales et d'une manière qui n'enfreint pas les droits d'autrui, ne restreint ou n'inhibe l'utilisation et la jouissance du site par quiconque.",
+      "intellectualProperty": "Propriété intellectuelle",
+      "intellectualPropertyText": "Tout le contenu de ce site, y compris le texte, les graphiques, les logos et les images, est la propriété de lifeupsideview.org ou de ses fournisseurs de contenu et est protégé par les lois sur le droit d'auteur. L'utilisation non autorisée est interdite.",
+      "limitation": "Limitation de responsabilité",
+      "limitationText": "Nous faisons de notre mieux pour garantir l'exactitude des informations sur ce site, mais nous ne fournissons aucune garantie. Nous ne sommes pas responsables de toute perte ou dommage résultant de votre utilisation du site.",
+      "changes": "Modifications des conditions",
+      "changesText": "Nous pouvons mettre à jour ces conditions d'utilisation de temps à autre. L'utilisation continue du site après tout changement constitue votre acceptation des nouvelles conditions.",
+      "contact": "Contact",
+      "contactText": "Si vous avez des questions sur ces conditions, veuillez nous contacter à dataprotection@lifeupsideview.org."
+    },
+    "cookiePolicy": {
+      "title": "Politique des cookies",
+      "whatAreCookies": "Que sont les cookies ?",
+      "whatAreCookiesText": "Les cookies sont de petits fichiers texte stockés sur votre appareil par votre navigateur lorsque vous visitez des sites Web. Ils aident les sites Web à se souvenir de vos préférences et à améliorer votre expérience.",
+      "howWeUse": "Comment nous utilisons les cookies",
+      "howWeUseText": "Nous utilisons des cookies pour comprendre comment vous interagissez avec notre site, nous souvenir de vos préférences et améliorer votre expérience. Certains cookies sont essentiels au bon fonctionnement du site.",
+      "managing": "Gestion des cookies",
+      "managingText": "Vous pouvez contrôler et supprimer les cookies via les paramètres de votre navigateur. Veuillez noter que la désactivation des cookies peut affecter la fonctionnalité de notre site Web.",
+      "thirdParty": "Cookies tiers",
+      "thirdPartyText": "Certains cookies peuvent être définis par des services tiers que nous utilisons, tels que des fournisseurs d'analyse. Nous ne contrôlons pas ces cookies, et vous devez consulter les sites Web tiers respectifs pour plus d'informations.",
+      "changes": "Modifications de cette politique",
+      "changesText": "Nous pouvons mettre à jour cette politique des cookies de temps à autre. Tout changement sera publié sur cette page, et votre utilisation continue du site constitue l'acceptation de ces changements.",
+      "contact": "Contact",
+      "contactText": "Si vous avez des questions sur notre politique des cookies, veuillez nous contacter à dataprotection@lifeupsideview.org."
     }
   }
 }

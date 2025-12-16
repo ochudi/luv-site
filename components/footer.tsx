@@ -97,10 +97,9 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand Intro */}
           <div>
-            <h3 className="text-lg font-bold mb-4">LIFE UPSIDE VIEW</h3>
+            <h3 className="text-lg font-bold mb-4">{t('brand')}</h3>
             <p className="text-muted-foreground">
-              Sharing real stories, offering resources, and providing support to
-              help you navigate life's challenges.
+              {t('brandDescription')}
             </p>
           </div>
 
@@ -125,7 +124,7 @@ export default function Footer() {
 
           {/* Social & Newsletter */}
           <div>
-            <h3 className="text-lg font-bold mb-4">CONNECT WITH US</h3>
+            <h3 className="text-lg font-bold mb-4">{t('connectWithUs')}</h3>
             <div className="flex space-x-4 mb-4">
               {socialLinks.map(({ href, label, icon: Icon, color, hover }) => (
                 <Link
@@ -149,8 +148,7 @@ export default function Footer() {
               ))}
             </div>
             <p className="text-muted-foreground">
-              Join our community. Subscribe for inspiring stories and mental
-              health insights.
+              {t('connectDescription')}
             </p>
           </div>
         </div>
