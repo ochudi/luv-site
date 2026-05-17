@@ -91,7 +91,7 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",
-    apple: "/images/site/logo.png",
+    apple: [{ url: "/apple-icon.png", sizes: "512x512", type: "image/png" }],
   },
   manifest: "/manifest.webmanifest",
   robots: {
@@ -107,6 +107,11 @@ export const metadata: Metadata = {
   },
   verification: {
     google: "ighY4_Zzw8pC1kh_0ncrAgElyXBYyrhhCxUx-BTpiIs",
+    // Bing Webmaster Tools — paste the content from the meta tag you'll get at
+    // https://www.bing.com/webmasters/ → Add a site → HTML Meta Tag method.
+    other: {
+      // "msvalidate.01": "<paste-bing-verification-code-here>",
+    },
   },
 };
 

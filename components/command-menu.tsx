@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import { useRouter } from "@/i18n/routing"
+import { useEffect, useState } from "react";
+import { useRouter } from "@/i18n/routing";
 import {
   CommandDialog,
   CommandEmpty,
@@ -9,51 +9,40 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/components/ui/command"
+} from "@/components/ui/command";
 
 const routes = [
-  {
-    path: "/",
-    name: "Home",
-  },
-  {
-    path: "/about",
-    name: "About",
-  },
-  {
-    path: "/stories",
-    name: "Stories",
-  },
-  {
-    path: "/stories/yacht-charter/subsea-thrills-submarine-treasure-hunt-legend",
-    name: "Submarine Treasure Hunt",
-  },
-  {
-    path: "/stories/yco-news/team-talk-holly-bottau-interview",
-    name: "Holly Bottau Interview",
-  },
-]
+  { path: "/", name: "Home" },
+  { path: "/about", name: "About" },
+  { path: "/stories", name: "Stories" },
+  { path: "/stories/all-stories", name: "All Stories" },
+  { path: "/self-help", name: "Self-Help Toolkit" },
+  { path: "/checkups", name: "Mental Health Check-Up" },
+  { path: "/support", name: "Get Help Now" },
+  { path: "/write", name: "Share Your Story" },
+  { path: "/volunteer", name: "Volunteer" },
+];
 
 export function CommandMenu() {
-  const [open, setOpen] = useState(false)
-  const router = useRouter()
+  const [open, setOpen] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
       if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
-        e.preventDefault()
-        setOpen((open) => !open)
+        e.preventDefault();
+        setOpen((open) => !open);
       }
-    }
+    };
 
-    document.addEventListener("keydown", down)
-    return () => document.removeEventListener("keydown", down)
-  }, [])
+    document.addEventListener("keydown", down);
+    return () => document.removeEventListener("keydown", down);
+  }, []);
 
   const runCommand = (command: () => void) => {
-    setOpen(false)
-    command()
-  }
+    setOpen(false);
+    command();
+  };
 
   return (
     <CommandDialog open={open} onOpenChange={setOpen}>
@@ -62,7 +51,10 @@ export function CommandMenu() {
         <CommandEmpty>No results found.</CommandEmpty>
         <CommandGroup heading="Navigation">
           {routes.map((route) => (
-            <CommandItem key={route.path} onSelect={() => runCommand(() => router.push(route.path))}>
+            <CommandItem
+              key={route.path}
+              onSelect={() => runCommand(() => router.push(route.path))}
+            >
               {route.name}
             </CommandItem>
           ))}
@@ -71,7 +63,7 @@ export function CommandMenu() {
           <CommandItem
             onSelect={() =>
               runCommand(() => {
-                document.documentElement.classList.toggle("dark")
+                document.documentElement.classList.toggle("dark");
               })
             }
           >
@@ -82,7 +74,8 @@ export function CommandMenu() {
           <CommandItem
             onSelect={() =>
               runCommand(() => {
-                window.location.href = "mailto:contact@ymodern.com"
+                window.location.href =
+                  "mailto:truelifestories@lifeupsideview.org";
               })
             }
           >
@@ -91,7 +84,7 @@ export function CommandMenu() {
           <CommandItem
             onSelect={() =>
               runCommand(() => {
-                window.scrollTo({ top: 0, behavior: "smooth" })
+                window.scrollTo({ top: 0, behavior: "smooth" });
               })
             }
           >
@@ -100,6 +93,5 @@ export function CommandMenu() {
         </CommandGroup>
       </CommandList>
     </CommandDialog>
-  )
+  );
 }
-
