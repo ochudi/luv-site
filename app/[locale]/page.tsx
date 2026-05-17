@@ -11,15 +11,17 @@ export async function generateMetadata({
   return pageMetadata({
     title: "Home",
     description:
-      "Real stories, evidence-informed tools, and pathways to mental health support. Life Upside View supports emotional wellness and recovery for those navigating anxiety, depression, trauma, and overwhelm.",
+      "You are not alone. Healing is possible. Read first-person stories of anxiety, depression and trauma, take a free mental health check-up, and find immediate crisis support — all in one place.",
     path: "/",
     locale,
     keywords: [
       "mental health foundation",
-      "mental wellness",
+      "free mental health check-up",
       "lived experience stories",
-      "self-help tools",
-      "mental health support",
+      "mental health support Nigeria",
+      "anxiety help",
+      "depression help",
+      "crisis support",
     ],
   });
 }

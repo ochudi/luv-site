@@ -120,12 +120,25 @@
 .text-accent-warm { color: hsl(var(--accent)); }
 .eyebrow-accent { color: hsl(var(--accent)); }
 
+/* Hide scrollbar but keep scrollability — for horizontal filter bars */
+.scrollbar-none { scrollbar-width: none; -ms-overflow-style: none; }
+.scrollbar-none::-webkit-scrollbar { display: none; }
+
 /* Gentle bounce for the talk-to-us FAB */
 @keyframes soft-bounce {
   0%, 100% { transform: translateY(0); }
   50%      { transform: translateY(-6px); }
 }
 .animate-soft-bounce { animation: soft-bounce 2.6s cubic-bezier(0.45,0,0.55,1) infinite; }
+
+/* Scroll-mouse dot: travels down the body of the mouse and fades out */
+@keyframes scroll-dot {
+  0%   { transform: translateY(0);  opacity: 1; }
+  60%  { transform: translateY(14px); opacity: 0; }
+  61%  { transform: translateY(0);  opacity: 0; }
+  100% { transform: translateY(0);  opacity: 1; }
+}
+.animate-scroll-dot { animation: scroll-dot 2.2s cubic-bezier(0.4,0,0.2,1) infinite; }
 
 /* Pulsing soft glow ring for the FAB */
 @keyframes soft-pulse {

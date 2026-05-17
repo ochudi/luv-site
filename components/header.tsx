@@ -134,12 +134,14 @@ export default function Header() {
           </Link>
         </div>
 
-        {/* Mobile Menu Toggle */}
-        <div className="flex lg:hidden items-center gap-3">
+        {/* Mobile Menu Toggle + compact controls */}
+        <div className={cn("flex lg:hidden items-center gap-1 sm:gap-2", textTone)}>
+          <LanguageSwitcher />
+          <span aria-hidden className="h-3 w-px bg-current/30" />
           <ThemeToggle />
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className={cn("z-50 focus:outline-none", textTone)}
+            className={cn("z-50 focus:outline-none ml-1 sm:ml-2 p-1.5", textTone)}
             aria-label="Toggle menu"
           >
             {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}

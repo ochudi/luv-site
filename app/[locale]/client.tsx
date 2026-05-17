@@ -159,10 +159,12 @@ export default function Home() {
           </motion.div>
         </div>
 
-        {/* Scroll cue — desktop only */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 hidden md:flex flex-col items-center gap-3">
-          <p className="eyebrow text-white/55">Scroll</p>
-          <div className="h-10 w-px bg-white/40" />
+        {/* Scroll cue — animated mouse, desktop only */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 hidden md:flex flex-col items-center gap-3 pointer-events-none">
+          <div className="relative h-9 w-[22px] rounded-full border border-white/60 flex items-start justify-center pt-1.5">
+            <span className="block h-1.5 w-[3px] rounded-full bg-white/85 animate-scroll-dot" />
+          </div>
+          <p className="text-[9px] uppercase tracking-[0.32em] text-white/55">Scroll</p>
         </div>
       </section>
 

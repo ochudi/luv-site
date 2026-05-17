@@ -11,7 +11,7 @@ export async function generateMetadata({
   return pageMetadata({
     title: "Terms of service",
     description:
-      "The terms under which Life Upside View provides this website, its content, and related services.",
+      "The terms governing your use of lifeupsideview.org — acceptable use, intellectual property of stories and content, limitations of liability, and how we update these terms.",
     path: "/terms-of-service",
     locale,
   });

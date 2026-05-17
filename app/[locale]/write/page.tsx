@@ -11,10 +11,16 @@ export async function generateMetadata({
   return pageMetadata({
     title: "Share your story",
     description:
-      "Your story might be the lifeline someone else is searching for. Submit a lived-experience piece to Life Upside View — we read every submission with care.",
+      "Submit a lived-experience story to Life Upside View. Anonymity is supported, every submission is read with care, and your words might be the lifeline someone else is searching for.",
     path: "/write",
     locale,
-    keywords: ["share mental health story", "submit story", "write for Life Upside View", "personal story submission"],
+    keywords: [
+      "submit mental health story",
+      "share lived experience",
+      "write for Life Upside View",
+      "anonymous story submission",
+      "mental health writing",
+    ],
   });
 }
 

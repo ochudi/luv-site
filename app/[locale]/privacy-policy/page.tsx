@@ -11,7 +11,7 @@ export async function generateMetadata({
   return pageMetadata({
     title: "Privacy policy",
     description:
-      "How Life Upside View handles your data, cookies, analytics, and the choices you have over your personal information.",
+      "Exactly what data Life Upside View collects (very little), how cookies and Google Analytics are used, who your data is shared with, and how to request deletion of your information.",
     path: "/privacy-policy",
     locale,
   });

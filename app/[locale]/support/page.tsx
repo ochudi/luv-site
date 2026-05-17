@@ -11,16 +11,16 @@ export async function generateMetadata({
   return pageMetadata({
     title: "Get help now",
     description:
-      "Crisis resources, immediate safety steps, and pathways to professional and community mental health support. If you or someone you know may be in immediate danger, this page is for you.",
+      "If you're in crisis or unsafe right now: a 4-step safety plan, direct line to emergency services, helpline finder, and the exact words to use when asking someone for help.",
     path: "/support",
     locale,
     keywords: [
       "mental health crisis support",
-      "suicide prevention",
+      "suicide prevention helpline",
       "find a helpline",
-      "mental health emergency",
-      "how to ask for help mental health",
+      "what to say when asking for help",
       "self-harm safety plan",
+      "mental health emergency Nigeria",
     ],
   });
 }

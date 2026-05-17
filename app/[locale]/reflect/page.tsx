@@ -11,10 +11,16 @@ export async function generateMetadata({
   return pageMetadata({
     title: "Reflect",
     description:
-      "Insights on letting go of control, finding beauty in uncertainty, and learning from stillness. Short reflective reads for new ways of seeing the moments that shape us.",
+      "Three short reads on letting go of control, finding beauty in uncertainty, and learning from stillness. Mindful writing for moments when you need to slow down and see clearly.",
     path: "/reflect",
     locale,
-    keywords: ["mental health reflections", "mindfulness reading", "letting go", "uncertainty", "stillness"],
+    keywords: [
+      "mindfulness reflections",
+      "letting go of control",
+      "beauty in uncertainty",
+      "stillness meditation",
+      "mental health reflections",
+    ],
   });
 }
 

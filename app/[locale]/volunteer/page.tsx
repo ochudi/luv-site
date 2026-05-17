@@ -11,10 +11,16 @@ export async function generateMetadata({
   return pageMetadata({
     title: "Volunteer",
     description:
-      "Join a community of people offering time, care, and skill in service of mental wellbeing. Apply to volunteer with Life Upside View.",
+      "Offer your time, skills, or lived experience to support mental wellbeing. Open to writers, designers, peer supporters, and translators worldwide — apply in five minutes.",
     path: "/volunteer",
     locale,
-    keywords: ["mental health volunteer", "volunteer Nigeria", "mental health foundation volunteer"],
+    keywords: [
+      "mental health volunteer",
+      "remote mental health volunteer",
+      "volunteer Nigeria",
+      "writing volunteer NGO",
+      "mental health foundation volunteer",
+    ],
   });
 }
 

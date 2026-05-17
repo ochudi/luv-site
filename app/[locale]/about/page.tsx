@@ -11,10 +11,16 @@ export async function generateMetadata({
   return pageMetadata({
     title: "About",
     description:
-      "Who we are and why we do this. Life Upside View is a mental health foundation built around lived experience, evidence-informed practice, and accessible support — meet the team and our mission.",
+      "Founded to destigmatize mental health in African communities and beyond. Meet the team, learn what drives us, and read the values guiding every story and resource we publish.",
     path: "/about",
     locale,
-    keywords: ["about Life Upside View", "mental health foundation team", "mission", "values"],
+    keywords: [
+      "Life Upside View team",
+      "mental health foundation Nigeria",
+      "African mental health advocacy",
+      "founder Ernest Nwachukwu",
+      "nonprofit mental health",
+    ],
   });
 }
 

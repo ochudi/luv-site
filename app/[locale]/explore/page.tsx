@@ -11,10 +11,16 @@ export async function generateMetadata({
   return pageMetadata({
     title: "Explore",
     description:
-      "Guided journals, wellness playlists, and mindful articles to uplift your mood and support emotional wellbeing.",
+      "Curated journals to start writing, wellness playlists to steady the day, and mindful articles to read at your own pace. Resources to support your emotional wellbeing.",
     path: "/explore",
     locale,
-    keywords: ["guided journals", "wellness playlists", "mindful articles", "wellbeing resources"],
+    keywords: [
+      "guided journals mental health",
+      "wellness playlists",
+      "mindful articles",
+      "free wellbeing resources",
+      "journaling prompts",
+    ],
   });
 }
 

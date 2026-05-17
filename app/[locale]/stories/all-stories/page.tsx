@@ -11,14 +11,14 @@ export async function generateMetadata({
   return pageMetadata({
     title: "All stories",
     description:
-      "Browse every lived-experience story published on Life Upside View. Filter by topic — anxiety, depression, trauma, recovery, resilience — and find the one that meets you where you are.",
+      "Search and filter every lived-experience story by topic — anxiety and depression, trauma, recovery, resilience. Find the story that meets you where you are.",
     path: "/stories/all-stories",
     locale,
     keywords: [
-      "all mental health stories",
+      "search mental health stories",
+      "filter stories by topic",
       "lived experience archive",
-      "mental health blog",
-      "personal stories",
+      "anxiety story library",
     ],
   });
 }

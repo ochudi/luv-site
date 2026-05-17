@@ -85,37 +85,40 @@ export default function AllStoriesPage() {
         </div>
       </section>
 
-      {/* FILTERS */}
-      <section className="py-10 md:py-12 border-b border-border sticky top-[68px] md:top-[80px] bg-background/95 backdrop-blur-sm z-30">
+      {/* FILTERS — one compact row on desktop, two on mobile */}
+      <section className="py-4 md:py-5 border-b border-border sticky top-[64px] md:top-[72px] bg-background/95 backdrop-blur-sm z-30">
         <div className="editorial-container">
-          <div className="flex flex-col gap-6">
-            <div className="flex items-center gap-3 border-b border-foreground/30 focus-within:border-foreground pb-3 max-w-2xl">
-              <Search className="h-4 w-4 text-foreground/60" />
+          <div className="flex flex-col md:flex-row md:items-center md:gap-8 gap-3">
+            <div className="flex items-center gap-2 border-b border-foreground/25 focus-within:border-foreground py-1.5 md:max-w-xs flex-shrink-0">
+              <Search className="h-3.5 w-3.5 text-foreground/55" />
               <input
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search by title or topic"
-                className="flex-1 bg-transparent outline-none border-none text-base placeholder:text-foreground/40"
+                placeholder="Search stories"
+                className="flex-1 bg-transparent outline-none border-none text-sm placeholder:text-foreground/40 min-w-0"
               />
             </div>
-            <div className="flex flex-wrap gap-x-1 gap-y-2">
-              {availableTags.map((tag) => (
-                <button
-                  key={tag}
-                  type="button"
-                  onClick={() => setActiveTag(tag)}
-                  className={`px-3 py-1.5 text-[11px] uppercase tracking-[0.2em] font-medium transition-colors ${
-                    activeTag === tag
-                      ? "text-background bg-foreground"
-                      : "text-foreground/60 hover:text-foreground"
-                  }`}
-                >
-                  {tag === "all" ? "All topics" : tag}
-                </button>
-              ))}
+            <div className="flex flex-1 items-center gap-3 overflow-x-auto -mx-1 px-1 scrollbar-none">
+              <ul className="flex items-center gap-x-1 whitespace-nowrap">
+                {availableTags.map((tag) => (
+                  <li key={tag}>
+                    <button
+                      type="button"
+                      onClick={() => setActiveTag(tag)}
+                      className={`px-2.5 py-1 text-[10px] uppercase tracking-[0.18em] font-medium transition-colors ${
+                        activeTag === tag
+                          ? "text-background bg-foreground"
+                          : "text-foreground/55 hover:text-foreground"
+                      }`}
+                    >
+                      {tag === "all" ? "All" : tag}
+                    </button>
+                  </li>
+                ))}
+              </ul>
             </div>
-            <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+            <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground whitespace-nowrap md:ml-auto">
               {filteredStories.length} {filteredStories.length === 1 ? "story" : "stories"}
             </p>
           </div>

@@ -11,16 +11,17 @@ export async function generateMetadata({
   return pageMetadata({
     title: "Stories",
     description:
-      "Real, first-person stories of anxiety, depression, trauma, recovery, and resilience. Read lived experiences from our community to feel less alone and find language for what you're carrying.",
+      "First-person stories of anxiety, depression, trauma, sickle cell, single motherhood, and recovery — written by the people who lived them. Read to feel less alone.",
     path: "/stories",
     locale,
     keywords: [
       "mental health stories",
-      "lived experience",
-      "anxiety stories",
-      "depression stories",
-      "recovery stories",
-      "trauma stories",
+      "lived experience stories",
+      "anxiety recovery story",
+      "depression recovery",
+      "trauma healing",
+      "sickle cell story",
+      "personal essays mental health",
     ],
   });
 }

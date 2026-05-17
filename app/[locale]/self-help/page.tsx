@@ -11,17 +11,17 @@ export async function generateMetadata({
   return pageMetadata({
     title: "Self-help toolkit",
     description:
-      "Evidence-informed self-help tools for hard moments. 1-minute breathing reset, 5-4-3-2-1 grounding, CBT reframe starters, and a quick mood check — short practices to return to steady ground.",
+      "Three free tools you can use right now: a 1-minute box-breathing reset, the 5-4-3-2-1 grounding exercise, and CBT reframes for spiraling thoughts. Plus a quick mood check.",
     path: "/self-help",
     locale,
     keywords: [
-      "self help mental health",
-      "grounding technique",
-      "5-4-3-2-1 grounding",
-      "breathing exercise",
-      "CBT reframes",
-      "coping tools",
-      "anxiety coping",
+      "free self-help tools",
+      "5-4-3-2-1 grounding technique",
+      "box breathing 4-4-6-2",
+      "CBT thought reframes",
+      "anxiety coping tools",
+      "panic attack help",
+      "mood tracker free",
     ],
   });
 }

@@ -11,15 +11,16 @@ export async function generateMetadata({
   return pageMetadata({
     title: "Mental health check-up",
     description:
-      "A quick, private self-assessment to reflect on stress, mood, sleep, and burnout. This is not a diagnosis — it's a tool to help you decide whether you might benefit from extra support.",
+      "A free, private 5-question self-assessment covering mood, sleep, isolation, coping, and safety. Get an immediate read on whether you might benefit from support — no signup, no diagnosis.",
     path: "/checkups",
     locale,
     keywords: [
-      "mental health check-up",
+      "free mental health check-up",
       "mental health self-assessment",
-      "burnout test",
-      "anxiety screening",
-      "depression screening",
+      "anxiety screening online",
+      "depression test free",
+      "burnout assessment",
+      "wellbeing check",
     ],
   });
 }

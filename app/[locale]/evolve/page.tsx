@@ -11,10 +11,16 @@ export async function generateMetadata({
   return pageMetadata({
     title: "Evolve",
     description:
-      "Growth, resilience, and transformation. Tools and writing for celebrating small wins, learning from adversity, and building your personal mental toolkit.",
+      "A small-wins journal, lessons from adversity, and a personal mental toolkit. Practical writing on building resilience without pretending the hard stuff away.",
     path: "/evolve",
     locale,
-    keywords: ["personal growth", "resilience", "small wins journal", "mental toolkit", "transformation"],
+    keywords: [
+      "small wins journal",
+      "personal resilience",
+      "mental health toolkit",
+      "lessons from adversity",
+      "personal growth practices",
+    ],
   });
 }
 

@@ -11,7 +11,7 @@ export async function generateMetadata({
   return pageMetadata({
     title: "Cookie policy",
     description:
-      "What cookies Life Upside View uses, how we use them, and how you can manage cookie preferences.",
+      "Plain-language explanation of the cookies Life Upside View uses, what they do, how to manage or disable them in your browser, and which are first-party vs third-party.",
     path: "/cookie-policy",
     locale,
   });
