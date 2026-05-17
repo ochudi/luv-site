@@ -71,10 +71,11 @@ export const metadata: Metadata = {
     alternateLocale: ["fr_FR"],
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/images/lifeupsideview.png",
         width: 1200,
-        height: 630,
-        alt: "Life Upside View Mental Health Foundation",
+        height: 500,
+        alt: "Life Upside View — Hope. A note held against firelight.",
+        type: "image/png",
       },
     ],
   },
@@ -83,9 +84,16 @@ export const metadata: Metadata = {
     title: "Life Upside View Mental Health Foundation",
     description:
       "Real stories, mental health resources, and self-help tools to support your emotional wellbeing.",
-    images: ["/og-image.jpg"],
+    images: ["/images/lifeupsideview.png"],
+    site: "@lifeUpsideView",
     creator: "@lifeUpsideView",
   },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/images/site/logo.png",
+  },
+  manifest: "/manifest.webmanifest",
   robots: {
     index: true,
     follow: true,
