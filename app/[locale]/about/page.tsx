@@ -1,39 +1,54 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { useRef, useState } from "react";
 import Image from "next/image";
 import { Volume2, VolumeX } from "lucide-react";
 import { useTranslations } from "next-intl";
 
+const fadeUp = {
+  initial: { opacity: 0, y: 32 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: "-80px" },
+  transition: {
+    duration: 0.9,
+    ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
+  },
+};
+
 export default function AboutPage() {
-  const t = useTranslations('about');
+  const t = useTranslations("about");
   const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"],
-  });
-
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, 200]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, -200]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.8, 0.6]);
-
   const [muted, setMuted] = useState(true);
 
+  const values = [
+    { key: "empathy" },
+    { key: "authenticity" },
+    { key: "community" },
+    { key: "transparency" },
+    { key: "resilience" },
+  ];
+
+  const team = [
+    "ernest",
+    "ruqaiyah",
+    "omkar",
+    "saadatu",
+    "chinedu",
+    "abdulwahab",
+    "happiness",
+    "fredrick",
+    "chukwudi",
+  ];
+
   return (
-    <div className="relative">
-      {/* Hero Section */}
+    <div className="relative bg-background">
+      {/* HERO */}
       <section
         ref={containerRef}
-        className="relative h-[70vh] flex items-center justify-center overflow-hidden group"
+        className="relative h-[80vh] md:h-[90vh] flex items-end overflow-hidden group"
       >
-        {/* Video Background */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          className="absolute inset-0 z-0"
-        >
+        <div className="absolute inset-0 z-0">
           <video
             src="/videos/about.mp4"
             autoPlay
@@ -42,218 +57,191 @@ export default function AboutPage() {
             muted={muted}
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-black/50 dark:bg-black/70" />
-        </motion.div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/40 to-black/85" />
+        </div>
 
-        {/* Mute Button */}
         <button
-          onClick={() => setMuted((prev) => !prev)}
-          className="absolute bottom-6 right-6 z-10 p-2 rounded-full bg-white/80 hover:bg-white text-black transition-opacity opacity-0 group-hover:opacity-100"
+          onClick={() => setMuted((p) => !p)}
+          className="absolute bottom-6 right-6 z-10 p-2 border border-white/40 text-white hover:bg-white hover:text-black transition-colors opacity-0 group-hover:opacity-100"
+          aria-label={muted ? "Unmute" : "Mute"}
         >
-          {muted ? (
-            <VolumeX className="h-5 w-5" />
-          ) : (
-            <Volume2 className="h-5 w-5" />
-          )}
+          {muted ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
         </button>
+
+        <div className="editorial-container relative z-10 pb-16 md:pb-24 pt-32 w-full">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 1.1,
+              ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
+            }}
+            className="max-w-4xl"
+          >
+            <p className="eyebrow text-white/80 mb-8">— About</p>
+            <h1 className="font-serif text-white display-1">
+              Who we are.{" "}
+              <span className="italic text-white/85">Why we do this.</span>
+            </h1>
+          </motion.div>
+        </div>
       </section>
 
-      {/* Content Sections */}
-      <section className="py-24 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true, margin: "-100px" }}
-              className="mb-16"
-            >
-              <h2 className="text-3xl md:text-5xl font-bold mb-6">
-                {t('whoWeAre')}
+      {/* WHO WE ARE */}
+      <section className="py-24 md:py-36">
+        <div className="editorial-container">
+          <motion.div
+            {...fadeUp}
+            className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16"
+          >
+            <div className="md:col-span-3">
+              <p className="eyebrow">— I. </p>
+              <p className="eyebrow mt-1">Who we are</p>
+            </div>
+            <div className="md:col-span-9 space-y-6">
+              <h2 className="font-serif display-2 tracking-tight max-w-3xl mb-6">
+                {t("whoWeAre")}
               </h2>
-              <p className="text-lg text-muted-foreground mb-4">
-                {t('whoWeAreDesc1')}
+              <p className="lede text-foreground/80 max-w-3xl">
+                {t("whoWeAreDesc1")}
               </p>
-              <p className="text-lg text-muted-foreground">
-                {t('whoWeAreDesc2')}
+              <p className="lede text-muted-foreground max-w-3xl">
+                {t("whoWeAreDesc2")}
               </p>
-            </motion.div>
-          </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center mb-24">
+      {/* MISSION */}
+      <section className="py-24 md:py-36 border-t border-border bg-muted/40">
+        <div className="editorial-container">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 items-center">
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true, margin: "-100px" }}
-              className="relative h-[500px]"
+              {...fadeUp}
+              className="md:col-span-6 relative aspect-[4/5] md:aspect-[5/6]"
             >
               <Image
                 src="/images/site/mission.jpg"
-                alt="Our team"
+                alt="Our mission"
                 fill
                 className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
             </motion.div>
             <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true, margin: "-100px" }}
+              {...fadeUp}
+              transition={{ ...fadeUp.transition, delay: 0.1 }}
+              className="md:col-span-6"
             >
-              <h3 className="text-2xl md:text-3xl font-bold mb-6">
-                {t('ourMission')}
+              <p className="eyebrow mb-6">— II.  Our mission</p>
+              <h3 className="font-serif display-3 tracking-tight mb-8 max-w-lg">
+                {t("ourMission")}
               </h3>
-              <p className="text-lg text-muted-foreground mb-4">
-                {t('ourMissionDesc1')}
+              <p className="lede text-foreground/80 mb-5 max-w-md">
+                {t("ourMissionDesc1")}
               </p>
-              <p className="text-lg text-muted-foreground">
-                {t('ourMissionDesc2')}
+              <p className="lede text-muted-foreground max-w-md">
+                {t("ourMissionDesc2")}
               </p>
             </motion.div>
           </div>
+        </div>
+      </section>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+      {/* VALUES */}
+      <section className="py-24 md:py-36 border-t border-border">
+        <div className="editorial-container">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 items-center">
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true, margin: "-100px" }}
-              className="order-2 md:order-1"
+              {...fadeUp}
+              className="md:col-span-6 order-2 md:order-1"
             >
-              <h3 className="text-2xl md:text-3xl font-bold mb-6">
-                {t('ourValues')}
+              <p className="eyebrow mb-6">— III.  Our values</p>
+              <h3 className="font-serif display-3 tracking-tight mb-10 max-w-lg">
+                {t("ourValues")}
               </h3>
-              <ul className="space-y-4 text-lg text-muted-foreground">
-                <li>
-                  <strong>{t('empathy')}</strong> {t('empathyDesc')}
-                </li>
-                <li>
-                  <strong>{t('authenticity')}</strong> {t('authenticityDesc')}
-                </li>
-                <li>
-                  <strong>{t('community')}</strong> {t('communityDesc')}
-                </li>
-                <li>
-                  <strong>{t('transparency')}</strong> {t('transparencyDesc')}
-                </li>
-                <li>
-                  <strong>{t('resilience')}</strong> {t('resilienceDesc')}
-                </li>
+              <ul className="divide-y divide-border border-t border-border max-w-md">
+                {values.map((v) => (
+                  <li
+                    key={v.key}
+                    className="py-5 grid grid-cols-12 gap-4 items-baseline"
+                  >
+                    <span className="col-span-4 font-serif text-lg md:text-xl tracking-tight">
+                      {t(v.key)}
+                    </span>
+                    <span className="col-span-8 text-[15px] text-muted-foreground leading-relaxed">
+                      {t(`${v.key}Desc`)}
+                    </span>
+                  </li>
+                ))}
               </ul>
             </motion.div>
             <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true, margin: "-100px" }}
-              className="relative h-[500px] order-1 md:order-2"
+              {...fadeUp}
+              transition={{ ...fadeUp.transition, delay: 0.1 }}
+              className="md:col-span-6 order-1 md:order-2 relative aspect-[4/5] md:aspect-[5/6]"
             >
               <Image
                 src="/images/site/values.jpg"
                 alt="Our values"
                 fill
                 className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
             </motion.div>
           </div>
         </div>
       </section>
 
-      <section className="py-24 bg-muted">
-        <div className="container mx-auto px-4 text-center">
+      {/* LEADERSHIP */}
+      <section className="py-24 md:py-36 border-t border-border bg-muted/30">
+        <div className="editorial-container">
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true, margin: "-100px" }}
-            className="max-w-3xl mx-auto"
+            {...fadeUp}
+            className="grid grid-cols-1 md:grid-cols-12 gap-10 mb-16 md:mb-20"
           >
-            <h2 className="text-3xl md:text-5xl font-bold mb-6">
-              {t('ourLeadership')}
-            </h2>
-            <p className="text-lg text-muted-foreground mb-12">
-              {t('ourLeadershipDesc')}
-            </p>
+            <div className="md:col-span-3">
+              <p className="eyebrow">— IV. </p>
+              <p className="eyebrow mt-1">Leadership</p>
+            </div>
+            <div className="md:col-span-9">
+              <h2 className="font-serif display-2 tracking-tight max-w-3xl mb-6">
+                {t("ourLeadership")}
+              </h2>
+              <p className="lede text-muted-foreground max-w-3xl">
+                {t("ourLeadershipDesc")}
+              </p>
+            </div>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {[
-              {
-                key: "ernest",
-                imageUrl: "/images/team/ernest.svg",
-                delay: 0.2,
-              },
-              {
-                key: "ruqaiyah",
-                imageUrl: "/images/team/ruqaiyah.svg",
-                delay: 0.4,
-              },
-              {
-                key: "omkar",
-                imageUrl: "/images/team/omkar.svg",
-                delay: 0.6,
-              },
-              {
-                key: "saadatu",
-                imageUrl: "/images/team/saadatu.svg",
-                delay: 0.8,
-              },
-              {
-                key: "chinedu",
-                imageUrl: "/images/team/chinedu.svg",
-                delay: 1.0,
-              },
-              {
-                key: "abdulwahab",
-                imageUrl: "/images/team/abdulwahab.svg",
-                delay: 1.2,
-              },
-              {
-                key: "happiness",
-                imageUrl: "/images/team/happiness.svg",
-                delay: 1.4,
-              },
-              {
-                key: "fredrick",
-                imageUrl: "/images/team/fredrick.svg",
-                delay: 1.6,
-              },
-              {
-                key: "chukwudi",
-                imageUrl: "/images/team/chukwudi.svg",
-                delay: 1.8,
-              },
-            ].map((member, idx) => (
-              <motion.div
-                key={member.key}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: member.delay }}
-                viewport={{ once: true, margin: "-100px" }}
-                className="relative aspect-square w-full bg-black/80 overflow-hidden group shadow-xl"
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-10">
+            {team.map((key, i) => (
+              <motion.figure
+                key={key}
+                {...fadeUp}
+                transition={{ ...fadeUp.transition, delay: 0.04 * i }}
+                className="group"
               >
-                <Image
-                  src={member.imageUrl}
-                  alt={t(`teamMembers.${member.key}.name`)}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-                <div className="absolute inset-0 flex flex-col items-center justify-center px-4">
-                  <span className="text-2xl md:text-3xl font-extrabold text-white drop-shadow-lg text-center">
-                    {t(`teamMembers.${member.key}.name`)}
-                  </span>
-                  <span className="text-md md:text-lg font-medium text-white/80 drop-shadow text-center mt-2">
-                    {t(`teamMembers.${member.key}.title`)}
-                  </span>
-                  <span className="text-md md:text-lg font-medium text-white/80 drop-shadow text-center mt-2">
-                    {t(`teamMembers.${member.key}.country`)}
-                  </span>
+                <div className="relative aspect-[4/5] overflow-hidden bg-foreground/5 mb-4">
+                  <Image
+                    src={`/images/team/${key}.svg`}
+                    alt={t(`teamMembers.${key}.name`)}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                    sizes="(max-width: 768px) 50vw, 33vw"
+                  />
                 </div>
-              </motion.div>
+                <figcaption>
+                  <p className="font-serif text-lg md:text-xl tracking-tight">
+                    {t(`teamMembers.${key}.name`)}
+                  </p>
+                  <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground mt-1">
+                    {t(`teamMembers.${key}.title`)} ·{" "}
+                    {t(`teamMembers.${key}.country`)}
+                  </p>
+                </figcaption>
+              </motion.figure>
             ))}
           </div>
         </div>

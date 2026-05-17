@@ -4,7 +4,6 @@ import { Link } from "@/i18n/routing";
 import { Facebook, Instagram, Linkedin, Twitter, Youtube } from "lucide-react";
 import { useTranslations } from "next-intl";
 
-// TikTok SVG icon component
 const TikTokIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="0 0 256 256"
@@ -17,8 +16,8 @@ const TikTokIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 export default function Footer() {
-  const t = useTranslations('footer');
-  
+  const t = useTranslations("footer");
+
   const navSections = [
     {
       titleKey: "explore",
@@ -47,72 +46,56 @@ export default function Footer() {
   ];
 
   const socialLinks = [
-    {
-      href: "https://www.instagram.com/life_upside_view/",
-      label: "Instagram",
-      icon: Instagram,
-      color: "#E1306C",
-      hover: "#B22556",
-    },
-    {
-      href: "https://x.com/lifeUpsideView",
-      label: "X (Formerly Twitter)",
-      icon: Twitter,
-      color: "#1DA1F2",
-      hover: "#1877C9",
-    },
-    {
-      href: "https://youtube.com/@life_upside_view",
-      label: "YouTube",
-      icon: Youtube,
-      color: "#FF0000",
-      hover: "#B20000",
-    },
-    {
-      href: "https://www.facebook.com/LifeUpsideView",
-      label: "Facebook",
-      icon: Facebook,
-      color: "#1877F3",
-      hover: "#145DB2",
-    },
-    {
-      href: "https://www.linkedin.com/company/life-upside-view-mental-health-foundation/",
-      label: "LinkedIn",
-      icon: Linkedin,
-      color: "#0A66C2",
-      hover: "#004182",
-    },
-    {
-      href: "https://www.tiktok.com/@life.upside.view",
-      label: "TikTok",
-      icon: TikTokIcon,
-      color: "#000000",
-      hover: "#25F4EE",
-    },
+    { href: "https://www.instagram.com/life_upside_view/", label: "Instagram", icon: Instagram },
+    { href: "https://x.com/lifeUpsideView", label: "X", icon: Twitter },
+    { href: "https://youtube.com/@life_upside_view", label: "YouTube", icon: Youtube },
+    { href: "https://www.facebook.com/LifeUpsideView", label: "Facebook", icon: Facebook },
+    { href: "https://www.linkedin.com/company/life-upside-view-mental-health-foundation/", label: "LinkedIn", icon: Linkedin },
+    { href: "https://www.tiktok.com/@life.upside.view", label: "TikTok", icon: TikTokIcon },
   ];
 
   return (
-    <footer className="bg-muted py-16">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Brand Intro */}
-          <div>
-            <h3 className="text-lg font-bold mb-4">{t('brand')}</h3>
-            <p className="text-muted-foreground">
-              {t('brandDescription')}
-            </p>
+    <footer className="border-t border-border bg-background">
+      <div className="editorial-container py-20 md:py-28">
+        {/* Top — wordmark + crisis line */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-12 pb-16 border-b border-border">
+          <div className="md:col-span-7">
+            <p className="eyebrow mb-6">{t("brand")}</p>
+            <h2 className="font-serif text-3xl md:text-5xl tracking-tight leading-[1.05] max-w-2xl">
+              You are not alone. <span className="italic text-foreground/60">Healing is possible.</span>
+            </h2>
           </div>
+          <div className="md:col-span-5 md:pl-8 md:border-l border-border flex flex-col justify-between gap-6">
+            <p className="text-sm leading-relaxed text-muted-foreground max-w-md">
+              {t("brandDescription")}
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <Link href="/support" className="btn-solid">
+                Get Help Now
+              </Link>
+              <a
+                href="https://paystack.shop/pay/life-upside-view"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-ghost"
+              >
+                {t("donate")}
+              </a>
+            </div>
+          </div>
+        </div>
 
-          {/* Navigation Links */}
+        {/* Middle — link columns */}
+        <div className="grid grid-cols-2 md:grid-cols-12 gap-10 md:gap-12 py-16">
           {navSections.map((section) => (
-            <div key={section.titleKey}>
-              <h3 className="text-lg font-bold mb-4">{t(section.titleKey)}</h3>
-              <ul className="space-y-2">
+            <div key={section.titleKey} className="md:col-span-3">
+              <p className="eyebrow mb-6">{t(section.titleKey)}</p>
+              <ul className="space-y-3">
                 {section.links.map((link) => (
                   <li key={link.labelKey}>
                     <Link
                       href={link.href}
-                      className="text-muted-foreground hover:text-foreground transition-colors"
+                      className="text-[15px] text-foreground/80 hover:text-foreground transition-colors"
                     >
                       {t(link.labelKey)}
                     </Link>
@@ -122,48 +105,37 @@ export default function Footer() {
             </div>
           ))}
 
-          {/* Social & Newsletter */}
-          <div>
-            <h3 className="text-lg font-bold mb-4">{t('connectWithUs')}</h3>
-            <div className="flex space-x-4 mb-4">
-              {socialLinks.map(({ href, label, icon: Icon, color, hover }) => (
-                <Link
+          <div className="md:col-span-3 col-span-2">
+            <p className="eyebrow mb-6">{t("connectWithUs")}</p>
+            <div className="flex flex-wrap items-center gap-5 mb-6">
+              {socialLinks.map(({ href, label, icon: Icon }) => (
+                <a
                   key={label}
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group transition-colors"
                   aria-label={label}
+                  className="text-foreground/70 hover:text-foreground transition-colors"
                 >
-                  <Icon
-                    className="h-5 w-5 transition-colors"
-                    style={{ color }}
-                  />
-                  <style jsx>{`
-                    .group:hover .h-5 {
-                      color: ${hover} !important;
-                    }
-                  `}</style>
-                </Link>
+                  <Icon className="h-[18px] w-[18px]" />
+                </a>
               ))}
             </div>
-            <p className="text-muted-foreground">
-              {t('connectDescription')}
+            <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
+              {t("connectDescription")}
             </p>
           </div>
         </div>
 
-        {/* Footer Bottom */}
-        <div className="border-t border-border mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-sm text-muted-foreground text-center">
-            {t('copyright', { year: new Date().getFullYear() })}
+        {/* Bottom rule */}
+        <div className="pt-8 border-t border-border flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
+            {t("copyright", { year: new Date().getFullYear() })}
           </p>
-          <p className="text-sm text-muted-foreground mt-4 md:mt-0 flex flex-wrap gap-x-4 gap-y-2 items-center">
-            <Link href="/privacy-policy" className="hover:underline hover:text-foreground transition-colors" aria-label="Privacy Policy">{t('privacyPolicy')}</Link>
-            <span className="hidden md:inline">|</span>
-            <Link href="/terms-of-service" className="hover:underline hover:text-foreground transition-colors" aria-label="Terms of Service">{t('termsOfService')}</Link>
-            <span className="hidden md:inline">|</span>
-            <Link href="/cookie-policy" className="hover:underline hover:text-foreground transition-colors" aria-label="Cookie Policy">{t('cookiePolicy')}</Link>
+          <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground flex flex-wrap gap-x-6 gap-y-2 items-center">
+            <Link href="/privacy-policy" className="hover:text-foreground transition-colors">{t("privacyPolicy")}</Link>
+            <Link href="/terms-of-service" className="hover:text-foreground transition-colors">{t("termsOfService")}</Link>
+            <Link href="/cookie-policy" className="hover:text-foreground transition-colors">{t("cookiePolicy")}</Link>
           </p>
         </div>
       </div>

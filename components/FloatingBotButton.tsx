@@ -1,10 +1,23 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Bot } from "lucide-react";
-import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@/components/ui/tooltip";
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+  DialogClose,
+} from "@/components/ui/dialog";
+import { MessageCircle } from "lucide-react";
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+  TooltipProvider,
+} from "@/components/ui/tooltip";
 import { useTranslations } from "next-intl";
 
 const categories = [
@@ -14,15 +27,13 @@ const categories = [
 ];
 
 export default function FloatingBotButton() {
-  const t = useTranslations('talkToUs');
+  const t = useTranslations("talkToUs");
   const [category, setCategory] = useState(categories[0].value);
   const [message, setMessage] = useState("");
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 100);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 240);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -30,101 +41,115 @@ export default function FloatingBotButton() {
   const handleSend = () => {
     const subject = encodeURIComponent(`[LUV Site] ${category}`);
     const body = encodeURIComponent(message);
-    window.open(`mailto:truelifestories@lifeupsideview.com?subject=${subject}&body=${body}`);
+    window.open(
+      `mailto:truelifestories@lifeupsideview.com?subject=${subject}&body=${body}`
+    );
   };
 
   return (
-    <div
-      className={
-        scrolled
-          ? "fixed bottom-0 left-0 w-full z-50 flex justify-center animate-fade-in"
-          : "fixed bottom-6 right-6 z-50"
-      }
-    >
+    <div className="fixed bottom-6 right-6 z-40">
       <Dialog>
-        <DialogTrigger asChild>
-          {scrolled ? (
-            <button
-              aria-label="Open bot bar"
-              className="w-full max-w-md mx-auto rounded-t-xl shadow-lg bg-gradient-to-r from-yellow-400 to-yellow-500 text-white flex items-center justify-center py-3 px-6 font-bold text-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-yellow-400"
-              style={{ boxShadow: "0 4px 24px 0 rgba(0,0,0,0.10)" }}
-            >
-              <Bot size={22} className="mr-2 text-white" />
-              <span>{t('title')}</span>
-            </button>
-          ) : (
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <DialogTrigger asChild>
-                    <Button
-                      size="lg"
-                      aria-label="Open bot"
-                      className="rounded-full w-14 h-14 shadow-lg bg-gradient-to-br from-yellow-400 to-yellow-500 text-white flex items-center justify-center p-0 transition-all duration-900 animate-bounce"
-                    >
-                      <Bot size={28} />
-                    </Button>
-                  </DialogTrigger>
-                </TooltipTrigger>
-                <TooltipContent side="top" className="bg-white text-yellow-400 font-semibold pointer-events-none">
-                  {t('title')}
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-          )}
-        </DialogTrigger>
-        <DialogContent
-          className="p-0 border-none shadow-xl animate-fade-in bg-white overflow-visible max-w-[95vw] sm:max-w-sm"
-          style={{
-            borderRadius: 18,
-            background: "#fff",
-            border: "none",
-          }}
-        >
-          <div className="p-6 pb-4 sm:pb-6">
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <DialogTrigger asChild>
+                <button
+                  aria-label={t("title")}
+                  className={`group inline-flex items-center gap-2 text-white font-medium uppercase tracking-[0.22em] text-[10px] transition-all duration-300 animate-soft-bounce animate-soft-pulse bg-[linear-gradient(135deg,hsl(var(--accent)),hsl(var(--primary)))] hover:brightness-110 ${
+                    scrolled
+                      ? "pl-4 pr-5 py-3"
+                      : "rounded-full h-12 w-12 p-0 justify-center"
+                  }`}
+                >
+                  <MessageCircle className={`${scrolled ? "h-4 w-4" : "h-5 w-5"} shrink-0`} />
+                  {scrolled && <span>{t("title")}</span>}
+                </button>
+              </DialogTrigger>
+            </TooltipTrigger>
+            {!scrolled && (
+              <TooltipContent
+                side="left"
+                className="bg-foreground text-background text-[10px] uppercase tracking-[0.22em] font-medium"
+              >
+                {t("title")}
+              </TooltipContent>
+            )}
+          </Tooltip>
+        </TooltipProvider>
+
+        <DialogContent className="p-0 border border-border bg-background max-w-[95vw] sm:max-w-md rounded-none">
+          <div className="p-6 md:p-8">
             <DialogHeader>
-              <DialogTitle className="flex items-center gap-2 text-lg font-bold bg-gradient-to-r from-yellow-400 to-yellow-500 bg-clip-text text-transparent">
-                <Bot size={20} className="text-yellow-500" />
-                {t('title')}
+              <p className="eyebrow mb-2">— Talk to us</p>
+              <DialogTitle className="font-serif text-2xl md:text-3xl tracking-tight">
+                {t("title")}
               </DialogTitle>
-              <DialogDescription className="text-gray-500">
-                {t('description')}
+              <DialogDescription className="text-muted-foreground mt-2">
+                {t("description")}
               </DialogDescription>
             </DialogHeader>
-            <form onSubmit={e => { e.preventDefault(); handleSend(); }}>
-              <div className="mb-4 mt-2">
-                <label htmlFor="category" className="block mb-1 font-medium text-gray-700">{t('category')}</label>
+
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleSend();
+              }}
+              className="mt-6 space-y-6"
+            >
+              <div>
+                <label
+                  htmlFor="category"
+                  className="block eyebrow text-foreground/60 mb-2"
+                >
+                  {t("category")}
+                </label>
                 <select
                   id="category"
-                  className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                  className="w-full bg-transparent border-b border-foreground/30 focus:border-foreground outline-none py-2 text-base transition-colors"
                   value={category}
-                  onChange={e => setCategory(e.target.value)}
+                  onChange={(e) => setCategory(e.target.value)}
                   required
-                  aria-label={t('category')}
+                  aria-label={t("category")}
                 >
-                  {categories.map(cat => (
-                    <option key={cat.value} value={cat.value}>{t(cat.translationKey)}</option>
+                  {categories.map((cat) => (
+                    <option key={cat.value} value={cat.value}>
+                      {t(cat.translationKey)}
+                    </option>
                   ))}
                 </select>
               </div>
-              <div className="mb-4">
-                <label htmlFor="message" className="block mb-1 font-medium text-gray-700">{t('message')}</label>
+              <div>
+                <label
+                  htmlFor="message"
+                  className="block eyebrow text-foreground/60 mb-2"
+                >
+                  {t("message")}
+                </label>
                 <textarea
                   id="message"
-                  className="w-full border border-gray-300 rounded px-3 py-2 min-h-[100px] focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                  className="w-full bg-transparent border-b border-foreground/30 focus:border-foreground outline-none py-2 text-base min-h-[100px] placeholder:text-foreground/35 transition-colors resize-y"
                   value={message}
-                  onChange={e => setMessage(e.target.value)}
+                  onChange={(e) => setMessage(e.target.value)}
                   required
-                  placeholder={t('messagePlaceholder')}
-                  aria-label={t('messagePlaceholder')}
+                  placeholder={t("messagePlaceholder")}
+                  aria-label={t("messagePlaceholder")}
                 />
               </div>
-              <DialogFooter className="flex gap-2 mt-4">
-                <Button type="submit" disabled={!message.trim()} className="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-4 py-2 rounded shadow">
-                  {t('send')}
-                </Button>
+              <DialogFooter className="flex gap-3 mt-4">
+                <button
+                  type="submit"
+                  disabled={!message.trim()}
+                  className="btn-solid disabled:opacity-40 disabled:cursor-not-allowed"
+                >
+                  {t("send")}
+                </button>
                 <DialogClose asChild>
-                  <Button type="button" variant="ghost" className="text-gray-500 hover:text-gray-700">{t('dismiss')}</Button>
+                  <button
+                    type="button"
+                    className="text-[10px] uppercase tracking-[0.22em] font-medium text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    {t("dismiss")}
+                  </button>
                 </DialogClose>
               </DialogFooter>
             </form>
@@ -133,4 +158,4 @@ export default function FloatingBotButton() {
       </Dialog>
     </div>
   );
-} 
+}

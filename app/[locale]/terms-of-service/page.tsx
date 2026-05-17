@@ -1,52 +1,113 @@
 "use client";
+
 import { Link } from "@/i18n/routing";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
+import { ArrowLeft } from "lucide-react";
+
+const sections = [
+  { key: "introduction" },
+  { key: "acceptance" },
+  { key: "userResponsibilities" },
+  { key: "intellectualProperty" },
+  { key: "limitation" },
+  { key: "changes" },
+  { key: "contact" },
+];
 
 export default function TermsOfServicePage() {
-  const t = useTranslations('policies');
-  const p = useTranslations('policies.termsOfService');
+  const t = useTranslations("policies");
+  const p = useTranslations("policies.termsOfService");
+
   return (
-    <motion.section
-      initial={{ opacity: 0, y: 40 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-      className="min-h-screen bg-white py-16 px-4 md:px-0 flex justify-center"
-    >
-      <div className="w-full max-w-2xl mx-auto bg-white rounded-2xl shadow-lg p-8 md:p-12">
-        <Link href="/" className="text-sm text-yellow-600 hover:underline mb-6 inline-block">{t('backToHome')}</Link>
-        <h1 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">{p('title')}</h1>
-        <div className="space-y-6 text-gray-700 text-base leading-relaxed">
-          <section>
-            <h2 className="text-xl font-semibold mb-2">{p('introduction')}</h2>
-            <p>{p('introductionText')}</p>
-          </section>
-          <section>
-            <h2 className="text-xl font-semibold mb-2">{p('acceptance')}</h2>
-            <p>{p('acceptanceText')}</p>
-          </section>
-          <section>
-            <h2 className="text-xl font-semibold mb-2">{p('userResponsibilities')}</h2>
-            <p>{p('userResponsibilitiesText')}</p>
-          </section>
-          <section>
-            <h2 className="text-xl font-semibold mb-2">{p('intellectualProperty')}</h2>
-            <p>{p('intellectualPropertyText')}</p>
-          </section>
-          <section>
-            <h2 className="text-xl font-semibold mb-2">{p('limitation')}</h2>
-            <p>{p('limitationText')}</p>
-          </section>
-          <section>
-            <h2 className="text-xl font-semibold mb-2">{p('changes')}</h2>
-            <p>{p('changesText')}</p>
-          </section>
-          <section>
-            <h2 className="text-xl font-semibold mb-2">{p('contact')}</h2>
-            <p>{p('contactText').split('dataprotection@lifeupsideview.org')[0]} <a href="mailto:dataprotection@lifeupsideview.org" className="text-yellow-600 underline">dataprotection@lifeupsideview.org</a>.</p>
-          </section>
+    <div className="bg-background">
+      <section className="pt-40 md:pt-44 pb-16 md:pb-20">
+        <div className="editorial-container">
+          <motion.div
+            initial={{ opacity: 0, y: 32 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.9,
+              ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
+            }}
+            className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16"
+          >
+            <div className="md:col-span-3">
+              <Link
+                href="/"
+                className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.24em] text-muted-foreground hover:text-foreground transition-colors mb-6"
+              >
+                <ArrowLeft className="h-3.5 w-3.5" />
+                {t("backToHome")}
+              </Link>
+              <p className="eyebrow">— Legal</p>
+              <p className="eyebrow mt-1">Terms</p>
+            </div>
+            <div className="md:col-span-9">
+              <h1 className="font-serif display-1 tracking-tight max-w-3xl">
+                {p("title")}
+              </h1>
+            </div>
+          </motion.div>
         </div>
-      </div>
-    </motion.section>
+      </section>
+
+      <section className="py-20 md:py-28">
+        <div className="editorial-container">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16">
+            <div className="md:col-span-3 md:sticky md:top-32 self-start">
+              <p className="eyebrow text-foreground/40 mb-6">Sections</p>
+              <ul className="space-y-3">
+                {sections.map((s, i) => (
+                  <li
+                    key={s.key}
+                    className="text-[13px] text-muted-foreground"
+                  >
+                    {String(i + 1).padStart(2, "0")} — {p(s.key)}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="md:col-span-9 max-w-3xl space-y-16">
+              {sections.map((s, i) => (
+                <motion.section
+                  key={s.key}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-80px" }}
+                  transition={{
+                    duration: 0.8,
+                    ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
+                  }}
+                >
+                  <p className="eyebrow text-foreground/40 mb-4">
+                    {String(i + 1).padStart(2, "0")}
+                  </p>
+                  <h2 className="font-serif text-3xl md:text-4xl tracking-tight mb-6">
+                    {p(s.key)}
+                  </h2>
+                  <p className="text-[16px] md:text-[17px] text-foreground/80 leading-[1.75]">
+                    {s.key === "contact" ? (
+                      <>
+                        {p("contactText").split("dataprotection@lifeupsideview.org")[0]}
+                        <a
+                          href="mailto:dataprotection@lifeupsideview.org"
+                          className="underline underline-offset-4 hover:text-foreground"
+                        >
+                          dataprotection@lifeupsideview.org
+                        </a>
+                        .
+                      </>
+                    ) : (
+                      p(`${s.key}Text`)
+                    )}
+                  </p>
+                </motion.section>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
   );
-} 
+}

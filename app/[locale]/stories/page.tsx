@@ -1,28 +1,22 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import Image from "next/image"
-import { Link } from "@/i18n/routing"
-import { ArrowRight } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { useToast } from "@/hooks/use-toast"
-import React from "react"
-import { useTranslations } from "next-intl"
+import { motion } from "framer-motion";
+import Image from "next/image";
+import { Link } from "@/i18n/routing";
+import { ArrowUpRight } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+import React from "react";
+import { useTranslations } from "next-intl";
 
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-    },
+const fadeUp = {
+  initial: { opacity: 0, y: 32 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: "-80px" },
+  transition: {
+    duration: 0.9,
+    ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
   },
-}
-
-const item = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.8 } },
-}
+};
 
 const stories = [
   {
@@ -53,152 +47,155 @@ const stories = [
     image: "/images/covers/sbmf.png",
     alt: "Cover image for Supported by my Fears",
   },
-]
+];
 
-export default function BeneathTheSurfacePage() {
+export default function StoriesPage() {
   const t = useTranslations();
   const { toast } = useToast();
   const [email, setEmail] = React.useState("");
 
   return (
-    <div className="relative">
-      {/* Hero Section */}
-      <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
+    <div className="relative bg-background">
+      {/* HERO */}
+      <section className="relative h-[80vh] md:h-[90vh] flex items-end overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/site/stories.jpg"
-            alt="Underwater scene"
+            alt="Stories"
             fill
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-black/60 dark:bg-black/80" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/40 to-black/85" />
         </div>
 
-        <div className="relative z-10 container mx-auto px-4 text-center">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
+        <div className="editorial-container relative z-10 pb-16 md:pb-24 pt-32 w-full">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-5xl md:text-7xl font-bold text-white mb-6"
+            transition={{
+              duration: 1.1,
+              ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
+            }}
+            className="max-w-4xl"
           >
-            {t('stories.pageTitle')}
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl text-white/80 max-w-2xl mx-auto"
-          >
-            {t('stories.pageSubtitle')}
-          </motion.p>
+            <p className="eyebrow text-white/80 mb-8">— Stories</p>
+            <h1 className="font-serif text-white display-1">
+              {t("stories.pageTitle")}
+            </h1>
+            <p className="text-white/85 text-lg md:text-xl mt-8 max-w-2xl">
+              {t("stories.pageSubtitle")}
+            </p>
+          </motion.div>
         </div>
       </section>
 
-      {/* Content Sections */}
-      <section className="py-24 bg-background">
-        <div className="container mx-auto px-4">
+      {/* FEATURED */}
+      <section className="py-24 md:py-36">
+        <div className="editorial-container">
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true, margin: "-100px" }}
-            className="max-w-4xl mx-auto text-center mb-16"
+            {...fadeUp}
+            className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 mb-16 md:mb-20"
           >
-            <h2 className="text-3xl md:text-5xl font-bold mb-6">{t('stories.storiesThatHeal')}</h2>
-            <p className="text-lg text-muted-foreground">
-              {t('stories.storiesThatHealDesc')}
-            </p>
+            <div className="md:col-span-3">
+              <p className="eyebrow">— I. </p>
+              <p className="eyebrow mt-1">Featured</p>
+            </div>
+            <div className="md:col-span-9">
+              <h2 className="font-serif display-2 tracking-tight max-w-3xl mb-6">
+                {t("stories.storiesThatHeal")}
+              </h2>
+              <p className="lede text-muted-foreground max-w-3xl">
+                {t("stories.storiesThatHealDesc")}
+              </p>
+            </div>
           </motion.div>
 
-          <motion.div
-            variants={container}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-100px" }}
-            className="grid grid-cols-1 md:grid-cols-2 gap-8"
-          >
-            {stories.map((story, index) => (
-              <motion.div key={index} variants={item} className="group">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 md:gap-x-10 gap-y-16">
+            {stories.map((story, i) => (
+              <motion.div
+                key={story.href}
+                {...fadeUp}
+                transition={{ ...fadeUp.transition, delay: 0.06 * i }}
+                className="group"
+              >
                 <Link href={story.href} className="block">
-                  <div className="relative h-[400px] mb-6 overflow-hidden">
+                  <div className="relative aspect-[4/5] md:aspect-[3/4] overflow-hidden mb-6 bg-foreground/5">
                     <Image
                       src={story.image}
                       alt={story.alt}
                       fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                      sizes="(max-width: 768px) 100vw, 50vw"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-                    <div className="absolute bottom-0 left-0 p-6">
-                      <h3 className="text-2xl font-bold text-white mb-2">{t(story.titleKey)}</h3>
-                      <p className="text-white/80">{t(story.descKey)}</p>
+                  </div>
+                  <div className="flex items-start justify-between gap-6">
+                    <div className="flex-1">
+                      <p className="eyebrow text-foreground/40 mb-3">
+                        Story · 0{i + 1}
+                      </p>
+                      <h3 className="font-serif text-2xl md:text-3xl tracking-tight mb-3">
+                        {t(story.titleKey)}
+                      </h3>
+                      <p className="text-[15px] text-muted-foreground leading-relaxed">
+                        {t(story.descKey)}
+                      </p>
                     </div>
+                    <ArrowUpRight className="h-5 w-5 mt-2 text-foreground/60 group-hover:text-foreground group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-500 shrink-0" />
                   </div>
                 </Link>
               </motion.div>
             ))}
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true, margin: "-100px" }}
-            className="text-center mt-16"
-          >
-            <Button asChild size="lg" className="rounded-none">
-              <Link href="/stories/all-stories">
-                {t('stories.viewAllStories')} <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
+          <motion.div {...fadeUp} className="mt-20 md:mt-24">
+            <Link href="/stories/all-stories" className="btn-ghost">
+              {t("stories.viewAllStories")}
+            </Link>
           </motion.div>
         </div>
       </section>
 
-      {/* Subscribe Section */}
-      <section className="py-24 bg-muted">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-center gap-12">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true, margin: "-100px" }}
-              className="flex-1"
-            >
-              <h2 className="text-3xl md:text-5xl font-bold mb-6">{t('stories.diveDeeperTitle')}</h2>
-              <p className="text-lg text-muted-foreground mb-8">
-                {t('stories.diveDeeperDesc')}
+      {/* SUBSCRIBE */}
+      <section className="py-24 md:py-36 border-t border-border bg-muted/40">
+        <div className="editorial-container">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 items-center">
+            <motion.div {...fadeUp} className="md:col-span-7">
+              <p className="eyebrow mb-6">— II.  Subscribe</p>
+              <h2 className="font-serif display-2 tracking-tight mb-6 max-w-2xl">
+                {t("stories.diveDeeperTitle")}
+              </h2>
+              <p className="lede text-muted-foreground mb-10 max-w-xl">
+                {t("stories.diveDeeperDesc")}
               </p>
               <form
-                className="flex flex-col sm:flex-row gap-4"
-                onSubmit={e => {
+                className="flex flex-col sm:flex-row gap-3 max-w-lg"
+                onSubmit={(e) => {
                   e.preventDefault();
                   toast({
-                    title: t('stories.subscribed'),
-                    description: t('stories.subscribedDesc'),
+                    title: t("stories.subscribed"),
+                    description: t("stories.subscribedDesc"),
                   });
                   setEmail("");
                 }}
               >
                 <input
                   type="email"
-                  placeholder={t('stories.emailPlaceholder')}
+                  placeholder={t("stories.emailPlaceholder")}
                   value={email}
-                  onChange={e => setEmail(e.target.value)}
-                  className="flex h-10 w-full rounded-none border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  className="flex-1 bg-transparent border-b border-foreground/40 focus:border-foreground outline-none py-3 text-base placeholder:text-foreground/40 transition-colors"
                 />
-                <Button type="submit" className="rounded-none">
-                  {t('stories.subscribe')}
-                </Button>
+                <button type="submit" className="btn-solid">
+                  {t("stories.subscribe")}
+                </button>
               </form>
             </motion.div>
             <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true, margin: "-100px" }}
-              className="flex-1 relative h-[400px] w-full"
+              {...fadeUp}
+              transition={{ ...fadeUp.transition, delay: 0.1 }}
+              className="md:col-span-5 relative aspect-[4/5]"
             >
               <video
                 src="/videos/beyond.mp4"
@@ -207,12 +204,11 @@ export default function BeneathTheSurfacePage() {
                 muted
                 playsInline
                 className="object-cover w-full h-full absolute inset-0"
-                style={{ objectFit: 'cover' }}
               />
             </motion.div>
           </div>
         </div>
       </section>
     </div>
-  )
+  );
 }

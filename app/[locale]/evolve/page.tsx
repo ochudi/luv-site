@@ -2,62 +2,89 @@
 
 import { motion } from "framer-motion";
 import { Link } from "@/i18n/routing";
-import { ArrowRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 
+const fadeUp = {
+  initial: { opacity: 0, y: 32 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: "-80px" },
+  transition: {
+    duration: 0.9,
+    ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
+  },
+};
+
+const cards = [
+  { titleKey: "smallWins", slug: "small-wins" },
+  { titleKey: "lessonsFromAdversity", slug: "lessons-adversity" },
+  { titleKey: "mentalToolkit", slug: "mental-toolkit" },
+];
+
 export default function EvolvePage() {
-  const t = useTranslations('evolve');
-  
-  const cards = [
-    { titleKey: 'smallWins' },
-    { titleKey: 'lessonsFromAdversity' },
-    { titleKey: 'mentalToolkit' },
-  ];
+  const t = useTranslations("evolve");
 
   return (
-    <div>
-      <section className="py-24 bg-background text-center">
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-4xl md:text-6xl font-bold mb-6"
-        >
-          {t('title')}
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-muted-foreground max-w-2xl mx-auto px-4"
-        >
-          {t('subtitle')}
-        </motion.p>
+    <div className="bg-background">
+      <section className="pt-40 md:pt-44 pb-20 md:pb-28">
+        <div className="editorial-container">
+          <motion.div
+            {...fadeUp}
+            className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16"
+          >
+            <div className="md:col-span-3">
+              <p className="eyebrow">— Evolve</p>
+              <p className="eyebrow mt-1">Growth</p>
+            </div>
+            <div className="md:col-span-9">
+              <h1 className="font-serif display-1 tracking-tight mb-8 max-w-4xl">
+                {t("title")}
+              </h1>
+              <p className="lede text-muted-foreground max-w-2xl">
+                {t("subtitle")}
+              </p>
+            </div>
+          </motion.div>
+        </div>
       </section>
 
-      <section className="py-16 bg-muted/40">
-        <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {cards.map((card, i) => (
-            <motion.div
-              key={card.titleKey}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: i * 0.2 }}
-              viewport={{ once: true }}
-              className="bg-card p-6 hover:bg-accent rounded-md transition"
-            >
-              <h3 className="text-xl font-semibold mb-2">{t(card.titleKey)}</h3>
-              <p className="text-muted-foreground mb-4">
-                {t('cardDescription')}
-              </p>
-              <Link
-                href="#"
-                className="text-primary inline-flex items-center hover:underline"
+      <section className="py-12 md:py-16">
+        <div className="editorial-container">
+          <div className="border-t border-border">
+            {cards.map((card, i) => (
+              <motion.div
+                key={card.titleKey}
+                id={card.slug}
+                {...fadeUp}
+                transition={{ ...fadeUp.transition, delay: 0.05 * i }}
               >
-                {t('learnMore')} <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </motion.div>
-          ))}
+                <Link
+                  href="#"
+                  className="group grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 py-12 md:py-16 border-b border-border hover:bg-muted/40 transition-colors duration-500 px-2 -mx-2"
+                >
+                  <div className="md:col-span-1 eyebrow text-foreground/40">
+                    0{i + 1}
+                  </div>
+                  <div className="md:col-span-5">
+                    <h2 className="font-serif text-3xl md:text-4xl tracking-tight">
+                      {t(card.titleKey)}
+                    </h2>
+                  </div>
+                  <div className="md:col-span-4">
+                    <p className="text-[15px] text-muted-foreground leading-relaxed max-w-md">
+                      {t("cardDescription")}
+                    </p>
+                  </div>
+                  <div className="md:col-span-2 flex md:justify-end items-center gap-2">
+                    <span className="text-[11px] uppercase tracking-[0.24em] font-medium">
+                      {t("learnMore")}
+                    </span>
+                    <ArrowUpRight className="h-4 w-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-500" />
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
     </div>

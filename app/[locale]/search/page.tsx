@@ -1,10 +1,9 @@
 "use client";
 
-import { Suspense } from "react";
+import { Suspense, useMemo } from "react";
 import { useSearchParams } from "next/navigation";
-import { useMemo } from "react";
+import { ArrowUpRight } from "lucide-react";
 
-// Import the same SEARCH_DATA as in SearchHero
 const SEARCH_DATA = [
   { label: "Home", description: "See the world through a different lens.", href: "/", type: "Page", key: "home-page" },
   { label: "About", description: "Our story, mission, and team.", href: "/about", type: "Page", key: "about-page" },
@@ -34,12 +33,17 @@ const SEARCH_DATA = [
   { label: "My Upside View of Sickle Cell Anemia", description: "Ruqaiyyah Aliyu shares her courageous journey.", href: "/stories/my-upside-view-of-sickle-cell-anemia", type: "Story", key: "muvossa-story" },
   { label: "Safiyya's Story", description: "From a struggling single mother to a beacon of hope.", href: "/stories/safiyya-story", type: "Story", key: "safiyya-story" },
   { label: "Supported by my Fears", description: "A pharmacy student's journey through setbacks.", href: "/stories/supported-by-my-fears", type: "Story", key: "supported-by-my-fears-story" },
-  // ...add all other stories here
 ];
 
 export default function SearchPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+    <Suspense
+      fallback={
+        <div className="min-h-screen flex items-center justify-center bg-background">
+          <p className="eyebrow">Loading…</p>
+        </div>
+      }
+    >
       <SearchResults />
     </Suspense>
   );
@@ -49,7 +53,6 @@ function SearchResults() {
   const searchParams = useSearchParams();
   const q = searchParams.get("q") || "";
 
-  // Filter and group results
   const { filtered, grouped } = useMemo(() => {
     const filtered = q.trim()
       ? SEARCH_DATA.filter(
@@ -58,52 +61,92 @@ function SearchResults() {
             item.description.toLowerCase().includes(q.toLowerCase())
         )
       : [];
-    const grouped = filtered.reduce<{ [key: string]: typeof SEARCH_DATA }>((acc, item) => {
-      acc[item.type] = acc[item.type] || [];
-      acc[item.type].push(item);
-      return acc;
-    }, {});
+    const grouped = filtered.reduce<{ [k: string]: typeof SEARCH_DATA }>(
+      (acc, item) => {
+        acc[item.type] = acc[item.type] || [];
+        acc[item.type].push(item);
+        return acc;
+      },
+      {}
+    );
     return { filtered, grouped };
   }, [q]);
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-background px-4">
-      <div className="max-w-2xl w-full text-center">
-        <h1 className="text-4xl md:text-6xl font-bold mb-6">Search Results</h1>
-        {q ? (
-          <p className="text-lg text-muted-foreground mb-8">
-            Showing results for <span className="font-bold text-yellow-400">{q}</span>
-          </p>
-        ) : (
-          <p className="text-lg text-muted-foreground mb-8">Enter a search term above.</p>
-        )}
-        {filtered.length === 0 ? (
-          <div className="bg-card rounded-xl p-8 shadow-lg">
-            <p className="text-muted-foreground">No results found. Try a different search term.</p>
+    <div className="bg-background min-h-screen">
+      <section className="pt-40 md:pt-44 pb-16 md:pb-20">
+        <div className="editorial-container">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16">
+            <div className="md:col-span-3">
+              <p className="eyebrow">— Search</p>
+              <p className="eyebrow mt-1">Results</p>
+            </div>
+            <div className="md:col-span-9">
+              {q ? (
+                <h1 className="font-serif display-1 tracking-tight max-w-4xl">
+                  Results for{" "}
+                  <span className="italic text-foreground/55">"{q}"</span>
+                </h1>
+              ) : (
+                <h1 className="font-serif display-1 tracking-tight max-w-4xl">
+                  Enter a search term.
+                </h1>
+              )}
+              {q && (
+                <p className="eyebrow mt-8 text-muted-foreground">
+                  {filtered.length}{" "}
+                  {filtered.length === 1 ? "match" : "matches"}
+                </p>
+              )}
+            </div>
           </div>
-        ) : (
-          <div className="bg-white/95 dark:bg-black/80 rounded-2xl shadow-2xl p-6 text-left mt-6">
-            {Object.entries(grouped).map(([type, items]) => (
-              <div key={type} className="mb-8">
-                <div className="text-xs font-bold text-gray-500 uppercase mb-2 tracking-wider">{type}</div>
-                <ul>
-                  {items.map((item) => (
-                    <li key={item.key} className="mb-2">
-                      <a
-                        href={item.href}
-                        className="block px-4 py-3 rounded-xl hover:bg-yellow-100 dark:hover:bg-yellow-400/20 transition-all text-gray-900 dark:text-white font-semibold text-lg"
-                      >
-                        <span>{item.label}</span>
-                        <span className="block text-xs text-gray-500 dark:text-gray-300 font-normal">{item.description}</span>
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
+        </div>
+      </section>
+
+      <section className="py-20 md:py-28">
+        <div className="editorial-container">
+          {filtered.length === 0 ? (
+            <div className="max-w-2xl mx-auto text-center border border-border p-12 md:p-16">
+              <p className="eyebrow mb-4">Nothing found</p>
+              <p className="font-serif text-2xl md:text-3xl tracking-tight">
+                No results match your search. Try a different term.
+              </p>
+            </div>
+          ) : (
+            <div className="max-w-4xl mx-auto space-y-16">
+              {Object.entries(grouped).map(([type, items]) => (
+                <div key={type}>
+                  <p className="eyebrow mb-6 text-foreground/60">{type}</p>
+                  <ul className="border-t border-border">
+                    {items.map((item) => (
+                      <li key={item.key}>
+                        <a
+                          href={item.href}
+                          className="group grid grid-cols-1 md:grid-cols-12 gap-4 py-6 border-b border-border hover:bg-muted/40 transition-colors px-2 -mx-2"
+                        >
+                          <div className="md:col-span-5">
+                            <p className="font-serif text-xl md:text-2xl tracking-tight group-hover:opacity-70 transition-opacity">
+                              {item.label}
+                            </p>
+                          </div>
+                          <div className="md:col-span-6">
+                            <p className="text-[14px] text-muted-foreground leading-relaxed">
+                              {item.description}
+                            </p>
+                          </div>
+                          <div className="md:col-span-1 flex md:justify-end items-center">
+                            <ArrowUpRight className="h-4 w-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-500" />
+                          </div>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
     </div>
   );
-} 
+}
