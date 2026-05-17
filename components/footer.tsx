@@ -32,7 +32,7 @@ export default function Footer() {
       titleKey: "resources",
       links: [
         { href: "/self-help", labelKey: "selfHelp" },
-        { href: "/check-ups", labelKey: "mentalHealthCheckUps" },
+        { href: "/checkups", labelKey: "mentalHealthCheckUps" },
         { href: "/support", labelKey: "findSupport" },
       ],
     },

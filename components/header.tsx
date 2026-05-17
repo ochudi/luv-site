@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { Link, usePathname } from "@/i18n/routing";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { LifeBuoy, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
@@ -21,6 +21,8 @@ export default function Header() {
     { nameKey: "home", path: "/" },
     { nameKey: "about", path: "/about" },
     { nameKey: "stories", path: "/stories" },
+    { name: "Tools", path: "/self-help" },
+    { name: "Check-Up", path: "/checkups" },
   ];
 
   useEffect(() => {
@@ -74,7 +76,7 @@ export default function Header() {
                   : "text-white"
               )}
             >
-              {t(item.nameKey)}
+              {item.nameKey ? t(item.nameKey) : item.name}
             </Link>
           ))}
         </nav>
@@ -90,6 +92,12 @@ export default function Header() {
           >
             <Button className="rounded-sm">{t('donate')}</Button>
           </a>
+          <Button asChild className="rounded-sm bg-red-600 hover:bg-red-700 text-white">
+            <Link href="/support">
+              <LifeBuoy className="h-4 w-4 mr-2" />
+              Get Help Now
+            </Link>
+          </Button>
         </div>
 
         {/* Mobile Menu Toggle */}
@@ -135,10 +143,21 @@ export default function Header() {
                     )}
                     onClick={() => setIsOpen(false)}
                   >
-                    {t(item.nameKey)}
+                    {item.nameKey ? t(item.nameKey) : item.name}
                   </Link>
                 </motion.div>
               ))}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: (navItems.length + 1) * 0.1 }}
+              >
+                <Button asChild size="lg" className="rounded-none mt-2 bg-red-600 hover:bg-red-700 text-white">
+                  <Link href="/support" onClick={() => setIsOpen(false)}>
+                    <LifeBuoy className="h-4 w-4 mr-2" /> Get Help Now
+                  </Link>
+                </Button>
+              </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}

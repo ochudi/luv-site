@@ -1,35 +1,80 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, BookHeart, BrainCircuit, HeartHandshake, LifeBuoy, Sparkles, Stethoscope } from "lucide-react";
 import { Link } from "@/i18n/routing";
 import SearchHero from "@/components/SearchHero";
-import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
-import { BookOpen, PencilLine, HeartHandshake } from "lucide-react";
-import { useTranslations } from "next-intl";
 
 export default function Home() {
-  const t = useTranslations();
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
+  const supportPaths = [
+    {
+      title: "I Need Immediate Support",
+      description: "Crisis resources, urgent steps, and contacts you can use right now.",
+      href: "/support",
+      icon: LifeBuoy,
+      cta: "Get Help Now",
+    },
+    {
+      title: "I Want Coping Tips",
+      description: "Grounding tools, CBT-informed reframes, and short mindfulness practices.",
+      href: "/self-help",
+      icon: BrainCircuit,
+      cta: "Explore Tips and Tools",
+    },
+    {
+      title: "I Want to Read Stories",
+      description: "Real experiences of anxiety, trauma, recovery, and resilience.",
+      href: "/stories/all-stories",
+      icon: BookHeart,
+      cta: "Read Stories",
+    },
+  ];
 
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
-  const y = useTransform(scrollYProgress, [0, 0.5], [0, 100]);
+  const resourceCards = [
+    {
+      title: "Self-Help",
+      description: "Practical emotional wellness techniques you can start in minutes.",
+      href: "/self-help",
+      icon: Sparkles,
+    },
+    {
+      title: "Mental Health Check-Ups",
+      description: "Quick self-assessment prompts to reflect on stress, mood, and burnout.",
+      href: "/checkups",
+      icon: Stethoscope,
+    },
+    {
+      title: "Find Support",
+      description: "When to seek help, what to say, and where to get trusted support.",
+      href: "/support",
+      icon: HeartHandshake,
+    },
+  ];
+
+  const testimonials = [
+    {
+      quote:
+        "I came for one story and ended up finding language for what I had been carrying for years.",
+      name: "Community Member",
+    },
+    {
+      quote:
+        "The check-up prompts helped me realize I needed support sooner, not later.",
+      name: "Caregiver",
+    },
+    {
+      quote:
+        "This platform made me feel less alone and more capable of asking for help.",
+      name: "Young Adult Reader",
+    },
+  ];
 
   return (
-    <div className="relative">
-      {/* Hero Section */}
+    <div className="relative overflow-x-clip">
       <section
-        ref={ref}
-        className="hero-section relative h-screen flex items-center justify-center overflow-hidden"
+        className="hero-section relative min-h-[95vh] flex items-center justify-center overflow-hidden"
       >
-        {/* Video Background */}
         <div className="absolute inset-0 z-0">
           <video
             autoPlay
@@ -41,29 +86,40 @@ export default function Home() {
             <source src="/videos/hero.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
-          <div className="absolute inset-0 bg-black/50 dark:bg-black/70" />
+          <div className="absolute inset-0 bg-black/65 dark:bg-black/75" />
         </div>
+        <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_20%_20%,rgba(252,211,77,0.22),transparent_42%),radial-gradient(circle_at_80%_80%,rgba(251,146,60,0.16),transparent_40%)]" />
 
-        {/* Foreground Content */}
-        <div
-          className="relative z-10 container mx-auto px-4 text-center hero-content"
-        >
-          <div
-            className="text-5xl md:text-7xl lg:text-9xl font-bold text-white mb-6 hero-title"
-          >
-            {t('hero.title')}<br />
-            {t('hero.titleLine2')}
+        <div className="relative z-10 container mx-auto px-4 text-center hero-content">
+          <p className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-4 py-2 text-xs md:text-sm tracking-[0.2em] uppercase text-white/90 mb-6">
+            Life Upside View Mental Health Foundation
+          </p>
+          <h1 className="text-4xl md:text-6xl lg:text-8xl font-bold text-white mb-6 hero-title leading-[1.05]">
+            You Are Not Alone.
+            <br />
+            Healing Is Possible.
+          </h1>
+          <p className="max-w-4xl mx-auto text-base md:text-xl text-white/85 mb-10">
+            Supporting emotional wellness and recovery through lived stories, practical tools, and access to help for people navigating anxiety, depression, trauma, and emotional overwhelm.
+          </p>
+          <div className="flex flex-wrap justify-center gap-3 md:gap-4 mb-10">
+            <Button asChild size="lg" className="rounded-sm font-semibold">
+              <Link href="/support">Get Help Now</Link>
+            </Button>
+            <Button asChild size="lg" variant="secondary" className="rounded-sm font-semibold">
+              <Link href="/self-help">Explore Tips and Tools</Link>
+            </Button>
+            <Button asChild size="lg" variant="outline" className="rounded-sm font-semibold border-gray-300 dark:border-white/70 text-foreground dark:text-white hover:bg-white hover:text-black dark:hover:bg-white dark:hover:text-black">
+              <Link href="/write">Share Your Story</Link>
+            </Button>
           </div>
-          <div
-            className="mt-20 hero-search"
-          >
+          <div className="mt-8 hero-search">
             <SearchHero />
           </div>
         </div>
       </section>
 
-      {/* Content Sections */}
-      <section className="py-24 bg-background">
+      <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -72,50 +128,30 @@ export default function Home() {
             viewport={{ once: true, margin: "-100px" }}
             className="max-w-4xl mx-auto text-center mb-16"
           >
-            <h2 className="text-3xl md:text-5xl font-bold mb-6">
-              {t('home.newWayToSee.title')}
-            </h2>
+            <h2 className="text-3xl md:text-5xl font-bold mb-6">Who We Support</h2>
             <p className="text-lg text-muted-foreground">
-              {t('home.newWayToSee.description')}
+              Individuals experiencing anxiety, depression, trauma, grief, burnout, and emotional distress, along with caregivers, young people, and communities seeking compassionate mental health guidance.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                titleKey: "home.reflect.title",
-                url: "/reflect",
-                descKey: "home.reflect.description",
-                delay: 0.2,
-              },
-              {
-                titleKey: "home.exploreSection.title",
-                url: "/explore",
-                descKey: "home.exploreSection.description",
-                delay: 0.4,
-              },
-              {
-                titleKey: "home.evolve.title",
-                url: "/evolve",
-                descKey: "home.evolve.description",
-                delay: 0.6,
-              },
-            ].map((item, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {supportPaths.map((item, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: item.delay }}
+                transition={{ duration: 0.8, delay: 0.15 * (index + 1) }}
                 viewport={{ once: true, margin: "-100px" }}
-                className="bg-card p-8 hover:bg-accent transition-colors duration-300"
+                className="bg-card p-8 border border-border/60 hover:border-primary/60 transition-colors duration-300"
               >
-                <h3 className="text-2xl font-bold mb-4">{t(item.titleKey)}</h3>
-                <p className="text-muted-foreground mb-6">{t(item.descKey)}</p>
+                <item.icon className="h-8 w-8 text-primary mb-4" />
+                <h3 className="text-2xl font-bold mb-4">{item.title}</h3>
+                <p className="text-muted-foreground mb-6">{item.description}</p>
                 <Link
-                  href={item.url}
+                  href={item.href}
                   className="inline-flex items-center text-primary hover:underline"
                 >
-                  {t('common.learnMore')} <ArrowRight className="ml-2 h-4 w-4" />
+                  {item.cta} <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </motion.div>
             ))}
@@ -123,110 +159,105 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative overflow-x-clip">
-        <div className="max-w-full mx-0 flex flex-col items-start min-h-[160vh] md:min-h-[120vh]">
-          {/* Text Block */}
-          <div
-            className="w-full md:w-1/2 mx-auto mt-[40px] md:mt-10 md:ml-10 md:mr-auto z-10"
-            style={{ position: 'sticky', top: 150 }}
+      <section className="py-20 bg-muted/35">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true, margin: "-100px" }}
+            className="max-w-4xl mb-10"
           >
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true, margin: "-100px" }}
-              className="md:bg-transparent px-6 md:px-0 pt-6 pb-8 md:pt-0 md:pb-0"
-            >
-              <h2 className="text-3xl md:text-7xl font-bold mb-6">
-                {t('home.seeBeyond.title')}
-              </h2>
-              <p className="text-lg text-muted-foreground mb-8">
-                {t('home.seeBeyond.description')}
-              </p>
-              <Button asChild variant="outline" className="rounded-none">
-                <Link href="/stories">
-                  {t('common.explore')} <ArrowRight className="ml-2 h-4 w-4" />
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">Mental Health Resources</h2>
+            <p className="text-lg text-muted-foreground">
+              Find the right support pathway, from immediate help to daily emotional wellness practices.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            {resourceCards.map((card, index) => (
+              <motion.div
+                key={card.title}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.12 * index }}
+                viewport={{ once: true, margin: "-100px" }}
+                className="rounded-xl border border-border bg-background p-6"
+              >
+                <card.icon className="h-7 w-7 text-primary mb-4" />
+                <h3 className="text-2xl font-semibold mb-2">{card.title}</h3>
+                <p className="text-muted-foreground mb-4">{card.description}</p>
+                <Link href={card.href} className="inline-flex items-center text-primary hover:underline">
+                  Learn More <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
-              </Button>
-            </motion.div>
+              </motion.div>
+            ))}
           </div>
-          {/* Video Block (sticky under header) */}
-          <div
-            className="w-full md:w-2/3 mx-auto mt-20 md:mt-20 md:ml-auto md:mr-0 z-20"
-            style={{ position: 'sticky', top: 180 }}
-          >
-            <motion.div
-              initial={{ opacity: 0, x: 100 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1 }}
-              viewport={{ once: true, margin: "-100px" }}
-              className="w-full h-[300px] md:h-[80vh] flex items-center justify-end"
-              style={{ zIndex: 20 }}
-            >
-              <video
-                src="/videos/beyond.mp4"
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="object-cover w-full h-full shadow-xl rounded"
-                style={{
-                  maxHeight: '80vh',
-                  minHeight: '300px',
-                  width: '100%',
-                  position: 'relative',
-                  right: 0,
-                }}
-              />
-            </motion.div>
+
+          <div className="rounded-xl border border-red-300/40 bg-red-50 dark:bg-red-950/25 p-6 md:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div>
+              <h3 className="text-2xl font-bold text-red-700 dark:text-red-300">Get Help Now</h3>
+              <p className="text-sm md:text-base text-red-800/80 dark:text-red-200/85">
+                If you or someone you know may be in immediate danger, contact local emergency services right away.
+              </p>
+            </div>
+            <Button asChild className="rounded-sm bg-red-600 hover:bg-red-700 text-white w-full md:w-auto">
+              <Link href="/support">Open Crisis Resources</Link>
+            </Button>
           </div>
         </div>
       </section>
 
       <section className="py-24 bg-background">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true, margin: "-100px" }}
-            className="max-w-3xl mx-auto"
+            className="max-w-5xl mx-auto"
           >
-            <h2 className="text-3xl md:text-5xl font-bold mb-8">
-              {t('home.readyToSeeDifferently.title')}
-            </h2>
-            <Popover>
-              <PopoverTrigger asChild>
-                <Button size="lg" className="rounded-none font-bold">
-                  {t('home.readyToSeeDifferently.joinButton')}
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent align="center" className="w-80 p-0 border-none shadow-2xl">
-                <div className="flex flex-col divide-y divide-muted-foreground/10">
-                  <a href="/stories/all-stories" className="flex items-center gap-4 p-5 hover:bg-muted transition rounded-t-md group focus:outline-none" tabIndex={0}>
-                    <BookOpen className="h-7 w-7 text-yellow-500 group-hover:scale-110 transition-transform" />
-                    <div className="text-left">
-                      <div className="font-semibold text-lg">{t('home.joinOptions.readStories.title')}</div>
-                      <div className="text-sm text-muted-foreground">{t('home.joinOptions.readStories.description')}</div>
-                    </div>
-                  </a>
-                  <a href="/write" className="flex items-center gap-4 p-5 hover:bg-muted transition group focus:outline-none" tabIndex={0}>
-                    <PencilLine className="h-7 w-7 text-yellow-500 group-hover:scale-110 transition-transform" />
-                    <div className="text-left">
-                      <div className="font-semibold text-lg">{t('home.joinOptions.shareExperiences.title')}</div>
-                      <div className="text-sm text-muted-foreground">{t('home.joinOptions.shareExperiences.description')}</div>
-                    </div>
-                  </a>
-                  <a href="/volunteer" className="flex items-center gap-4 p-5 hover:bg-muted transition rounded-b-md group focus:outline-none" tabIndex={0}>
-                    <HeartHandshake className="h-7 w-7 text-yellow-500 group-hover:scale-110 transition-transform" />
-                    <div className="text-left">
-                      <div className="font-semibold text-lg">{t('home.joinOptions.volunteer.title')}</div>
-                      <div className="text-sm text-muted-foreground">{t('home.joinOptions.volunteer.description')}</div>
-                    </div>
-                  </a>
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-5xl font-bold mb-4">Our Impact So Far</h2>
+              <p className="text-lg text-muted-foreground">Stories that normalize emotional honesty and inspire recovery-centered action.</p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-14">
+              {[
+                { value: "100+", label: "Lived Experience Stories Published" },
+                { value: "20k+", label: "Community Readers Reached" },
+                { value: "40+", label: "Countries Engaged" },
+              ].map((metric) => (
+                <div key={metric.label} className="rounded-xl border border-border bg-card p-8 text-center">
+                  <p className="text-4xl md:text-5xl font-bold text-primary mb-2">{metric.value}</p>
+                  <p className="text-muted-foreground">{metric.label}</p>
                 </div>
-              </PopoverContent>
-            </Popover>
+              ))}
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+              {testimonials.map((item) => (
+                <blockquote key={item.name} className="rounded-xl border border-border bg-card p-6 text-left">
+                  <p className="text-base mb-4">"{item.quote}"</p>
+                  <footer className="text-sm font-semibold text-muted-foreground">{item.name}</footer>
+                </blockquote>
+              ))}
+            </div>
+
+            <div className="flex flex-wrap justify-center gap-3">
+              <Button asChild size="lg" className="rounded-sm font-semibold">
+                <Link href="/support">Get Help Now</Link>
+              </Button>
+              <Button asChild size="lg" variant="secondary" className="rounded-sm font-semibold">
+                <Link href="/self-help">Explore Tips and Tools</Link>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="rounded-sm font-semibold">
+                <Link href="/write">Share Your Story</Link>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="rounded-sm font-semibold">
+                <Link href="/checkups">Take a Mental Health Checkup</Link>
+              </Button>
+            </div>
           </motion.div>
         </div>
       </section>
