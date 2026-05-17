@@ -71,7 +71,7 @@ export const metadata: Metadata = {
     alternateLocale: ["fr_FR"],
     images: [
       {
-        url: "/images/lifeupsideview.png",
+        url: "/og-image.png",
         width: 1200,
         height: 500,
         alt: "Life Upside View — Hope. A note held against firelight.",
@@ -84,7 +84,7 @@ export const metadata: Metadata = {
     title: "Life Upside View Mental Health Foundation",
     description:
       "Real stories, mental health resources, and self-help tools to support your emotional wellbeing.",
-    images: ["/images/lifeupsideview.png"],
+    images: ["/og-image.png"],
     site: "@lifeUpsideView",
     creator: "@lifeUpsideView",
   },
