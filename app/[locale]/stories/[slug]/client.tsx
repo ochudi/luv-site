@@ -54,7 +54,7 @@ export default function StoryPage() {
               <ArrowLeft className="h-3.5 w-3.5" />
               {t("stories.backToStories")}
             </Link>
-            <p className="eyebrow text-white/80 mb-8">— Story</p>
+            <p className="eyebrow text-white/80 mb-8">— {t("stories.storyEyebrow")}</p>
             <h1 className="font-serif text-white display-1 mb-8">
               {story.title}
             </h1>

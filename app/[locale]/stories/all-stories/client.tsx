@@ -70,8 +70,8 @@ export default function AllStoriesPage() {
         <div className="editorial-container">
           <motion.div {...fadeUp} className="grid grid-cols-1 md:grid-cols-12 gap-10">
             <div className="md:col-span-3">
-              <p className="eyebrow">— Archive</p>
-              <p className="eyebrow mt-1">All stories</p>
+              <p className="eyebrow">— {t("stories.archiveEyebrow")}</p>
+              <p className="eyebrow mt-1">{t("stories.allStories")}</p>
             </div>
             <div className="md:col-span-9">
               <h1 className="font-serif display-1 tracking-tight mb-8 max-w-3xl">
@@ -95,7 +95,7 @@ export default function AllStoriesPage() {
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search stories"
+                placeholder={t("stories.searchStories")}
                 className="flex-1 bg-transparent outline-none border-none text-sm placeholder:text-foreground/40 min-w-0"
               />
             </div>
@@ -112,14 +112,14 @@ export default function AllStoriesPage() {
                           : "text-foreground/55 hover:text-foreground"
                       }`}
                     >
-                      {tag === "all" ? "All" : tag}
+                      {tag === "all" ? t("stories.allTopics") : tag}
                     </button>
                   </li>
                 ))}
               </ul>
             </div>
             <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground whitespace-nowrap md:ml-auto">
-              {filteredStories.length} {filteredStories.length === 1 ? "story" : "stories"}
+              {filteredStories.length}{" "}{filteredStories.length === 1 ? t("stories.storySingular") : t("stories.storyPlural")}
             </p>
           </div>
         </div>
@@ -130,9 +130,9 @@ export default function AllStoriesPage() {
         <div className="editorial-container">
           {filteredStories.length === 0 ? (
             <div className="border border-border p-10 md:p-16 text-center max-w-2xl mx-auto">
-              <p className="eyebrow mb-4">No matches</p>
+              <p className="eyebrow mb-4">{t("stories.noMatches")}</p>
               <p className="font-serif text-2xl md:text-3xl tracking-tight">
-                No stories match your search yet. Try another keyword or topic.
+                {t("stories.noStoriesMatch")}
               </p>
             </div>
           ) : (

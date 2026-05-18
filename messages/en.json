@@ -255,6 +255,11 @@
     "submit": "Send application"
   },
   "stories": {
+    "heroEyebrow": "Stories",
+    "storyEyebrow": "Story",
+    "archiveEyebrow": "Archive",
+    "eyebrowFeatured": "Featured",
+    "eyebrowSubscribe": "Subscribe",
     "pageTitle": "Beneath the Surface",
     "pageSubtitle": "Real stories of navigating the unseen — and finding light in it",
     "storiesThatHeal": "Stories that heal",
@@ -270,9 +275,16 @@
     "emailPlaceholder": "Your email address",
     "subscribe": "Subscribe",
     "subscribed": "Subscribed!",
-    "subscribedDesc": "Thank you for subscribing to our newsletter."
+    "subscribedDesc": "Thank you for subscribing to our newsletter.",
+    "searchStories": "Search stories",
+    "allTopics": "All",
+    "storySingular": "story",
+    "storyPlural": "stories",
+    "noMatches": "No matches",
+    "noStoriesMatch": "No stories match your search yet. Try another keyword or topic."
   },
   "evolve": {
+    "eyebrowSub": "Growth",
     "title": "Evolve",
     "subtitle": "Growth is not a destination, but a way of seeing. Transform your mindset, one moment at a time.",
     "smallWins": "Small Wins Journal",
@@ -282,6 +294,7 @@
     "learnMore": "Learn more"
   },
   "explore": {
+    "eyebrowSub": "Discover",
     "title": "Explore",
     "subtitle": "Discover new perspectives and resources that lift your mood and invite deeper curiosity.",
     "guidedJournals": "Guided Journals",
@@ -291,6 +304,7 @@
     "exploreNow": "Explore now"
   },
   "reflect": {
+    "eyebrowSub": "Insight",
     "title": "Reflect",
     "subtitle": "Dive into shared insights that help you see life in new ways — with clarity, grace, and deeper meaning.",
     "lettingGo": "Letting Go of Control",
@@ -328,6 +342,10 @@
     "copyright": "© {year} Life Upside View Mental Health Foundation. All rights reserved."
   },
   "about": {
+    "heroEyebrow": "About",
+    "heroLine1": "Who we are.",
+    "heroLine2": "Why we do this.",
+    "eyebrowLeadership": "Leadership",
     "whoWeAre": "Who we are",
     "whoWeAreDesc1": "Life Upside View is a heartfelt initiative driven by a simple truth: stories heal. We are a collective of advocates, artists, and everyday people committed to creating space for vulnerability, reflection, and transformation.",
     "whoWeAreDesc2": "Through storytelling and community dialogue, we work to destigmatize mental health, spotlight human resilience, and offer hope — especially in places where silence often wins.",

@@ -255,6 +255,11 @@
     "submit": "Envoyer la candidature"
   },
   "stories": {
+    "heroEyebrow": "Histoires",
+    "storyEyebrow": "Histoire",
+    "archiveEyebrow": "Archives",
+    "eyebrowFeatured": "À la une",
+    "eyebrowSubscribe": "S'abonner",
     "pageTitle": "Sous la surface",
     "pageSubtitle": "De vraies histoires de navigation dans l'invisible — et de la lumière qui s'y trouve",
     "storiesThatHeal": "Des histoires qui guérissent",
@@ -270,9 +275,16 @@
     "emailPlaceholder": "Votre adresse e-mail",
     "subscribe": "S'abonner",
     "subscribed": "Abonné·e !",
-    "subscribedDesc": "Merci de vous être abonné·e à notre infolettre."
+    "subscribedDesc": "Merci de vous être abonné·e à notre infolettre.",
+    "searchStories": "Rechercher des histoires",
+    "allTopics": "Tous",
+    "storySingular": "histoire",
+    "storyPlural": "histoires",
+    "noMatches": "Aucun résultat",
+    "noStoriesMatch": "Aucune histoire ne correspond pour l'instant. Essayez un autre mot-clé ou un autre sujet."
   },
   "evolve": {
+    "eyebrowSub": "Croissance",
     "title": "Évoluer",
     "subtitle": "La croissance n'est pas une destination, mais une façon de voir. Transformez votre état d'esprit, un instant à la fois.",
     "smallWins": "Journal des petites victoires",
@@ -282,6 +294,7 @@
     "learnMore": "En savoir plus"
   },
   "explore": {
+    "eyebrowSub": "Découvrir",
     "title": "Explorer",
     "subtitle": "Découvrez de nouvelles perspectives et ressources qui élèvent votre humeur et invitent à une curiosité plus profonde.",
     "guidedJournals": "Journaux guidés",
@@ -291,6 +304,7 @@
     "exploreNow": "Explorer maintenant"
   },
   "reflect": {
+    "eyebrowSub": "Aperçu",
     "title": "Réfléchir",
     "subtitle": "Plongez dans des idées partagées qui vous aident à voir la vie autrement — avec clarté, douceur et un sens plus profond.",
     "lettingGo": "Lâcher prise du contrôle",
@@ -328,6 +342,10 @@
     "copyright": "© {year} Fondation Life Upside View pour la santé mentale. Tous droits réservés."
   },
   "about": {
+    "heroEyebrow": "À propos",
+    "heroLine1": "Qui nous sommes.",
+    "heroLine2": "Pourquoi nous faisons cela.",
+    "eyebrowLeadership": "Équipe",
     "whoWeAre": "Qui nous sommes",
     "whoWeAreDesc1": "Life Upside View est une initiative sincère, animée par une vérité simple : les histoires guérissent. Nous sommes un collectif de personnes engagées — défenseurs, artistes, citoyens ordinaires — qui créent un espace pour la vulnérabilité, la réflexion et la transformation.",
     "whoWeAreDesc2": "Par la narration et le dialogue communautaire, nous œuvrons pour déstigmatiser la santé mentale, mettre en lumière la résilience humaine et offrir de l'espoir — surtout là où le silence l'emporte trop souvent.",

@@ -33,8 +33,8 @@ export default function ExplorePage() {
             className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16"
           >
             <div className="md:col-span-3">
-              <p className="eyebrow">— Explore</p>
-              <p className="eyebrow mt-1">Discover</p>
+              <p className="eyebrow">— {t("title")}</p>
+              <p className="eyebrow mt-1">{t("eyebrowSub")}</p>
             </div>
             <div className="md:col-span-9">
               <h1 className="font-serif display-1 tracking-tight mb-8 max-w-4xl">

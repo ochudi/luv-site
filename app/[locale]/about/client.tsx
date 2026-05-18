@@ -78,10 +78,10 @@ export default function AboutPage() {
             }}
             className="max-w-4xl"
           >
-            <p className="eyebrow text-white/80 mb-8">— About</p>
+            <p className="eyebrow text-white/80 mb-8">— {t("heroEyebrow")}</p>
             <h1 className="font-serif text-white display-1">
-              Who we are.{" "}
-              <span className="italic text-white/85">Why we do this.</span>
+              {t("heroLine1")}{" "}
+              <span className="italic text-white/85">{t("heroLine2")}</span>
             </h1>
           </motion.div>
         </div>
@@ -96,7 +96,7 @@ export default function AboutPage() {
           >
             <div className="md:col-span-3">
               <p className="eyebrow">— I. </p>
-              <p className="eyebrow mt-1">Who we are</p>
+              <p className="eyebrow mt-1">{t("whoWeAre")}</p>
             </div>
             <div className="md:col-span-9 space-y-6">
               <h2 className="font-serif display-2 tracking-tight max-w-3xl mb-6">
@@ -134,7 +134,7 @@ export default function AboutPage() {
               transition={{ ...fadeUp.transition, delay: 0.1 }}
               className="md:col-span-6"
             >
-              <p className="eyebrow mb-6">— II.  Our mission</p>
+              <p className="eyebrow mb-6">— II. {t("ourMission")}</p>
               <h3 className="font-serif display-3 tracking-tight mb-8 max-w-lg">
                 {t("ourMission")}
               </h3>
@@ -157,7 +157,7 @@ export default function AboutPage() {
               {...fadeUp}
               className="md:col-span-6 order-2 md:order-1"
             >
-              <p className="eyebrow mb-6">— III.  Our values</p>
+              <p className="eyebrow mb-6">— III. {t("ourValues")}</p>
               <h3 className="font-serif display-3 tracking-tight mb-10 max-w-lg">
                 {t("ourValues")}
               </h3>
@@ -203,7 +203,7 @@ export default function AboutPage() {
           >
             <div className="md:col-span-3">
               <p className="eyebrow">— IV. </p>
-              <p className="eyebrow mt-1">Leadership</p>
+              <p className="eyebrow mt-1">{t("eyebrowLeadership")}</p>
             </div>
             <div className="md:col-span-9">
               <h2 className="font-serif display-2 tracking-tight max-w-3xl mb-6">
