@@ -11,7 +11,7 @@ export async function generateMetadata({
   return pageMetadata({
     title: "Home",
     description:
-      "You are not alone. Healing is possible. Read first-person stories of anxiety, depression and trauma, take a free mental health check-up, and find immediate crisis support — all in one place.",
+      "You are not alone. Real first-person stories of anxiety, depression and trauma, a free mental health check-up, and immediate crisis support.",
     path: "/",
     locale,
     keywords: [

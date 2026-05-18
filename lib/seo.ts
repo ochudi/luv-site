@@ -75,21 +75,29 @@ export function pageMetadata({
       },
     },
     openGraph: {
-      title: isHome ? `${SITE_NAME} — Mental Health Foundation` : `${title} · ${SITE_NAME}`,
+      title: isHome
+        ? `${SITE_NAME} — Mental Health Stories, Tools & Support`
+        : `${title} · ${SITE_NAME}`,
       description,
       url,
       siteName: SITE_NAME,
       type,
       locale: locale === "fr" ? "fr_FR" : "en_US",
       alternateLocale: locale === "fr" ? ["en_US"] : ["fr_FR"],
-      images: [ogImageEntry],
+      // Only set image explicitly when the page provides a custom one (e.g.
+      // story pages with a cover image). For the default OG, let Next.js'
+      // file-convention opengraph-image.tsx generate the card.
+      ...(image && image !== DEFAULT_OG_IMAGE ? { images: [ogImageEntry] } : {}),
       ...(type === "article" && publishedTime ? { publishedTime } : {}),
     },
     twitter: {
       card: "summary_large_image",
-      title: isHome ? `${SITE_NAME} Mental Health Foundation` : `${title} · ${SITE_NAME}`,
+      title: isHome
+        ? `${SITE_NAME} — Mental Health Stories, Tools & Support`
+        : `${title} · ${SITE_NAME}`,
       description,
-      images: [image],
+      // Same logic — let the file-convention image be the default.
+      ...(image && image !== DEFAULT_OG_IMAGE ? { images: [image] } : {}),
       site: "@lifeUpsideView",
       creator: "@lifeUpsideView",
     },

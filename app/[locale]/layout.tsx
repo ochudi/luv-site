@@ -69,22 +69,14 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     alternateLocale: ["fr_FR"],
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 500,
-        alt: "Life Upside View — Hope. A note held against firelight.",
-        type: "image/png",
-      },
-    ],
+    // No explicit images here — the Next.js file-convention opengraph-image.tsx
+    // generates the 1200×630 card automatically with brand styling + CTA.
   },
   twitter: {
     card: "summary_large_image",
     title: "Life Upside View Mental Health Foundation",
     description:
       "Real stories, mental health resources, and self-help tools to support your emotional wellbeing.",
-    images: ["/og-image.png"],
     site: "@lifeUpsideView",
     creator: "@lifeUpsideView",
   },
