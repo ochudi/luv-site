@@ -26,7 +26,7 @@ const fraunces = Fraunces({
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
-const SITE_URL = "https://lifeupsideview.org";
+const SITE_URL = "https://www.lifeupsideview.org";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

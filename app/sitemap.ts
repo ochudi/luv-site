@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getStories } from "@/lib/stories-i18n";
 
-const SITE_URL = "https://lifeupsideview.org";
+const SITE_URL = "https://www.lifeupsideview.org";
 const LOCALES = ["en", "fr"] as const;
 type Locale = (typeof LOCALES)[number];
 

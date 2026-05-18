@@ -25,6 +25,25 @@ const nextConfig = {
     parallelServerBuildTraces: true,
     parallelServerCompiles: true,
   },
+  // 301-redirect the apex (lifeupsideview.org) to the www canonical so that
+  // once both DNS records point at the app, search engines stop indexing
+  // a split domain. Takes effect only when the app actually receives a
+  // request with Host: lifeupsideview.org — i.e. after Hostinger DNS resolves.
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'lifeupsideview.org',
+          },
+        ],
+        destination: 'https://www.lifeupsideview.org/:path*',
+        permanent: true,
+      },
+    ]
+  },
 }
 
 mergeConfig(nextConfig, userConfig)
