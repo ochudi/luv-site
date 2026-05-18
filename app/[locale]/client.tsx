@@ -3,93 +3,57 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
 import SearchHero from "@/components/SearchHero";
 
 const fadeUp = {
   initial: { opacity: 0, y: 32 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true, margin: "-80px" },
-  transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] },
+  transition: {
+    duration: 0.9,
+    ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
+  },
 };
 
+const emphasis = (chunks: React.ReactNode) => (
+  <span className="italic text-accent-warm">{chunks}</span>
+);
+const emphasisOnDark = (chunks: React.ReactNode) => (
+  <span className="italic text-white/85">{chunks}</span>
+);
+
 export default function Home() {
-  const supportPaths = [
-    {
-      number: "01",
-      title: "Immediate Support",
-      description:
-        "Crisis resources, urgent steps, and trusted contacts you can use right now.",
-      href: "/support",
-      cta: "Get help now",
-    },
-    {
-      number: "02",
-      title: "Coping Tools",
-      description:
-        "Grounding techniques, CBT-informed reframes, and short mindfulness practices.",
-      href: "/self-help",
-      cta: "Explore tools",
-    },
-    {
-      number: "03",
-      title: "Lived Stories",
-      description:
-        "Real experiences of anxiety, trauma, recovery, and resilience — told first-hand.",
-      href: "/stories/all-stories",
-      cta: "Read stories",
-    },
-  ];
+  const t = useTranslations("home");
 
-  const resources = [
-    {
-      title: "Self-Help",
-      description:
-        "Practical emotional wellness techniques you can start in minutes.",
-      href: "/self-help",
-    },
-    {
-      title: "Check-Ups",
-      description:
-        "Quick self-assessment prompts to reflect on stress, mood, and burnout.",
-      href: "/checkups",
-    },
-    {
-      title: "Find Support",
-      description:
-        "When to seek help, what to say, and where to find trusted professional support.",
-      href: "/support",
-    },
-  ];
+  const supportPaths = [1, 2, 3].map((i) => ({
+    number: `0${i}`,
+    title: t(`supportPath${i}Title`),
+    description: t(`supportPath${i}Desc`),
+    cta: t(`supportPath${i}Cta`),
+    href: i === 1 ? "/support" : i === 2 ? "/self-help" : "/stories/all-stories",
+  }));
 
-  const metrics = [
-    { value: "100+", label: "Lived experience stories published" },
-    { value: "20k+", label: "Community readers reached" },
-    { value: "40+", label: "Countries engaged" },
-  ];
+  const resources = [1, 2, 3].map((i) => ({
+    title: t(`resource${i}Title`),
+    description: t(`resource${i}Desc`),
+    href: i === 1 ? "/self-help" : i === 2 ? "/checkups" : "/support",
+  }));
 
-  const testimonials = [
-    {
-      quote:
-        "I came for one story and ended up finding language for what I had been carrying for years.",
-      name: "Community member",
-    },
-    {
-      quote:
-        "The check-up prompts helped me realize I needed support sooner, not later.",
-      name: "Caregiver",
-    },
-    {
-      quote:
-        "This platform made me feel less alone and more capable of asking for help.",
-      name: "Young adult reader",
-    },
-  ];
+  const metrics = [1, 2, 3].map((i) => ({
+    value: t(`metric${i}Value`),
+    label: t(`metric${i}Label`),
+  }));
+
+  const testimonials = [1, 2, 3].map((i) => ({
+    quote: t(`testimonial${i}Quote`),
+    name: t(`testimonial${i}Name`),
+  }));
 
   return (
     <div className="relative overflow-x-clip bg-background">
-      {/* ────────────── HERO ────────────── */}
+      {/* HERO */}
       <section className="hero-section relative z-20 min-h-[100svh] md:min-h-screen flex items-end">
-        {/* Video + gradient — clipped to the hero box */}
         <div className="absolute inset-0 z-0 overflow-hidden">
           <video
             autoPlay
@@ -108,42 +72,47 @@ export default function Home() {
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
+              transition={{
+                duration: 1.1,
+                ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
+              }}
               className="md:col-span-9"
             >
               <p className="eyebrow text-white/80 mb-5 md:mb-8">
-                Life Upside View — Mental Health Foundation
+                {t("brand")}
               </p>
               <h1 className="font-serif text-white display-1 max-w-5xl">
-                You are not alone.
+                {t("heroLine1")}
                 <br />
-                <span className="italic text-white/85">Healing is possible.</span>
+                <span className="italic text-white/85">{t("heroLine2")}</span>
               </h1>
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.1, delay: 0.25, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
+              transition={{
+                duration: 1.1,
+                delay: 0.25,
+                ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
+              }}
               className="md:col-span-3 md:pl-6 md:border-l border-white/25"
             >
               <p className="hidden md:block text-white/85 text-[15px] leading-relaxed mb-8 max-w-sm">
-                Emotional wellness and recovery through lived stories, practical tools,
-                and access to help for those navigating anxiety, depression, trauma, and
-                emotional overwhelm.
+                {t("heroDescription")}
               </p>
               <div className="flex flex-row md:flex-col items-start gap-x-8 gap-y-4 flex-wrap">
                 <Link
                   href="/support"
                   className="inline-flex items-center gap-2 text-white border-b border-white pb-1 text-[11px] uppercase tracking-[0.24em] font-medium hover:gap-3 transition-all duration-300"
                 >
-                  Get help now <ArrowUpRight className="h-3.5 w-3.5" />
+                  {t("getHelpNow")} <ArrowUpRight className="h-3.5 w-3.5" />
                 </Link>
                 <Link
                   href="/write"
                   className="inline-flex items-center gap-2 text-white/75 hover:text-white text-[11px] uppercase tracking-[0.24em] font-medium transition-colors"
                 >
-                  Share your story <ArrowUpRight className="h-3.5 w-3.5" />
+                  {t("shareYourStory")} <ArrowUpRight className="h-3.5 w-3.5" />
                 </Link>
               </div>
             </motion.div>
@@ -152,38 +121,42 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.1, delay: 0.5, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
+            transition={{
+              duration: 1.1,
+              delay: 0.5,
+              ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
+            }}
             className="mt-10 md:mt-20 max-w-xl"
           >
             <SearchHero tone="dark" />
           </motion.div>
         </div>
 
-        {/* Scroll cue — animated mouse, desktop only */}
+        {/* Scroll cue */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 hidden md:flex flex-col items-center gap-3 pointer-events-none">
           <div className="relative h-9 w-[22px] rounded-full border border-white/60 flex items-start justify-center pt-1.5">
             <span className="block h-1.5 w-[3px] rounded-full bg-white/85 animate-scroll-dot" />
           </div>
-          <p className="text-[9px] uppercase tracking-[0.32em] text-white/55">Scroll</p>
+          <p className="text-[9px] uppercase tracking-[0.32em] text-white/55">
+            {t("scroll")}
+          </p>
         </div>
       </section>
 
-      {/* ────────────── WHO WE SUPPORT ────────────── */}
+      {/* WHO WE SUPPORT */}
       <section className="py-28 md:py-40">
         <div className="editorial-container">
-          <motion.div {...fadeUp} className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 mb-20 md:mb-28">
+          <motion.div
+            {...fadeUp}
+            className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 mb-20 md:mb-28"
+          >
             <div className="md:col-span-3">
-              <p className="eyebrow">— I. </p>
-              <p className="eyebrow mt-1">Who we support</p>
+              <p className="eyebrow">— I.</p>
+              <p className="eyebrow mt-1">{t("eyebrowWhoWeSupport")}</p>
             </div>
             <div className="md:col-span-9">
               <h2 className="font-serif display-2 tracking-tight max-w-4xl">
-                A platform for those carrying what words rarely capture —{" "}
-                <span className="italic text-accent-warm">
-                  anxiety, depression, trauma, grief, burnout
-                </span>{" "}
-                — and the caregivers, young people, and communities who walk
-                alongside them.
+                {t.rich("whoWeSupportH2", { em: emphasis })}
               </h2>
             </div>
           </motion.div>
@@ -196,7 +169,9 @@ export default function Home() {
                 transition={{ ...fadeUp.transition, delay: 0.08 * i }}
                 className="group relative pt-8 border-t border-border"
               >
-                <p className="eyebrow text-foreground/40 mb-8">{item.number}</p>
+                <p className="eyebrow text-foreground/40 mb-8">
+                  {item.number}
+                </p>
                 <h3 className="font-serif text-2xl md:text-3xl tracking-tight mb-4">
                   {item.title}
                 </h3>
@@ -215,43 +190,45 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ────────────── EDITORIAL DIVIDER — Mission line ────────────── */}
+      {/* MISSION LINE */}
       <section className="py-24 md:py-36 border-t border-border bg-muted/40">
         <div className="editorial-container">
-          <motion.div {...fadeUp} className="grid grid-cols-1 md:grid-cols-12 gap-10">
+          <motion.div
+            {...fadeUp}
+            className="grid grid-cols-1 md:grid-cols-12 gap-10"
+          >
             <div className="md:col-span-3">
-              <p className="eyebrow">— II. </p>
-              <p className="eyebrow mt-1">A note from us</p>
+              <p className="eyebrow">— II.</p>
+              <p className="eyebrow mt-1">{t("eyebrowNote")}</p>
             </div>
             <div className="md:col-span-9">
               <p className="font-serif text-2xl md:text-4xl leading-[1.25] tracking-tight text-foreground max-w-4xl">
-                We don't promise quick answers. We offer{" "}
-                <span className="italic">honest company</span>{" "}
-                — stories, tools, and pathways to support that meet you where
-                you are, in language that respects what you're already carrying.
+                {t.rich("missionLine", {
+                  em: (chunks) => <span className="italic">{chunks}</span>,
+                })}
               </p>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* ────────────── RESOURCES ────────────── */}
+      {/* RESOURCES */}
       <section className="py-28 md:py-40">
         <div className="editorial-container">
-          <motion.div {...fadeUp} className="grid grid-cols-1 md:grid-cols-12 gap-10 mb-20">
+          <motion.div
+            {...fadeUp}
+            className="grid grid-cols-1 md:grid-cols-12 gap-10 mb-20"
+          >
             <div className="md:col-span-3">
-              <p className="eyebrow">— III. </p>
-              <p className="eyebrow mt-1">Resources</p>
+              <p className="eyebrow">— III.</p>
+              <p className="eyebrow mt-1">{t("eyebrowResources")}</p>
             </div>
             <div className="md:col-span-9 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
               <h2 className="font-serif display-2 tracking-tight max-w-3xl">
-                Find your pathway.
+                {t("findYourPathway")}
               </h2>
-              <Link
-                href="/self-help"
-                className="link-quiet text-foreground"
-              >
-                View all <ArrowUpRight className="h-3.5 w-3.5" />
+              <Link href="/self-help" className="link-quiet text-foreground">
+                {t("viewAll")} <ArrowUpRight className="h-3.5 w-3.5" />
               </Link>
             </div>
           </motion.div>
@@ -288,36 +265,39 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Crisis ribbon — restrained, not screaming */}
+          {/* Crisis ribbon */}
           <motion.div {...fadeUp} className="mt-16 md:mt-20">
             <div className="border border-border bg-card p-8 md:p-12 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
               <div className="max-w-2xl">
-                <p className="eyebrow text-destructive mb-3">In crisis</p>
+                <p className="eyebrow text-destructive mb-3">
+                  {t("crisisEyebrow")}
+                </p>
                 <p className="font-serif text-xl md:text-2xl tracking-tight leading-snug">
-                  If you or someone you know may be in immediate danger,
-                  contact local emergency services right away.
+                  {t("crisisLine")}
                 </p>
               </div>
               <Link href="/support" className="btn-solid shrink-0">
-                Open crisis resources
+                {t("crisisCta")}
               </Link>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* ────────────── IMPACT ────────────── */}
+      {/* IMPACT */}
       <section className="py-28 md:py-40 border-t border-border bg-muted/30">
         <div className="editorial-container">
-          <motion.div {...fadeUp} className="grid grid-cols-1 md:grid-cols-12 gap-10 mb-20">
+          <motion.div
+            {...fadeUp}
+            className="grid grid-cols-1 md:grid-cols-12 gap-10 mb-20"
+          >
             <div className="md:col-span-3">
-              <p className="eyebrow">— IV</p>
-              <p className="eyebrow mt-1">Impact</p>
+              <p className="eyebrow">— IV.</p>
+              <p className="eyebrow mt-1">{t("eyebrowImpact")}</p>
             </div>
             <div className="md:col-span-9">
               <h2 className="font-serif display-2 tracking-tight max-w-3xl">
-                Stories that normalize emotional honesty and inspire
-                recovery-centered action.
+                {t("impactH2")}
               </h2>
             </div>
           </motion.div>
@@ -342,20 +322,19 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Testimonials — editorial pull quotes */}
           <div className="mt-24 grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-16">
-            {testimonials.map((t, i) => (
+            {testimonials.map((tm, i) => (
               <motion.figure
-                key={t.name}
+                key={tm.name}
                 {...fadeUp}
                 transition={{ ...fadeUp.transition, delay: 0.08 * i }}
                 className="pt-8 border-t border-border"
               >
                 <blockquote className="font-serif text-xl md:text-2xl italic leading-snug text-foreground/90 mb-8">
-                  "{t.quote}"
+                  &ldquo;{tm.quote}&rdquo;
                 </blockquote>
                 <figcaption className="eyebrow text-foreground/60">
-                  — {t.name}
+                  — {tm.name}
                 </figcaption>
               </motion.figure>
             ))}
@@ -363,27 +342,26 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ────────────── CLOSING CTA ────────────── */}
+      {/* CLOSING CTA */}
       <section className="py-28 md:py-44 border-t border-border">
         <div className="editorial-container">
           <motion.div {...fadeUp} className="max-w-5xl">
-            <p className="eyebrow mb-8">— Begin</p>
+            <p className="eyebrow mb-8">— {t("eyebrowBegin")}</p>
             <h2 className="font-serif display-1 tracking-tight mb-12">
-              Take the next small step,{" "}
-              <span className="italic text-accent-warm">on your terms.</span>
+              {t.rich("closingH2", { em: emphasis })}
             </h2>
             <div className="flex flex-wrap gap-x-10 gap-y-6">
               <Link href="/support" className="link-quiet text-foreground">
-                Get help now <ArrowUpRight className="h-3.5 w-3.5" />
+                {t("closingLink1")} <ArrowUpRight className="h-3.5 w-3.5" />
               </Link>
               <Link href="/self-help" className="link-quiet text-foreground">
-                Explore tools <ArrowUpRight className="h-3.5 w-3.5" />
+                {t("closingLink2")} <ArrowUpRight className="h-3.5 w-3.5" />
               </Link>
               <Link href="/write" className="link-quiet text-foreground">
-                Share your story <ArrowUpRight className="h-3.5 w-3.5" />
+                {t("closingLink3")} <ArrowUpRight className="h-3.5 w-3.5" />
               </Link>
               <Link href="/checkups" className="link-quiet text-foreground">
-                Take a check-up <ArrowUpRight className="h-3.5 w-3.5" />
+                {t("closingLink4")} <ArrowUpRight className="h-3.5 w-3.5" />
               </Link>
             </div>
           </motion.div>

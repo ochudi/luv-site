@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "@/i18n/routing";
 import { ArrowUpRight } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 const fadeUp = {
   initial: { opacity: 0, y: 32 },
@@ -15,45 +16,39 @@ const fadeUp = {
   },
 };
 
-const breathPattern = ["Inhale", "Hold", "Exhale", "Pause"];
-const breathCounts = ["4", "4", "6", "2"];
-
-const groundingPrompts = [
-  { count: "5", label: "things you can see" },
-  { count: "4", label: "things you can feel" },
-  { count: "3", label: "things you can hear" },
-  { count: "2", label: "things you can smell" },
-  { count: "1", label: "thing you can taste" },
-];
-
-const cbtReframes = [
-  {
-    trigger: "I always fail.",
-    reframe:
-      "I am struggling right now, but I have handled hard things before.",
-  },
-  {
-    trigger: "Nobody cares about me.",
-    reframe:
-      "I feel isolated right now, but support is still available and I can ask for it.",
-  },
-  {
-    trigger: "If I rest, I am weak.",
-    reframe:
-      "Rest helps my nervous system recover so I can function better.",
-  },
-];
+const emphasis = (chunks: React.ReactNode) => (
+  <span className="italic text-accent-warm">{chunks}</span>
+);
 
 export default function SelfHelpPage() {
+  const t = useTranslations("selfHelp");
   const [mood, setMood] = useState(5);
 
+  const breathSteps = [
+    { count: "4", label: t("breathInhale") },
+    { count: "4", label: t("breathHold") },
+    { count: "6", label: t("breathExhale") },
+    { count: "2", label: t("breathPause") },
+  ];
+
+  const groundingPrompts = [
+    { count: "5", label: t("ground5") },
+    { count: "4", label: t("ground4") },
+    { count: "3", label: t("ground3") },
+    { count: "2", label: t("ground2") },
+    { count: "1", label: t("ground1") },
+  ];
+
+  const cbtReframes = [1, 2, 3].map((i) => ({
+    trigger: t(`reframe${i}Trigger`),
+    reframe: t(`reframe${i}Reframe`),
+  }));
+
   const moodGuidance = useMemo(() => {
-    if (mood <= 3)
-      return "Low energy day. Focus on one tiny action: hydrate, breathe, and message someone you trust.";
-    if (mood <= 7)
-      return "Moderate day. Keep momentum with a short walk, mindful break, and realistic task list.";
-    return "Higher energy day. Protect your progress with boundaries, sleep, and one meaningful connection.";
-  }, [mood]);
+    if (mood <= 3) return t("moodLow");
+    if (mood <= 7) return t("moodModerate");
+    return t("moodHigher");
+  }, [mood, t]);
 
   return (
     <div className="bg-background">
@@ -65,19 +60,15 @@ export default function SelfHelpPage() {
             className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16"
           >
             <div className="md:col-span-3">
-              <p className="eyebrow">— Toolkit </p>
-              <p className="eyebrow mt-1">Self-help</p>
+              <p className="eyebrow">— {t("eyebrowToolkit")}</p>
+              <p className="eyebrow mt-1">{t("eyebrowSelfHelp")}</p>
             </div>
             <div className="md:col-span-9">
               <h1 className="font-serif display-1 tracking-tight mb-8 max-w-4xl">
-                Evidence-informed tools{" "}
-                <span className="italic text-accent-warm">
-                  for hard moments.
-                </span>
+                {t.rich("h1", { em: emphasis })}
               </h1>
               <p className="lede text-muted-foreground max-w-2xl">
-                Short practices designed to reduce overwhelm, regulate
-                emotions, and help you return to steady ground.
+                {t("lede")}
               </p>
             </div>
           </motion.div>
@@ -88,38 +79,36 @@ export default function SelfHelpPage() {
       <section className="py-24 md:py-32">
         <div className="editorial-container">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-20">
-            {/* BREATH */}
             <motion.div {...fadeUp} className="pt-8 border-t border-border">
-              <p className="eyebrow text-foreground/40 mb-8">01 · Breath</p>
+              <p className="eyebrow text-foreground/40 mb-8">{t("breathLabel")}</p>
               <h2 className="font-serif text-2xl md:text-3xl tracking-tight mb-8">
-                1-minute breathing reset.
+                {t("breathTitle")}
               </h2>
               <ul className="space-y-1">
-                {breathPattern.map((step, i) => (
+                {breathSteps.map((step) => (
                   <li
-                    key={step}
+                    key={step.label}
                     className="grid grid-cols-12 py-3 border-b border-border items-baseline"
                   >
                     <span className="col-span-2 font-serif text-2xl tracking-tight text-accent-warm">
-                      {breathCounts[i]}
+                      {step.count}
                     </span>
                     <span className="col-span-10 text-[15px] text-foreground/80">
-                      {step}
+                      {step.label}
                     </span>
                   </li>
                 ))}
               </ul>
             </motion.div>
 
-            {/* GROUNDING */}
             <motion.div
               {...fadeUp}
               transition={{ ...fadeUp.transition, delay: 0.08 }}
               className="pt-8 border-t border-border"
             >
-              <p className="eyebrow text-foreground/40 mb-8">02 · Ground</p>
+              <p className="eyebrow text-foreground/40 mb-8">{t("groundLabel")}</p>
               <h2 className="font-serif text-2xl md:text-3xl tracking-tight mb-8">
-                5-4-3-2-1 grounding.
+                {t("groundTitle")}
               </h2>
               <ul className="space-y-1">
                 {groundingPrompts.map((p) => (
@@ -138,15 +127,14 @@ export default function SelfHelpPage() {
               </ul>
             </motion.div>
 
-            {/* REFRAME */}
             <motion.div
               {...fadeUp}
               transition={{ ...fadeUp.transition, delay: 0.16 }}
               className="pt-8 border-t border-border"
             >
-              <p className="eyebrow text-foreground/40 mb-8">03 · Reframe</p>
+              <p className="eyebrow text-foreground/40 mb-8">{t("reframeLabel")}</p>
               <h2 className="font-serif text-2xl md:text-3xl tracking-tight mb-8">
-                CBT reframe starters.
+                {t("reframeTitle")}
               </h2>
               <ul className="space-y-6">
                 {cbtReframes.map((item) => (
@@ -155,7 +143,7 @@ export default function SelfHelpPage() {
                     className="border-l-2 border-foreground/20 pl-5"
                   >
                     <p className="font-serif italic text-foreground mb-2">
-                      "{item.trigger}"
+                      &ldquo;{item.trigger}&rdquo;
                     </p>
                     <p className="text-[14px] text-muted-foreground leading-relaxed">
                       {item.reframe}
@@ -176,16 +164,15 @@ export default function SelfHelpPage() {
             className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16"
           >
             <div className="md:col-span-3">
-              <p className="eyebrow">— IV. </p>
-              <p className="eyebrow mt-1">Mood check</p>
+              <p className="eyebrow">— IV.</p>
+              <p className="eyebrow mt-1">{t("eyebrowMoodCheck")}</p>
             </div>
             <div className="md:col-span-9 max-w-2xl">
               <h2 className="font-serif display-2 tracking-tight mb-8">
-                How are you right now?
+                {t("moodH2")}
               </h2>
               <p className="text-[15px] text-muted-foreground mb-12">
-                A simple 1-to-10 read. Use it to gently calibrate what your
-                day needs.
+                {t("moodLede")}
               </p>
 
               <div className="flex items-baseline gap-6 mb-2">
@@ -193,7 +180,7 @@ export default function SelfHelpPage() {
                   {mood}
                 </span>
                 <span className="font-serif text-3xl text-foreground/40">
-                  / 10
+                  {t("moodOutOf10")}
                 </span>
               </div>
               <input
@@ -203,16 +190,16 @@ export default function SelfHelpPage() {
                 value={mood}
                 onChange={(e) => setMood(Number(e.target.value))}
                 className="w-full my-6 accent-[hsl(var(--accent))]"
-                aria-label="Mood level"
+                aria-label={t("moodLevelLabel")}
               />
               <div className="flex justify-between text-[11px] uppercase tracking-[0.2em] text-muted-foreground mb-10">
-                <span>Heavy</span>
-                <span>Steady</span>
-                <span>Lifted</span>
+                <span>{t("moodHeavy")}</span>
+                <span>{t("moodSteady")}</span>
+                <span>{t("moodLifted")}</span>
               </div>
 
               <div className="pt-8 border-t border-border">
-                <p className="eyebrow mb-3 text-foreground/60">Today</p>
+                <p className="eyebrow mb-3 text-foreground/60">{t("moodToday")}</p>
                 <p className="font-serif text-xl md:text-2xl tracking-tight leading-snug">
                   {moodGuidance}
                 </p>
@@ -226,19 +213,19 @@ export default function SelfHelpPage() {
       <section className="py-24 md:py-32 border-t border-border">
         <div className="editorial-container">
           <motion.div {...fadeUp} className="max-w-4xl">
-            <p className="eyebrow mb-8">— Continue</p>
+            <p className="eyebrow mb-8">— {t("eyebrowContinue")}</p>
             <h2 className="font-serif display-2 tracking-tight mb-12">
-              Take the next small step.
+              {t("continueH2")}
             </h2>
             <div className="flex flex-wrap gap-x-10 gap-y-6">
               <Link href="/checkups" className="link-quiet">
-                Take a check-up <ArrowUpRight className="h-3.5 w-3.5" />
+                {t("linkCheckup")} <ArrowUpRight className="h-3.5 w-3.5" />
               </Link>
               <Link href="/support" className="link-quiet">
-                Need immediate support? <ArrowUpRight className="h-3.5 w-3.5" />
+                {t("linkSupport")} <ArrowUpRight className="h-3.5 w-3.5" />
               </Link>
               <Link href="/stories/all-stories" className="link-quiet">
-                Read stories <ArrowUpRight className="h-3.5 w-3.5" />
+                {t("linkStories")} <ArrowUpRight className="h-3.5 w-3.5" />
               </Link>
             </div>
           </motion.div>

@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "@/i18n/routing";
 import { ArrowUpRight } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 const fadeUp = {
   initial: { opacity: 0, y: 32 },
@@ -15,21 +16,23 @@ const fadeUp = {
   },
 };
 
-const questions = [
-  "Over the last 2 weeks, I have felt persistently low, anxious, or emotionally exhausted.",
-  "I have had difficulty sleeping, concentrating, or completing daily tasks.",
-  "I feel disconnected from people or activities I usually enjoy.",
-  "I have been using avoidance, substances, or unhealthy coping to get through stress.",
-  "I have had thoughts that life is not worth it or that I might harm myself.",
-];
-
-const labels = ["Never", "Some days", "Often", "Almost daily"];
+const emphasis = (chunks: React.ReactNode) => (
+  <span className="italic text-accent-warm">{chunks}</span>
+);
 
 export default function CheckupsPage() {
+  const t = useTranslations("checkups");
+  const questions = [1, 2, 3, 4, 5].map((i) => t(`q${i}`));
+  const labels = [
+    t("labelNever"),
+    t("labelSometimes"),
+    t("labelOften"),
+    t("labelAlmostDaily"),
+  ];
+
   const [answers, setAnswers] = useState<number[]>(
     new Array(questions.length).fill(0)
   );
-
   const score = useMemo(
     () => answers.reduce((total, item) => total + item, 0),
     [answers]
@@ -38,24 +41,24 @@ export default function CheckupsPage() {
   const { headline, body } = useMemo(() => {
     if (score <= 4)
       return {
-        headline: "Low concern right now.",
-        body: "Keep supporting your wellbeing with routines, sleep, and connection.",
+        headline: t("resultLowHeadline"),
+        body: t("resultLowBody"),
       };
     if (score <= 9)
       return {
-        headline: "Moderate concern.",
-        body: "Consider speaking to someone you trust and using practical coping tools this week.",
+        headline: t("resultModerateHeadline"),
+        body: t("resultModerateBody"),
       };
     if (score <= 14)
       return {
-        headline: "Elevated concern.",
-        body: "A mental health professional can help you with a care plan and support.",
+        headline: t("resultElevatedHeadline"),
+        body: t("resultElevatedBody"),
       };
     return {
-      headline: "High concern.",
-      body: "Please seek professional or crisis support as soon as possible.",
+      headline: t("resultHighHeadline"),
+      body: t("resultHighBody"),
     };
-  }, [score]);
+  }, [score, t]);
 
   return (
     <div className="bg-background">
@@ -67,20 +70,14 @@ export default function CheckupsPage() {
             className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16"
           >
             <div className="md:col-span-3">
-              <p className="eyebrow">— Check-up</p>
-              <p className="eyebrow mt-1">Self-assessment</p>
+              <p className="eyebrow">— {t("eyebrowCheckup")}</p>
+              <p className="eyebrow mt-1">{t("eyebrowSelfAssessment")}</p>
             </div>
             <div className="md:col-span-9">
               <h1 className="font-serif display-1 tracking-tight mb-8 max-w-4xl">
-                A quick read on{" "}
-                <span className="italic text-accent-warm">
-                  how you're doing.
-                </span>
+                {t.rich("h1", { em: emphasis })}
               </h1>
-              <p className="lede text-muted-foreground max-w-2xl">
-                This is not a diagnosis. It's a reflection tool to help you
-                decide whether you might benefit from extra support.
-              </p>
+              <p className="lede text-muted-foreground max-w-2xl">{t("lede")}</p>
             </div>
           </motion.div>
         </div>
@@ -92,7 +89,7 @@ export default function CheckupsPage() {
           <ol className="max-w-3xl mx-auto divide-y divide-border border-t border-b border-border">
             {questions.map((question, index) => (
               <motion.li
-                key={question}
+                key={index}
                 {...fadeUp}
                 transition={{ ...fadeUp.transition, delay: 0.04 * index }}
                 className="py-10 md:py-12"
@@ -144,8 +141,8 @@ export default function CheckupsPage() {
             className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16"
           >
             <div className="md:col-span-3">
-              <p className="eyebrow">— Result</p>
-              <p className="eyebrow mt-1">Your read</p>
+              <p className="eyebrow">— {t("eyebrowResult")}</p>
+              <p className="eyebrow mt-1">{t("eyebrowYourRead")}</p>
             </div>
             <div className="md:col-span-9 max-w-2xl">
               <div className="flex items-baseline gap-6 mb-10">
@@ -153,7 +150,7 @@ export default function CheckupsPage() {
                   {score}
                 </span>
                 <span className="font-serif text-3xl text-foreground/40">
-                  / 15
+                  {t("outOf15")}
                 </span>
               </div>
               <h2 className="font-serif display-3 tracking-tight mb-6">
@@ -165,10 +162,10 @@ export default function CheckupsPage() {
 
               <div className="flex flex-wrap gap-x-10 gap-y-6 pt-10 border-t border-border">
                 <Link href="/support" className="link-quiet">
-                  Get support options <ArrowUpRight className="h-3.5 w-3.5" />
+                  {t("linkSupport")} <ArrowUpRight className="h-3.5 w-3.5" />
                 </Link>
                 <Link href="/self-help" className="link-quiet">
-                  Try coping tools <ArrowUpRight className="h-3.5 w-3.5" />
+                  {t("linkSelfHelp")} <ArrowUpRight className="h-3.5 w-3.5" />
                 </Link>
               </div>
             </div>

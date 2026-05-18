@@ -3,6 +3,7 @@
 import { Suspense, useMemo } from "react";
 import { useSearchParams } from "next/navigation";
 import { ArrowUpRight } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 const SEARCH_DATA = [
   { label: "Home", description: "See the world through a different lens.", href: "/", type: "Page", key: "home-page" },
@@ -36,11 +37,12 @@ const SEARCH_DATA = [
 ];
 
 export default function SearchPage() {
+  const t = useTranslations("searchPage");
   return (
     <Suspense
       fallback={
         <div className="min-h-screen flex items-center justify-center bg-background">
-          <p className="eyebrow">Loading…</p>
+          <p className="eyebrow">{t("loading")}</p>
         </div>
       }
     >
@@ -50,6 +52,8 @@ export default function SearchPage() {
 }
 
 function SearchResults() {
+  const t = useTranslations("searchPage");
+  const tCat = useTranslations("search.categories");
   const searchParams = useSearchParams();
   const q = searchParams.get("q") || "";
 
@@ -72,30 +76,41 @@ function SearchResults() {
     return { filtered, grouped };
   }, [q]);
 
+  const typeLabel = (type: string) => {
+    const key = type.toLowerCase() as "page" | "section" | "story";
+    try {
+      return tCat(key);
+    } catch {
+      return type;
+    }
+  };
+
   return (
     <div className="bg-background min-h-screen">
       <section className="pt-40 md:pt-44 pb-16 md:pb-20">
         <div className="editorial-container">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16">
             <div className="md:col-span-3">
-              <p className="eyebrow">— Search</p>
-              <p className="eyebrow mt-1">Results</p>
+              <p className="eyebrow">— {t("eyebrowSearch")}</p>
+              <p className="eyebrow mt-1">{t("eyebrowResults")}</p>
             </div>
             <div className="md:col-span-9">
               {q ? (
                 <h1 className="font-serif display-1 tracking-tight max-w-4xl">
-                  Results for{" "}
-                  <span className="italic text-foreground/55">"{q}"</span>
+                  {t("resultsFor")}{" "}
+                  <span className="italic text-foreground/55">
+                    &ldquo;{q}&rdquo;
+                  </span>
                 </h1>
               ) : (
                 <h1 className="font-serif display-1 tracking-tight max-w-4xl">
-                  Enter a search term.
+                  {t("enterTerm")}
                 </h1>
               )}
               {q && (
                 <p className="eyebrow mt-8 text-muted-foreground">
                   {filtered.length}{" "}
-                  {filtered.length === 1 ? "match" : "matches"}
+                  {filtered.length === 1 ? t("match") : t("matches")}
                 </p>
               )}
             </div>
@@ -107,16 +122,18 @@ function SearchResults() {
         <div className="editorial-container">
           {filtered.length === 0 ? (
             <div className="max-w-2xl mx-auto text-center border border-border p-12 md:p-16">
-              <p className="eyebrow mb-4">Nothing found</p>
+              <p className="eyebrow mb-4">{t("nothingFound")}</p>
               <p className="font-serif text-2xl md:text-3xl tracking-tight">
-                No results match your search. Try a different term.
+                {t("noResults")}
               </p>
             </div>
           ) : (
             <div className="max-w-4xl mx-auto space-y-16">
               {Object.entries(grouped).map(([type, items]) => (
                 <div key={type}>
-                  <p className="eyebrow mb-6 text-foreground/60">{type}</p>
+                  <p className="eyebrow mb-6 text-foreground/60">
+                    {typeLabel(type)}
+                  </p>
                   <ul className="border-t border-border">
                     {items.map((item) => (
                       <li key={item.key}>

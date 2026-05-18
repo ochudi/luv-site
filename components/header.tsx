@@ -20,9 +20,9 @@ export default function Header() {
   const navItems = [
     { nameKey: "about", path: "/about" },
     { nameKey: "stories", path: "/stories" },
-    { name: "Tools", path: "/self-help" },
-    { name: "Check-Up", path: "/checkups" },
-    { name: "Support", path: "/support" },
+    { nameKey: "tools", path: "/self-help" },
+    { nameKey: "checkup", path: "/checkups" },
+    { nameKey: "support", path: "/support" },
   ];
 
   useEffect(() => {
@@ -98,7 +98,7 @@ export default function Header() {
                   active && "after:absolute after:left-0 after:-bottom-2 after:h-px after:w-full after:bg-current"
                 )}
               >
-                {item.nameKey ? t(item.nameKey) : item.name}
+                {t(item.nameKey)}
               </Link>
             );
           })}
@@ -130,7 +130,7 @@ export default function Header() {
                 : "border-foreground text-foreground hover:bg-foreground hover:text-background"
             )}
           >
-            Get Help
+            {t("getHelp")}
           </Link>
         </div>
 
@@ -160,7 +160,7 @@ export default function Header() {
             className="fixed inset-0 h-screen w-screen bg-background z-40 flex flex-col"
           >
             <div className="editorial-container pt-24 pb-12 flex-1 flex flex-col">
-              <div className="eyebrow mb-10">Menu</div>
+              <div className="eyebrow mb-10">{t("menu")}</div>
               <nav className="flex flex-col gap-6">
                 {navItems.map((item, index) => (
                   <motion.div
@@ -179,7 +179,7 @@ export default function Header() {
                       )}
                       onClick={() => setIsOpen(false)}
                     >
-                      {item.nameKey ? t(item.nameKey) : item.name}
+                      {t(item.nameKey)}
                     </Link>
                   </motion.div>
                 ))}
@@ -204,7 +204,7 @@ export default function Header() {
                     className="btn-solid"
                     onClick={() => setIsOpen(false)}
                   >
-                    Get Help Now
+                    {t("getHelp")}
                   </Link>
                 </div>
               </div>

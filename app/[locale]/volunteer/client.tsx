@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 const fadeUp = {
   initial: { opacity: 0, y: 32 },
@@ -16,7 +17,12 @@ const fadeUp = {
 const inputCls =
   "w-full bg-transparent border-b border-foreground/30 focus:border-foreground outline-none py-3 text-base placeholder:text-foreground/35 transition-colors";
 
+const emphasis = (chunks: React.ReactNode) => (
+  <span className="italic text-accent-warm">{chunks}</span>
+);
+
 export default function VolunteerPage() {
+  const t = useTranslations("volunteer");
   const [name, setName] = useState("");
   const [nationality, setNationality] = useState("");
   const [email, setEmail] = useState("");
@@ -43,19 +49,14 @@ export default function VolunteerPage() {
             className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16"
           >
             <div className="md:col-span-3">
-              <p className="eyebrow">— Get involved</p>
-              <p className="eyebrow mt-1">Volunteer</p>
+              <p className="eyebrow">— {t("eyebrowGetInvolved")}</p>
+              <p className="eyebrow mt-1">{t("eyebrowVolunteer")}</p>
             </div>
             <div className="md:col-span-9">
               <h1 className="font-serif display-1 tracking-tight mb-8 max-w-4xl">
-                Volunteer{" "}
-                <span className="italic text-accent-warm">with us.</span>
+                {t.rich("h1", { em: emphasis })}
               </h1>
-              <p className="lede text-muted-foreground max-w-2xl">
-                Join a community of people offering time, care, and skill in
-                service of mental wellbeing. Tell us a little about yourself
-                and how you'd like to help.
-              </p>
+              <p className="lede text-muted-foreground max-w-2xl">{t("lede")}</p>
             </div>
           </motion.div>
         </div>
@@ -69,12 +70,15 @@ export default function VolunteerPage() {
             className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16"
           >
             <div className="md:col-span-3">
-              <p className="eyebrow text-foreground/40">Application</p>
+              <p className="eyebrow text-foreground/40">{t("application")}</p>
             </div>
             <div className="md:col-span-8 space-y-10 max-w-2xl">
               <div>
-                <label htmlFor="name" className="block eyebrow text-foreground/60 mb-3">
-                  Name
+                <label
+                  htmlFor="name"
+                  className="block eyebrow text-foreground/60 mb-3"
+                >
+                  {t("fieldName")}
                 </label>
                 <input
                   id="name"
@@ -83,12 +87,15 @@ export default function VolunteerPage() {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   className={inputCls}
-                  placeholder="Your name"
+                  placeholder={t("placeholderName")}
                 />
               </div>
               <div>
-                <label htmlFor="nationality" className="block eyebrow text-foreground/60 mb-3">
-                  Nationality
+                <label
+                  htmlFor="nationality"
+                  className="block eyebrow text-foreground/60 mb-3"
+                >
+                  {t("fieldNationality")}
                 </label>
                 <input
                   id="nationality"
@@ -97,12 +104,18 @@ export default function VolunteerPage() {
                   value={nationality}
                   onChange={(e) => setNationality(e.target.value)}
                   className={inputCls}
-                  placeholder="Your nationality"
+                  placeholder={t("placeholderNationality")}
                 />
               </div>
               <div>
-                <label htmlFor="email" className="block eyebrow text-foreground/60 mb-3">
-                  Email <span className="lowercase tracking-normal text-foreground/40">(optional)</span>
+                <label
+                  htmlFor="email"
+                  className="block eyebrow text-foreground/60 mb-3"
+                >
+                  {t("fieldEmail")}{" "}
+                  <span className="lowercase tracking-normal text-foreground/40">
+                    {t("optional")}
+                  </span>
                 </label>
                 <input
                   id="email"
@@ -110,12 +123,15 @@ export default function VolunteerPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className={inputCls}
-                  placeholder="you@example.com"
+                  placeholder={t("placeholderEmail")}
                 />
               </div>
               <div>
-                <label htmlFor="reason" className="block eyebrow text-foreground/60 mb-3">
-                  Reason to volunteer
+                <label
+                  htmlFor="reason"
+                  className="block eyebrow text-foreground/60 mb-3"
+                >
+                  {t("fieldReason")}
                 </label>
                 <textarea
                   id="reason"
@@ -123,24 +139,30 @@ export default function VolunteerPage() {
                   value={reason}
                   onChange={(e) => setReason(e.target.value)}
                   className={`${inputCls} min-h-[140px] resize-y`}
-                  placeholder="Why do you want to volunteer?"
+                  placeholder={t("placeholderReason")}
                 />
               </div>
               <div>
-                <label htmlFor="bio" className="block eyebrow text-foreground/60 mb-3">
-                  Bio / experience <span className="lowercase tracking-normal text-foreground/40">(optional)</span>
+                <label
+                  htmlFor="bio"
+                  className="block eyebrow text-foreground/60 mb-3"
+                >
+                  {t("fieldBio")}{" "}
+                  <span className="lowercase tracking-normal text-foreground/40">
+                    {t("optional")}
+                  </span>
                 </label>
                 <textarea
                   id="bio"
                   value={bio}
                   onChange={(e) => setBio(e.target.value)}
                   className={`${inputCls} min-h-[100px] resize-y`}
-                  placeholder="Tell us a little about yourself or your experience"
+                  placeholder={t("placeholderBio")}
                 />
               </div>
               <div className="pt-6 border-t border-border">
                 <button type="submit" className="btn-solid">
-                  Send application
+                  {t("submit")}
                 </button>
               </div>
             </div>

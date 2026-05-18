@@ -62,7 +62,8 @@ export default function Footer() {
           <div className="md:col-span-7">
             <p className="eyebrow mb-6">{t("brand")}</p>
             <h2 className="font-serif text-3xl md:text-5xl tracking-tight leading-[1.05] max-w-2xl">
-              You are not alone. <span className="italic text-foreground/60">Healing is possible.</span>
+              {t("heroLine1")}{" "}
+              <span className="italic text-foreground/60">{t("heroLine2")}</span>
             </h2>
           </div>
           <div className="md:col-span-5 md:pl-8 md:border-l border-border flex flex-col justify-between gap-6">
@@ -71,7 +72,7 @@ export default function Footer() {
             </p>
             <div className="flex flex-wrap gap-3">
               <Link href="/support" className="btn-solid">
-                Get Help Now
+                {t("getHelpNow")}
               </Link>
               <a
                 href="https://paystack.shop/pay/life-upside-view"

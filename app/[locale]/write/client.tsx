@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 const fadeUp = {
   initial: { opacity: 0, y: 32 },
@@ -16,7 +17,12 @@ const fadeUp = {
 const inputCls =
   "w-full bg-transparent border-b border-foreground/30 focus:border-foreground outline-none py-3 text-base placeholder:text-foreground/35 transition-colors";
 
+const emphasis = (chunks: React.ReactNode) => (
+  <span className="italic text-accent-warm">{chunks}</span>
+);
+
 export default function WritePage() {
+  const t = useTranslations("write");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [title, setTitle] = useState("");
@@ -44,18 +50,14 @@ export default function WritePage() {
             className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16"
           >
             <div className="md:col-span-3">
-              <p className="eyebrow">— Contribute</p>
-              <p className="eyebrow mt-1">Write</p>
+              <p className="eyebrow">— {t("eyebrowContribute")}</p>
+              <p className="eyebrow mt-1">{t("eyebrowWrite")}</p>
             </div>
             <div className="md:col-span-9">
               <h1 className="font-serif display-1 tracking-tight mb-8 max-w-4xl">
-                Share your{" "}
-                <span className="italic text-accent-warm">experience.</span>
+                {t.rich("h1", { em: emphasis })}
               </h1>
-              <p className="lede text-muted-foreground max-w-2xl">
-                Your story might be the lifeline someone else is searching for.
-                Tell us in your own words — we read every submission with care.
-              </p>
+              <p className="lede text-muted-foreground max-w-2xl">{t("lede")}</p>
             </div>
           </motion.div>
         </div>
@@ -70,7 +72,7 @@ export default function WritePage() {
             className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16"
           >
             <div className="md:col-span-3">
-              <p className="eyebrow text-foreground/40">Form</p>
+              <p className="eyebrow text-foreground/40">{t("form")}</p>
             </div>
             <div className="md:col-span-8 space-y-10 max-w-2xl">
               <div>
@@ -78,7 +80,7 @@ export default function WritePage() {
                   htmlFor="name"
                   className="block eyebrow text-foreground/60 mb-3"
                 >
-                  Name
+                  {t("fieldName")}
                 </label>
                 <input
                   id="name"
@@ -87,7 +89,7 @@ export default function WritePage() {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   className={inputCls}
-                  placeholder="Your name"
+                  placeholder={t("placeholderName")}
                 />
               </div>
               <div>
@@ -95,7 +97,10 @@ export default function WritePage() {
                   htmlFor="email"
                   className="block eyebrow text-foreground/60 mb-3"
                 >
-                  Email <span className="lowercase tracking-normal text-foreground/40">(optional)</span>
+                  {t("fieldEmail")}{" "}
+                  <span className="lowercase tracking-normal text-foreground/40">
+                    {t("optional")}
+                  </span>
                 </label>
                 <input
                   id="email"
@@ -103,7 +108,7 @@ export default function WritePage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className={inputCls}
-                  placeholder="you@example.com"
+                  placeholder={t("placeholderEmail")}
                 />
               </div>
               <div>
@@ -111,7 +116,7 @@ export default function WritePage() {
                   htmlFor="title"
                   className="block eyebrow text-foreground/60 mb-3"
                 >
-                  Story title
+                  {t("fieldTitle")}
                 </label>
                 <input
                   id="title"
@@ -120,7 +125,7 @@ export default function WritePage() {
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   className={inputCls}
-                  placeholder="Give your story a title"
+                  placeholder={t("placeholderTitle")}
                 />
               </div>
               <div>
@@ -128,7 +133,7 @@ export default function WritePage() {
                   htmlFor="story"
                   className="block eyebrow text-foreground/60 mb-3"
                 >
-                  Your story
+                  {t("fieldStory")}
                 </label>
                 <textarea
                   id="story"
@@ -136,7 +141,7 @@ export default function WritePage() {
                   value={story}
                   onChange={(e) => setStory(e.target.value)}
                   className={`${inputCls} min-h-[200px] resize-y`}
-                  placeholder="Write your story here..."
+                  placeholder={t("placeholderStory")}
                 />
               </div>
               <div>
@@ -144,20 +149,23 @@ export default function WritePage() {
                   htmlFor="bio"
                   className="block eyebrow text-foreground/60 mb-3"
                 >
-                  Short bio <span className="lowercase tracking-normal text-foreground/40">(optional)</span>
+                  {t("fieldBio")}{" "}
+                  <span className="lowercase tracking-normal text-foreground/40">
+                    {t("optional")}
+                  </span>
                 </label>
                 <textarea
                   id="bio"
                   value={bio}
                   onChange={(e) => setBio(e.target.value)}
                   className={`${inputCls} min-h-[100px] resize-y`}
-                  placeholder="Tell us a little about yourself"
+                  placeholder={t("placeholderBio")}
                 />
               </div>
 
               <div className="pt-6 border-t border-border">
                 <button type="submit" className="btn-solid">
-                  Send your story
+                  {t("submit")}
                 </button>
               </div>
             </div>
