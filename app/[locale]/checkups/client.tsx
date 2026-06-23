@@ -70,7 +70,7 @@ export default function CheckupsPage() {
             className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16"
           >
             <div className="md:col-span-3">
-              <p className="eyebrow">— {t("eyebrowCheckup")}</p>
+              <p className="eyebrow">{t("eyebrowCheckup")}</p>
               <p className="eyebrow mt-1">{t("eyebrowSelfAssessment")}</p>
             </div>
             <div className="md:col-span-9">
@@ -141,7 +141,7 @@ export default function CheckupsPage() {
             className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16"
           >
             <div className="md:col-span-3">
-              <p className="eyebrow">— {t("eyebrowResult")}</p>
+              <p className="eyebrow">{t("eyebrowResult")}</p>
               <p className="eyebrow mt-1">{t("eyebrowYourRead")}</p>
             </div>
             <div className="md:col-span-9 max-w-2xl">

@@ -49,7 +49,7 @@ export default function VolunteerPage() {
             className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16"
           >
             <div className="md:col-span-3">
-              <p className="eyebrow">— {t("eyebrowGetInvolved")}</p>
+              <p className="eyebrow">{t("eyebrowGetInvolved")}</p>
               <p className="eyebrow mt-1">{t("eyebrowVolunteer")}</p>
             </div>
             <div className="md:col-span-9">

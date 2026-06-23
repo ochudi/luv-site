@@ -80,7 +80,7 @@ export default function FloatingBotButton() {
         <DialogContent className="p-0 border border-border bg-background max-w-[95vw] sm:max-w-md rounded-none">
           <div className="p-6 md:p-8">
             <DialogHeader>
-              <p className="eyebrow mb-2">— Talk to us</p>
+              <p className="eyebrow mb-2">Talk to us</p>
               <DialogTitle className="font-serif text-2xl md:text-3xl tracking-tight">
                 {t("title")}
               </DialogTitle>

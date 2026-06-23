@@ -79,7 +79,7 @@ export default function StoriesPage() {
             }}
             className="max-w-4xl"
           >
-            <p className="eyebrow text-white/80 mb-8">— {t("stories.heroEyebrow")}</p>
+            <p className="eyebrow text-white/80 mb-8">{t("stories.heroEyebrow")}</p>
             <h1 className="font-serif text-white display-1">
               {t("stories.pageTitle")}
             </h1>
@@ -98,7 +98,7 @@ export default function StoriesPage() {
             className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 mb-16 md:mb-20"
           >
             <div className="md:col-span-3">
-              <p className="eyebrow">— I.</p>
+              <p className="eyebrow">01.</p>
               <p className="eyebrow mt-1">{t("stories.eyebrowFeatured")}</p>
             </div>
             <div className="md:col-span-9">
@@ -161,7 +161,7 @@ export default function StoriesPage() {
         <div className="editorial-container">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 items-center">
             <motion.div {...fadeUp} className="md:col-span-7">
-              <p className="eyebrow mb-6">— II. {t("stories.eyebrowSubscribe")}</p>
+              <p className="eyebrow mb-6">02. {t("stories.eyebrowSubscribe")}</p>
               <h2 className="font-serif display-2 tracking-tight mb-6 max-w-2xl">
                 {t("stories.diveDeeperTitle")}
               </h2>

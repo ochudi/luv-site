@@ -54,7 +54,7 @@ export default function StoryPage() {
               <ArrowLeft className="h-3.5 w-3.5" />
               {t("stories.backToStories")}
             </Link>
-            <p className="eyebrow text-white/80 mb-8">— {t("stories.storyEyebrow")}</p>
+            <p className="eyebrow text-white/80 mb-8">{t("stories.storyEyebrow")}</p>
             <h1 className="font-serif text-white display-1 mb-8">
               {story.title}
             </h1>
@@ -86,7 +86,7 @@ export default function StoryPage() {
                     <div className="relative aspect-[3/2] md:aspect-[16/10]">
                       <Image
                         src={story.images[i]}
-                        alt={`${story.title} — figure ${i + 1}`}
+                        alt={`${story.title} · figure ${i + 1}`}
                         fill
                         className="object-cover"
                         sizes="(max-width: 768px) 100vw, 80vw"

@@ -60,7 +60,7 @@ export default function SelfHelpPage() {
             className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16"
           >
             <div className="md:col-span-3">
-              <p className="eyebrow">— {t("eyebrowToolkit")}</p>
+              <p className="eyebrow">{t("eyebrowToolkit")}</p>
               <p className="eyebrow mt-1">{t("eyebrowSelfHelp")}</p>
             </div>
             <div className="md:col-span-9">
@@ -164,7 +164,7 @@ export default function SelfHelpPage() {
             className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16"
           >
             <div className="md:col-span-3">
-              <p className="eyebrow">— IV.</p>
+              <p className="eyebrow">04.</p>
               <p className="eyebrow mt-1">{t("eyebrowMoodCheck")}</p>
             </div>
             <div className="md:col-span-9 max-w-2xl">
@@ -213,7 +213,7 @@ export default function SelfHelpPage() {
       <section className="py-24 md:py-32 border-t border-border">
         <div className="editorial-container">
           <motion.div {...fadeUp} className="max-w-4xl">
-            <p className="eyebrow mb-8">— {t("eyebrowContinue")}</p>
+            <p className="eyebrow mb-8">{t("eyebrowContinue")}</p>
             <h2 className="font-serif display-2 tracking-tight mb-12">
               {t("continueH2")}
             </h2>

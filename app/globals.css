@@ -4,49 +4,49 @@
 
 @layer base {
   :root {
-    /* Editorial monochrome — warm off-white, deep ink, muted gold */
-    --background: 43 26% 95%;        /* #F6F4EF warm off-white */
-    --foreground: 0 0% 10%;          /* #1A1A1A deep ink */
-    --card: 45 36% 97%;              /* #FBFAF6 */
+    /* Warm off-white base with vivid signal-yellow accent */
+    --background: 43 26% 95%;         /* #F6F4EF warm off-white */
+    --foreground: 0 0% 10%;           /* #1A1A1A deep ink */
+    --card: 45 36% 97%;
     --card-foreground: 0 0% 10%;
     --popover: 45 36% 97%;
     --popover-foreground: 0 0% 10%;
-    --primary: 43 26% 43%;           /* #8A7A52 muted gold */
-    --primary-foreground: 45 36% 97%;
+    --primary: 45 100% 50%;           /* #FFBF00 strong yellow CTA */
+    --primary-foreground: 0 0% 10%;
     --secondary: 41 18% 90%;
     --secondary-foreground: 0 0% 10%;
     --muted: 41 18% 92%;
-    --muted-foreground: 0 0% 38%;    /* #616161 */
-    --accent: 38 38% 53%;            /* #B89055 deep muted gold — the "expensive" accent */
-    --accent-foreground: 45 36% 97%;
+    --muted-foreground: 0 0% 38%;
+    --accent: 46 100% 53%;            /* #FFCC1A signal yellow */
+    --accent-foreground: 0 0% 10%;
     --destructive: 0 60% 38%;
     --destructive-foreground: 45 36% 97%;
-    --border: 41 18% 86%;            /* #E5E1D8 hairline rule */
+    --border: 41 18% 86%;
     --input: 41 18% 86%;
-    --ring: 43 26% 43%;
-    --radius: 0.125rem;              /* near-square — editorial */
+    --ring: 46 100% 53%;
+    --radius: 0.125rem;
   }
 
   .dark {
-    --background: 30 5% 7%;          /* near-black, slightly warm */
-    --foreground: 41 30% 93%;        /* #F2EFE7 cream */
-    --card: 30 5% 9%;
-    --card-foreground: 41 30% 93%;
-    --popover: 30 5% 9%;
-    --popover-foreground: 41 30% 93%;
-    --primary: 36 38% 56%;           /* #B89968 champagne */
-    --primary-foreground: 30 5% 7%;
-    --secondary: 30 5% 14%;
-    --secondary-foreground: 41 30% 93%;
-    --muted: 30 5% 12%;
-    --muted-foreground: 40 5% 62%;
-    --accent: 36 50% 64%;            /* #D4B077 brighter champagne for dark mode */
-    --accent-foreground: 30 5% 7%;
+    --background: 220 50% 7%;         /* deep navy, y.co-style */
+    --foreground: 0 0% 98%;
+    --card: 220 45% 10%;
+    --card-foreground: 0 0% 98%;
+    --popover: 220 45% 10%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 45 100% 55%;           /* slightly brighter yellow for dark bg */
+    --primary-foreground: 220 50% 7%;
+    --secondary: 220 30% 16%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 220 30% 14%;
+    --muted-foreground: 220 10% 65%;
+    --accent: 46 100% 56%;
+    --accent-foreground: 220 50% 7%;
     --destructive: 0 55% 45%;
-    --destructive-foreground: 41 30% 93%;
-    --border: 30 6% 16%;
-    --input: 30 6% 16%;
-    --ring: 36 38% 56%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 25% 18%;
+    --input: 220 25% 18%;
+    --ring: 46 100% 56%;
   }
 }
 
@@ -63,75 +63,103 @@
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
-    font-feature-settings: "ss01", "cv11";
   }
-  .font-serif,
-  h1, h2, h3, .display {
-    font-family: var(--font-serif), Georgia, "Times New Roman", serif;
-    font-feature-settings: "ss01", "lnum";
+  /* Single font for everything — same as y.co. */
+  h1, h2, h3, h4, .display, .font-serif {
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.01em;
   }
 }
 
 @layer components {
-  /* Editorial wrapper — wider container with breathing room */
   .editorial-container {
     @apply mx-auto w-full px-6 md:px-10 lg:px-16;
     max-width: 1440px;
   }
 
-  /* Tiny tracked uppercase label — used as an eyebrow */
   .eyebrow {
-    @apply inline-block text-[10px] md:text-[11px] font-medium uppercase tracking-[0.22em] text-muted-foreground;
+    @apply inline-block text-[10px] md:text-[11px] font-semibold uppercase tracking-[0.22em] text-muted-foreground;
   }
 
-  /* Thin hairline rule */
   .rule {
     @apply h-px w-full bg-border;
   }
 
-  /* Quiet underline link — animated thin rule */
+  /* Quiet link — yellow underline that animates in */
   .link-quiet {
-    @apply relative inline-flex items-center gap-2 text-sm tracking-wide uppercase
-           after:absolute after:left-0 after:-bottom-1 after:h-px after:w-full
-           after:bg-current after:origin-left after:scale-x-100
-           hover:after:scale-x-0 after:transition-transform after:duration-500;
+    @apply relative inline-flex items-center gap-2 text-xs tracking-[0.18em] uppercase font-semibold
+           after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-full
+           after:bg-[hsl(var(--accent))] after:origin-left after:scale-x-0
+           hover:after:scale-x-100 after:transition-transform after:duration-300;
   }
 
-  /* Pill-less primary action — square edges, subtle */
   .btn-ghost {
-    @apply inline-flex items-center justify-center border border-foreground/80 px-6 py-3
-           text-xs uppercase tracking-[0.18em] font-medium text-foreground
-           hover:bg-foreground hover:text-background transition-colors duration-300;
+    @apply inline-flex items-center justify-center border-2 border-foreground px-6 py-3
+           text-[11px] uppercase tracking-[0.22em] font-semibold text-foreground
+           hover:bg-foreground hover:text-background transition-colors duration-200;
   }
+
+  /* Primary CTA — bright yellow, the y.co ENQUIRE pattern */
   .btn-solid {
+    @apply inline-flex items-center justify-center bg-[hsl(var(--accent))] text-[hsl(var(--accent-foreground))]
+           px-6 py-3 text-[11px] uppercase tracking-[0.22em] font-bold
+           hover:brightness-95 transition-all duration-200;
+  }
+
+  .btn-dark {
     @apply inline-flex items-center justify-center bg-foreground text-background px-6 py-3
-           text-xs uppercase tracking-[0.18em] font-medium
-           hover:bg-foreground/85 transition-colors duration-300;
+           text-[11px] uppercase tracking-[0.22em] font-bold
+           hover:bg-foreground/85 transition-colors duration-200;
   }
 }
 
-/* Editorial display sizes — fluid */
-.display-1 { font-size: clamp(2.25rem, 7vw, 6.5rem); line-height: 1.04; letter-spacing: -0.018em; }
-.display-2 { font-size: clamp(2rem, 4.8vw, 4rem);    line-height: 1.06; letter-spacing: -0.015em; }
-.display-3 { font-size: clamp(1.5rem, 3.2vw, 2.5rem); line-height: 1.12; letter-spacing: -0.012em; }
-.lede      { font-size: clamp(1rem, 1.4vw, 1.25rem);  line-height: 1.55; }
+/* Display sizes — bigger and heavier for impact */
+.display-1 { font-size: clamp(3rem, 11vw, 9.5rem);   line-height: 0.95; letter-spacing: -0.025em; font-weight: 800; }
+.display-2 { font-size: clamp(2.25rem, 6vw, 5rem);   line-height: 1.02; letter-spacing: -0.02em;  font-weight: 800; }
+.display-3 { font-size: clamp(1.5rem, 3.4vw, 2.75rem); line-height: 1.1; letter-spacing: -0.015em; font-weight: 700; }
+.lede      { font-size: clamp(1rem, 1.4vw, 1.25rem);  line-height: 1.55; font-weight: 400; }
 
-/* Lively accent helpers */
 .text-accent-warm { color: hsl(var(--accent)); }
-.eyebrow-accent { color: hsl(var(--accent)); }
+.bg-accent-warm   { background-color: hsl(var(--accent)); }
 
-/* Hide scrollbar but keep scrollability — for horizontal filter bars */
+/* Hide scrollbar but keep scrollability */
 .scrollbar-none { scrollbar-width: none; -ms-overflow-style: none; }
 .scrollbar-none::-webkit-scrollbar { display: none; }
 
-/* Gentle bounce for the talk-to-us FAB */
+/* Long-form prose */
+.prose { @apply max-w-none; }
+.prose h2 { @apply text-3xl md:text-4xl mt-16 mb-6 font-bold tracking-tight uppercase; letter-spacing: -0.01em; }
+.prose h3 { @apply text-2xl mt-12 mb-4 font-bold tracking-tight; }
+.prose p  { @apply mb-6 leading-relaxed text-foreground/85; }
+.prose blockquote {
+  @apply border-l-4 border-[hsl(var(--accent))] pl-6 my-10 text-foreground/85;
+  font-weight: 500;
+}
+
+/* Animations */
+.animate-fade-in  { animation: fadeIn 0.8s ease-out forwards; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.animate-slide-up { animation: slideUp 0.8s cubic-bezier(0.16,1,0.3,1) forwards; }
+@keyframes slideUp {
+  from { transform: translateY(24px); opacity: 0; }
+  to   { transform: translateY(0);     opacity: 1; }
+}
+
+/* Soft pulse — for the talk-to-us bubble */
 @keyframes soft-bounce {
   0%, 100% { transform: translateY(0); }
   50%      { transform: translateY(-6px); }
 }
 .animate-soft-bounce { animation: soft-bounce 2.6s cubic-bezier(0.45,0,0.55,1) infinite; }
 
-/* Scroll-mouse dot: travels down the body of the mouse and fades out */
+@keyframes soft-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 hsl(var(--accent) / 0.45); }
+  50%      { box-shadow: 0 0 0 14px hsl(var(--accent) / 0); }
+}
+.animate-soft-pulse { animation: soft-pulse 2.4s ease-out infinite; }
+
+/* Scroll-mouse dot */
 @keyframes scroll-dot {
   0%   { transform: translateY(0);  opacity: 1; }
   60%  { transform: translateY(14px); opacity: 0; }
@@ -139,36 +167,6 @@
   100% { transform: translateY(0);  opacity: 1; }
 }
 .animate-scroll-dot { animation: scroll-dot 2.2s cubic-bezier(0.4,0,0.2,1) infinite; }
-
-/* Pulsing soft glow ring for the FAB */
-@keyframes soft-pulse {
-  0%, 100% { box-shadow: 0 6px 24px -6px hsl(var(--accent) / 0.55), 0 0 0 0 hsl(var(--accent) / 0.35); }
-  50%      { box-shadow: 0 8px 28px -6px hsl(var(--accent) / 0.65), 0 0 0 8px hsl(var(--accent) / 0); }
-}
-.animate-soft-pulse { animation: soft-pulse 3s ease-in-out infinite; }
-
-/* Long-form prose tuning */
-.prose { @apply max-w-none; }
-.prose h1, .prose h2, .prose h3, .prose h4 {
-  font-family: var(--font-serif), Georgia, serif;
-  @apply font-medium;
-}
-.prose h2 { @apply text-3xl mt-16 mb-6 tracking-tight; }
-.prose h3 { @apply text-2xl mt-12 mb-4 tracking-tight; }
-.prose p  { @apply mb-6 leading-relaxed text-foreground/85; }
-.prose blockquote {
-  @apply border-l-2 border-foreground pl-6 italic my-10 text-foreground/80;
-  font-family: var(--font-serif), Georgia, serif;
-}
-
-/* Animations */
-.animate-fade-in { animation: fadeIn 0.8s ease-out forwards; }
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-.animate-slide-up { animation: slideUp 0.8s cubic-bezier(0.16,1,0.3,1) forwards; }
-@keyframes slideUp {
-  from { transform: translateY(24px); opacity: 0; }
-  to   { transform: translateY(0);     opacity: 1; }
-}
 
 /* Mobile landscape hero */
 @media (max-width: 932px) and (orientation: landscape) {

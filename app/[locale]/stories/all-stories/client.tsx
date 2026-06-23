@@ -70,7 +70,7 @@ export default function AllStoriesPage() {
         <div className="editorial-container">
           <motion.div {...fadeUp} className="grid grid-cols-1 md:grid-cols-12 gap-10">
             <div className="md:col-span-3">
-              <p className="eyebrow">— {t("stories.archiveEyebrow")}</p>
+              <p className="eyebrow">{t("stories.archiveEyebrow")}</p>
               <p className="eyebrow mt-1">{t("stories.allStories")}</p>
             </div>
             <div className="md:col-span-9">

@@ -61,7 +61,7 @@ const config = {
       },
       fontFamily: {
         sans: ["var(--font-sans)", "ui-sans-serif", "system-ui", "sans-serif"],
-        serif: ["var(--font-serif)", "Georgia", "Times New Roman", "serif"],
+        serif: ["var(--font-sans)", "ui-sans-serif", "system-ui", "sans-serif"],
       },
       letterSpacing: {
         tightest: "-0.025em",

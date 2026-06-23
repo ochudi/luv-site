@@ -41,7 +41,7 @@ export default function SupportPage() {
           >
             <div className="md:col-span-3">
               <p className="eyebrow text-destructive">
-                — {t("eyebrowHelpNow")}
+                {t("eyebrowHelpNow")}
               </p>
               <p className="eyebrow mt-1">{t("eyebrowSupport")}</p>
             </div>
@@ -63,7 +63,7 @@ export default function SupportPage() {
             className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16"
           >
             <div className="md:col-span-3">
-              <p className="eyebrow text-destructive">— I.</p>
+              <p className="eyebrow text-destructive">01.</p>
               <p className="eyebrow mt-1">{t("eyebrowImmediate")}</p>
             </div>
             <div className="md:col-span-9">
@@ -112,7 +112,7 @@ export default function SupportPage() {
             className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 mb-16"
           >
             <div className="md:col-span-3">
-              <p className="eyebrow">— II.</p>
+              <p className="eyebrow">02.</p>
               <p className="eyebrow mt-1">{t("eyebrowPathways")}</p>
             </div>
             <div className="md:col-span-9">
@@ -152,7 +152,7 @@ export default function SupportPage() {
             className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16"
           >
             <div className="md:col-span-3">
-              <p className="eyebrow">— III.</p>
+              <p className="eyebrow">03.</p>
               <p className="eyebrow mt-1">{t("eyebrowAsking")}</p>
             </div>
             <div className="md:col-span-9 max-w-3xl">

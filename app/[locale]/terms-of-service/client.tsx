@@ -30,7 +30,7 @@ export default function TermsOfServicePage() {
             className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16"
           >
             <div className="md:col-span-3">
-              <p className="eyebrow">— Legal </p>
+              <p className="eyebrow">Legal </p>
               <p className="eyebrow mt-1">Terms</p>
             </div>
             <div className="md:col-span-9">
@@ -53,7 +53,7 @@ export default function TermsOfServicePage() {
                     key={s.key}
                     className="text-[13px] text-muted-foreground"
                   >
-                    {String(i + 1).padStart(2, "0")} — {p(s.key)}
+                    {String(i + 1).padStart(2, "0")} · {p(s.key)}
                   </li>
                 ))}
               </ul>

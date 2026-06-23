@@ -122,19 +122,16 @@ export default function SearchHero({ tone = "dark" }: SearchHeroProps) {
   }, [input, showSuggestions]);
 
   const onDark = tone === "dark";
-  const lineColor = onDark ? "border-white/40" : "border-foreground/30";
-  const focusLine = onDark ? "border-white" : "border-foreground";
   const textColor = onDark ? "text-white" : "text-foreground";
-  const placeholderColor = onDark ? "placeholder:text-white/55" : "placeholder:text-foreground/45";
+  const placeholderColor = onDark ? "placeholder:text-white/70" : "placeholder:text-foreground/45";
+  const bgClass = onDark ? "bg-black/30 backdrop-blur-sm" : "bg-background";
 
   return (
-    <div className="w-full max-w-xl mx-auto relative">
+    <div className="w-full relative">
       <div
-        className={`relative flex items-center gap-3 border-b ${
-          isInputFocused ? focusLine : lineColor
-        } transition-colors duration-300 pb-3`}
+        className={`relative flex items-center gap-3 md:gap-4 border-2 border-[hsl(var(--accent))] ${bgClass} transition-colors duration-300 pl-5 pr-2 py-2 md:py-3`}
       >
-        <Search className={`h-4 w-4 ${onDark ? "text-white/70" : "text-foreground/60"}`} />
+        <Search className="h-4 w-4 md:h-5 md:w-5 text-[hsl(var(--accent))] shrink-0" />
         <input
           ref={inputRef}
           type="text"
@@ -163,7 +160,7 @@ export default function SearchHero({ tone = "dark" }: SearchHeroProps) {
             }
           }}
           placeholder={animatedPlaceholder}
-          className={`flex-1 bg-transparent outline-none border-none focus:ring-0 ${textColor} ${placeholderColor} text-base md:text-lg font-light tracking-wide`}
+          className={`flex-1 min-w-0 bg-transparent outline-none border-none focus:ring-0 ${textColor} ${placeholderColor} text-base md:text-lg tracking-wide py-2`}
           autoComplete="off"
           aria-label="Search Life Upside View"
         />
@@ -171,9 +168,7 @@ export default function SearchHero({ tone = "dark" }: SearchHeroProps) {
           onClick={handleSearch}
           aria-label={t("button")}
           type="button"
-          className={`hidden md:inline-block text-[10px] uppercase tracking-[0.24em] font-medium ${
-            onDark ? "text-white/90 hover:text-white" : "text-foreground/80 hover:text-foreground"
-          } transition-colors`}
+          className="hidden md:inline-flex items-center bg-[hsl(var(--accent))] text-[hsl(var(--accent-foreground))] text-xs uppercase tracking-[0.22em] font-bold px-6 py-3 hover:brightness-95 transition-all"
         >
           {t("button")}
         </button>
@@ -204,7 +199,7 @@ export default function SearchHero({ tone = "dark" }: SearchHeroProps) {
                       }}
                       onMouseEnter={() => setHighlightIdx(i)}
                     >
-                      <p className="font-serif text-base text-foreground">{item.label}</p>
+                      <p className="font-semibold text-base text-foreground">{item.label}</p>
                       <p className="text-xs text-muted-foreground mt-0.5">{item.description}</p>
                     </li>
                   ))}

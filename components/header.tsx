@@ -69,7 +69,7 @@ export default function Header() {
         {/* Logo */}
         <Link
           href="/"
-          aria-label="Life Upside View — home"
+          aria-label="Life Upside View"
           onClick={() => setIsOpen(false)}
           className="relative z-50 inline-flex items-center"
         >

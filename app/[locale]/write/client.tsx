@@ -50,7 +50,7 @@ export default function WritePage() {
             className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16"
           >
             <div className="md:col-span-3">
-              <p className="eyebrow">— {t("eyebrowContribute")}</p>
+              <p className="eyebrow">{t("eyebrowContribute")}</p>
               <p className="eyebrow mt-1">{t("eyebrowWrite")}</p>
             </div>
             <div className="md:col-span-9">
