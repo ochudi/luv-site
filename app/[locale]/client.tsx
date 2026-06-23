@@ -95,13 +95,6 @@ export default function Home() {
             <SearchHero tone="dark" />
           </div>
         </motion.div>
-
-        {/* Scroll cue */}
-        <div className="absolute bottom-32 md:bottom-36 left-1/2 -translate-x-1/2 z-10 hidden md:flex flex-col items-center gap-3 pointer-events-none">
-          <div className="relative h-9 w-[22px] rounded-full border-2 border-[hsl(var(--accent))] flex items-start justify-center pt-1.5">
-            <span className="block h-1.5 w-[3px] rounded-full bg-[hsl(var(--accent))] animate-scroll-dot" />
-          </div>
-        </div>
       </section>
 
       {/* ───── PATHS ─ three tiles ───── */}
@@ -162,7 +155,7 @@ export default function Home() {
               playsInline
               className="w-full h-full object-cover"
             >
-              <source src="/videos/about.mp4" type="video/mp4" />
+              <source src="/videos/beyond.mp4" type="video/mp4" />
             </video>
             <motion.div
               style={{ opacity: overlayOpacity }}

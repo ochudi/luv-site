@@ -159,15 +159,6 @@
 }
 .animate-soft-pulse { animation: soft-pulse 2.4s ease-out infinite; }
 
-/* Scroll-mouse dot */
-@keyframes scroll-dot {
-  0%   { transform: translateY(0);  opacity: 1; }
-  60%  { transform: translateY(14px); opacity: 0; }
-  61%  { transform: translateY(0);  opacity: 0; }
-  100% { transform: translateY(0);  opacity: 1; }
-}
-.animate-scroll-dot { animation: scroll-dot 2.2s cubic-bezier(0.4,0,0.2,1) infinite; }
-
 /* Mobile landscape hero */
 @media (max-width: 932px) and (orientation: landscape) {
   .hero-section {
