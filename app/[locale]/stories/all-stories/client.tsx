@@ -27,19 +27,25 @@ export default function AllStoriesPage() {
   const [query, setQuery] = useState("");
   const [activeTag, setActiveTag] = useState("all");
 
-  const inferTags = (title: string, description: string) => {
-    const haystack = `${title} ${description}`.toLowerCase();
-    const tags: string[] = [];
-    if (haystack.includes("depress") || haystack.includes("anx") || haystack.includes("fear")) tags.push("anxiety/depression");
-    if (haystack.includes("pain") || haystack.includes("broken") || haystack.includes("crisis") || haystack.includes("sickle")) tags.push("trauma");
-    if (haystack.includes("recover") || haystack.includes("healing") || haystack.includes("journey") || haystack.includes("support")) tags.push("recovery");
-    if (haystack.includes("dream") || haystack.includes("resilien") || haystack.includes("defiance") || haystack.includes("success")) tags.push("resilience");
-    return tags.length ? tags : ["lived experience"];
-  };
+  // Canonical display order for the topic filter row. Tags live on the story
+  // data (see lib/stories.ts) and are labelled via `stories.tags.*`.
+  const TAG_ORDER = [
+    "anxiety",
+    "trauma",
+    "chronicIllness",
+    "griefLoss",
+    "resilience",
+    "recovery",
+    "faith",
+    "tools",
+  ];
+
+  const tagLabel = (tag: string) =>
+    tag === "all" ? t("stories.allTopics") : t(`stories.tags.${tag}`);
 
   const taggedStories = stories.map((story) => ({
     ...story,
-    tags: inferTags(story.title, story.description),
+    tags: story.tags ?? [],
     summary:
       story.description.length > 115
         ? `${story.description.slice(0, 112)}...`
@@ -47,9 +53,10 @@ export default function AllStoriesPage() {
   }));
 
   const availableTags = useMemo(() => {
-    const tags = new Set<string>();
-    taggedStories.forEach((story) => story.tags.forEach((tag) => tags.add(tag)));
-    return ["all", ...Array.from(tags)];
+    const present = new Set<string>();
+    taggedStories.forEach((story) => story.tags.forEach((tag) => present.add(tag)));
+    return ["all", ...TAG_ORDER.filter((tag) => present.has(tag))];
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [taggedStories]);
 
   const filteredStories = useMemo(() => {
@@ -112,7 +119,7 @@ export default function AllStoriesPage() {
                           : "text-foreground/55 hover:text-foreground"
                       }`}
                     >
-                      {tag === "all" ? t("stories.allTopics") : tag}
+                      {tagLabel(tag)}
                     </button>
                   </li>
                 ))}
@@ -162,7 +169,7 @@ export default function AllStoriesPage() {
                               key={tag}
                               className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground"
                             >
-                              {tag}
+                              {tagLabel(tag)}
                             </span>
                           ))}
                         </div>

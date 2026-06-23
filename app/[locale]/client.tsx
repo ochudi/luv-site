@@ -49,6 +49,11 @@ export default function Home() {
     label: t(`metric${i}Label`),
   }));
 
+  const testimonials = [1, 2, 3, 4].map((i) => ({
+    quote: t(`testimonial${i}Quote`),
+    author: t(`testimonial${i}Author`),
+  }));
+
   return (
     <div className="relative overflow-x-clip bg-background">
       {/* ───── HERO ─ minimal, one line ───── */}
@@ -74,7 +79,7 @@ export default function Home() {
               duration: 1.4,
               ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
             }}
-            className="font-sans uppercase text-white text-center display-1"
+            className="font-serif text-white text-center display-1"
           >
             {t("heroHeadline")}
           </motion.h1>
@@ -106,7 +111,7 @@ export default function Home() {
               <p className="eyebrow mt-1">{t("eyebrowWhoWeSupport")}</p>
             </div>
             <div className="md:col-span-9">
-              <h2 className="font-sans uppercase display-2 max-w-3xl">
+              <h2 className="font-serif display-2 max-w-3xl">
                 {t("whoWeSupportH2")}
               </h2>
             </div>
@@ -120,10 +125,10 @@ export default function Home() {
                 transition={{ ...fadeUp.transition, delay: 0.08 * i }}
                 className="group relative pt-8 border-t-2 border-foreground"
               >
-                <p className="font-sans font-bold text-3xl text-accent-warm mb-6">
+                <p className="font-serif text-3xl text-accent-warm mb-6">
                   {item.number}
                 </p>
-                <h3 className="font-sans uppercase font-bold text-xl md:text-2xl tracking-tight mb-3">
+                <h3 className="font-serif text-xl md:text-2xl tracking-tight mb-3">
                   {item.title}
                 </h3>
                 <p className="text-[15px] text-muted-foreground leading-relaxed mb-6 max-w-sm">
@@ -177,7 +182,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 1, delay: 0.15 }}
-              className="font-sans uppercase display-2 max-w-4xl mx-auto"
+              className="font-serif display-2 max-w-4xl mx-auto"
             >
               {t("missionLine")}
             </motion.h2>
@@ -194,7 +199,7 @@ export default function Home() {
               <p className="eyebrow mt-1">{t("eyebrowResources")}</p>
             </div>
             <div className="md:col-span-9 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-              <h2 className="font-sans uppercase display-2 max-w-3xl">
+              <h2 className="font-serif display-2 max-w-3xl">
                 {t("findYourPathway")}
               </h2>
               <Link href="/self-help" className="link-quiet text-foreground shrink-0">
@@ -214,11 +219,11 @@ export default function Home() {
                   href={r.href}
                   className="group grid grid-cols-12 gap-4 md:gap-10 py-8 md:py-12 border-b border-border hover:bg-[hsl(var(--accent))]/10 transition-colors duration-300 px-2 -mx-2"
                 >
-                  <div className="col-span-2 md:col-span-1 font-sans font-bold text-2xl md:text-3xl text-accent-warm">
+                  <div className="col-span-2 md:col-span-1 font-serif text-2xl md:text-3xl text-accent-warm">
                     0{i + 1}
                   </div>
                   <div className="col-span-10 md:col-span-5">
-                    <h3 className="font-sans uppercase font-bold text-2xl md:text-3xl tracking-tight">
+                    <h3 className="font-serif text-2xl md:text-3xl tracking-tight">
                       {r.title}
                     </h3>
                   </div>
@@ -242,7 +247,7 @@ export default function Home() {
                 <p className="eyebrow text-destructive mb-3">
                   {t("crisisEyebrow")}
                 </p>
-                <p className="font-sans uppercase font-bold text-xl md:text-2xl tracking-tight leading-snug">
+                <p className="font-serif text-xl md:text-2xl tracking-tight leading-snug">
                   {t("crisisLine")}
                 </p>
               </div>
@@ -263,7 +268,7 @@ export default function Home() {
               <p className="eyebrow mt-1">{t("eyebrowImpact")}</p>
             </div>
             <div className="md:col-span-9">
-              <h2 className="font-sans uppercase display-2 max-w-3xl">
+              <h2 className="font-serif display-2 max-w-3xl">
                 {t("impactH2")}
               </h2>
             </div>
@@ -279,7 +284,7 @@ export default function Home() {
                   i < metrics.length - 1 ? "md:border-r border-border" : ""
                 } md:px-10`}
               >
-                <p className="font-sans font-extrabold text-6xl md:text-7xl tracking-tight mb-4 text-accent-warm">
+                <p className="font-serif text-6xl md:text-7xl tracking-tight mb-4 text-accent-warm">
                   {m.value}
                 </p>
                 <p className="text-sm text-muted-foreground uppercase tracking-[0.18em] font-semibold max-w-[20ch]">
@@ -291,12 +296,50 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ───── TESTIMONIALS ─ in their words ───── */}
+      <section className="py-28 md:py-40 border-t border-border bg-background">
+        <div className="editorial-container">
+          <motion.div {...fadeUp} className="grid grid-cols-1 md:grid-cols-12 gap-10 mb-16 md:mb-20">
+            <div className="md:col-span-3">
+              <p className="eyebrow text-accent-warm">04</p>
+              <p className="eyebrow mt-1">{t("eyebrowTestimonials")}</p>
+            </div>
+            <div className="md:col-span-9">
+              <h2 className="font-serif display-2 max-w-3xl">
+                {t("testimonialsH2")}
+              </h2>
+            </div>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-12 border-t-2 border-foreground pt-12 md:pt-16">
+            {testimonials.map((item, i) => (
+              <motion.figure
+                key={item.author + i}
+                {...fadeUp}
+                transition={{ ...fadeUp.transition, delay: 0.06 * i }}
+                className="flex flex-col"
+              >
+                <span aria-hidden className="font-serif text-5xl leading-none text-accent-warm mb-5">
+                  &ldquo;
+                </span>
+                <blockquote className="text-lg md:text-xl leading-relaxed text-foreground/90 max-w-xl">
+                  {item.quote}
+                </blockquote>
+                <figcaption className="mt-6 eyebrow text-muted-foreground">
+                  {item.author}
+                </figcaption>
+              </motion.figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ───── CLOSING CTA ─ big yellow ───── */}
       <section className="py-28 md:py-44 border-t border-border bg-background">
         <div className="editorial-container">
           <motion.div {...fadeUp} className="max-w-5xl">
-            <p className="eyebrow text-accent-warm mb-8">04</p>
-            <h2 className="font-sans uppercase display-1 mb-12">
+            <p className="eyebrow text-accent-warm mb-8">05</p>
+            <h2 className="font-serif display-1 mb-12">
               {t("closingH2")}
             </h2>
             <div className="flex flex-wrap gap-4">

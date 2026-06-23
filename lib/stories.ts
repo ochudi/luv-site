@@ -6,6 +6,7 @@ export const stories: Story[] = [
     description:
       "A powerful true story of how one rain-soaked day and a single question set me on the path from Lagos streets to a UK scholarship.",
     slug: "from-okada-rider-to-chevening-scholar",
+    tags: ["resilience", "faith"],
     coverImage: "/images/covers/fortcs.png",
     images: [
       "/images/stories/fortcs/1.png",
@@ -35,6 +36,7 @@ export const stories: Story[] = [
     description:
       "How a girl broke free from near depression and found strength in faith, struggle, and self-discovery.",
     slug: "a-break-from-despair",
+    tags: ["anxiety", "faith", "recovery"],
     coverImage: "/images/covers/abfd.png",
     images: [
       "/images/stories/bfd/1.png",
@@ -59,6 +61,7 @@ export const stories: Story[] = [
     description:
       "An extraordinary life of perseverance, purpose, and painful loss.",
     slug: "a-life-defined-by-defiance",
+    tags: ["trauma", "resilience", "faith"],
     coverImage: "/images/covers/aldbd.png",
     images: [
       "/images/stories/ldd/1.png",
@@ -88,6 +91,7 @@ export const stories: Story[] = [
     description:
       "A moving tribute to a young woman who battled sickle cell with grace, strength, and enduring love.",
     slug: "a-light-through-pain",
+    tags: ["chronicIllness", "griefLoss"],
     coverImage: "/images/covers/altp.png",
     images: [
       "/images/stories/ltp/1.png",
@@ -115,6 +119,7 @@ export const stories: Story[] = [
     description:
       "A med student’s derailed dream leads to burnout, reflection, and a renewed passion beyond medicine.",
     slug: "broken-dreams-brighter-paths",
+    tags: ["anxiety", "resilience"],
     coverImage: "/images/covers/bdbp.png",
     images: [
       "/images/stories/bdbp/1.png",
@@ -136,6 +141,7 @@ export const stories: Story[] = [
     description:
       "A med student’s journey through unexpected detours, blending the rigors of medicine with a passion for acting and self-discovery.",
     slug: "broken-dreams-brighter-paths-2",
+    tags: ["resilience", "recovery"],
     coverImage: "/images/covers/bdbp2.png",
     images: [
       "/images/stories/bdbp2/1.png",
@@ -160,6 +166,7 @@ export const stories: Story[] = [
     description:
       "A law student’s journey from childhood ambition to surviving anemic heart failure and pass the bar exam against all odds.",
     slug: "from-broken-bones-to-unbreakable-dreams",
+    tags: ["chronicIllness", "trauma", "resilience"],
     coverImage: "/images/covers/fbbtud.png",
     images: [
       "/images/stories/fbbtbud/1.png",
@@ -189,6 +196,7 @@ export const stories: Story[] = [
     description:
       "Ruqaiyyah Aliyu shares her courageous journey living with sickle cell anemia to overcoming challenges.",
     slug: "my-upside-view-of-sickle-cell-anemia",
+    tags: ["chronicIllness", "resilience"],
     coverImage: "/images/covers/muvossa.png",
     images: [
       "/images/stories/muvossa/1.png",
@@ -213,6 +221,7 @@ export const stories: Story[] = [
     description:
       "From a struggling single mother to a beacon of hope for underserved youth, Safiyya’s journey is one of resilience.",
     slug: "safiyya-story",
+    tags: ["trauma", "recovery", "resilience"],
     coverImage: "/images/covers/ssp12.png",
     images: [
       "/images/stories/ssp12/1.png",
@@ -242,6 +251,7 @@ export const stories: Story[] = [
     description:
       "From resits to resilience, this pharmacy student’s journey through setbacks, doubt, and academic pressure reveals a powerful story of perseverance, family support, and self-belief.",
     slug: "supported-by-my-fears",
+    tags: ["anxiety", "resilience", "faith"],
     coverImage: "/images/covers/sbmf.png",
     images: [
       "/images/stories/sbmf/1.jpg",
@@ -274,6 +284,7 @@ export const stories: Story[] = [
     description:
       "From long commutes and evening classes to crushing setbacks and a powerful comeback, this is the story of my journey to becoming a chartered accountant in Nigeria.",
     slug: "long-road-to-ican-success",
+    tags: ["resilience", "faith"],
     coverImage: "/images/covers/tlrtmis.png",
     images: [
       "/images/stories/tlrtmis/1.png",
@@ -303,6 +314,7 @@ export const stories: Story[] = [
     description:
       "From a quiet village in Adamawa to surviving Boko Haram and being pressured into a polygamous marriage, this is a deeply personal account of survival.",
     slug: "the-marriage-they-made-for-me-part-1",
+    tags: ["trauma", "resilience"],
     coverImage: "/images/covers/tmtmfmp1.png",
     images: [
       "/images/stories/tmtmfmp1/1.png",
@@ -339,6 +351,7 @@ export const stories: Story[] = [
     description:
       "Following a painful divorce, I found healing, hope, and new beginnings. From surviving natural disasters to building a food business.",
     slug: "the-marriage-they-made-for-me-part-2",
+    tags: ["recovery", "resilience", "trauma"],
     coverImage: "/images/covers/tmtmfmp2.png",
     images: [
       "/images/stories/tmtmfmp2/1.png",
@@ -367,6 +380,7 @@ export const stories: Story[] = [
     description:
       "From AI therapists to personalized meditation guides, these tools offer accessible, evidence-based relief at your fingertips.",
     slug: "top-ai-stress-anxiety-apps",
+    tags: ["tools", "anxiety"],
     coverImage: "/images/covers/topapsaama.png",
     images: [
       "/images/stories/topapsaama/1.jpg",
@@ -426,6 +440,7 @@ export const stories: Story[] = [
     description:
       "A lighthearted but powerful story about how envy can blind us to unexpected blessings.",
     slug: "when-envy-backfires",
+    tags: ["resilience"],
     coverImage: "/images/covers/web.png",
     images: [
       "/images/stories/web/1.jpg",

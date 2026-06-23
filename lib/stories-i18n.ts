@@ -335,9 +335,19 @@ export const storiesFr: Story[] = [
   }
 ];
 
+// Topic tags are authored once on the canonical English stories and shared
+// across locales (the filter labels are translated via `stories.tags.*`).
+const tagsBySlug: Record<string, string[]> = Object.fromEntries(
+  storiesEn.map((story) => [story.slug, story.tags ?? []])
+);
+
 // Helper function to get stories based on locale
 export function getStories(locale: 'en' | 'fr' = 'en'): Story[] {
-  return locale === 'fr' ? storiesFr : storiesEn;
+  const base = locale === 'fr' ? storiesFr : storiesEn;
+  return base.map((story) => ({
+    ...story,
+    tags: story.tags ?? tagsBySlug[story.slug] ?? [],
+  }));
 }
 
 // Helper function to get a single story by slug

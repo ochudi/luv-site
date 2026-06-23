@@ -1,9 +1,11 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useRef, useEffect, useCallback } from "react";
+import { createPortal } from "react-dom";
+import Image from "next/image";
+import { useRouter, Link } from "@/i18n/routing";
 import { AnimatePresence, motion } from "framer-motion";
-import { Search } from "lucide-react";
+import { Search, ArrowRight, X } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 const SEARCH_DATA = [
@@ -37,8 +39,26 @@ const SEARCH_DATA = [
   { label: "Supported by my Fears", description: "A pharmacy student's journey through setbacks.", href: "/stories/supported-by-my-fears", type: "Story", key: "supported-by-my-fears-story" },
 ];
 
+// Lightweight featured cards (title via i18n) — no full story content imported,
+// so the homepage bundle stays small.
+const FEATURED = [
+  { titleKey: "featuredStories.story1.title", href: "/stories/from-broken-bones-to-unbreakable-dreams", image: "/images/covers/fbbtud.png" },
+  { titleKey: "featuredStories.story2.title", href: "/stories/my-upside-view-of-sickle-cell-anemia", image: "/images/covers/muvossa.png" },
+  { titleKey: "featuredStories.story3.title", href: "/stories/safiyya-story", image: "/images/covers/ssp12.png" },
+  { titleKey: "featuredStories.story4.title", href: "/stories/supported-by-my-fears", image: "/images/covers/sbmf.png" },
+] as const;
+
+// Trending chips fill the query so results render inside the overlay.
+const TRENDING = [
+  { labelKey: "trending1", query: "self-help" },
+  { labelKey: "trending2", query: "support" },
+  { labelKey: "trending3", query: "check-up" },
+  { labelKey: "trending4", query: "sickle" },
+  { labelKey: "trending5", query: "dream" },
+  { labelKey: "trending6", query: "reflect" },
+] as const;
+
 function useTypewriter(words: string[], typingSpeed = 80, pause = 1400) {
-  const [, setDisplay] = useState("");
   const [wordIdx, setWordIdx] = useState(0);
   const [typing, setTyping] = useState(true);
   const [charIdx, setCharIdx] = useState(0);
@@ -50,7 +70,6 @@ function useTypewriter(words: string[], typingSpeed = 80, pause = 1400) {
       if (charIdx < words[wordIdx].length) {
         timeout = setTimeout(() => setCharIdx((c) => c + 1), typingSpeed);
         setD(words[wordIdx].slice(0, charIdx + 1));
-        setDisplay(words[wordIdx].slice(0, charIdx + 1));
       } else {
         setTyping(false);
         timeout = setTimeout(() => setTyping(true), pause);
@@ -76,12 +95,16 @@ interface SearchHeroProps {
 
 export default function SearchHero({ tone = "dark" }: SearchHeroProps) {
   const t = useTranslations("search");
+  const tRoot = useTranslations();
   const router = useRouter();
+
+  const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const [input, setInput] = useState("");
-  const [showSuggestions, setShowSuggestions] = useState(false);
   const [highlightIdx, setHighlightIdx] = useState(-1);
   const inputRef = useRef<HTMLInputElement>(null);
-  const [isInputFocused, setIsInputFocused] = useState(false);
+
+  useEffect(() => setMounted(true), []);
 
   const animatedSuggestions = [
     t("placeholder.1"),
@@ -101,114 +124,290 @@ export default function SearchHero({ tone = "dark" }: SearchHeroProps) {
       )
     : [];
 
-  const grouped = filtered.reduce<{ [key: string]: typeof SEARCH_DATA }>(
-    (acc, item) => {
-      acc[item.type] = acc[item.type] || [];
-      acc[item.type].push(item);
-      return acc;
+  const grouped = filtered.reduce<{ [key: string]: typeof SEARCH_DATA }>((acc, item) => {
+    acc[item.type] = acc[item.type] || [];
+    acc[item.type].push(item);
+    return acc;
+  }, {});
+
+  // Flattened in render order so arrow-key highlighting maps to the right item.
+  const flatItems = Object.values(grouped).flat();
+  const hasQuery = input.trim().length > 0;
+
+  const closeOverlay = useCallback(() => {
+    setOpen(false);
+    setInput("");
+    setHighlightIdx(-1);
+  }, []);
+
+  const goToItem = useCallback(
+    (href: string) => {
+      closeOverlay();
+      router.push(href);
     },
-    {}
+    [closeOverlay, router]
   );
 
   const handleSearch = () => {
     if (input.trim()) {
-      router.push(`/search?q=${encodeURIComponent(input.trim())}`);
-      setShowSuggestions(false);
+      const q = input.trim();
+      closeOverlay();
+      router.push(`/search?q=${encodeURIComponent(q)}`);
     }
   };
 
+  // Reset the active option whenever the query changes.
+  useEffect(() => setHighlightIdx(-1), [input]);
+
+  // Body scroll lock + focus + Escape handling while the overlay is open.
   useEffect(() => {
-    setHighlightIdx(-1);
-  }, [input, showSuggestions]);
+    if (!open) return;
+    const { overflow } = document.body.style;
+    document.body.style.overflow = "hidden";
+    const focusTimer = setTimeout(() => inputRef.current?.focus(), 60);
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeOverlay();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = overflow;
+      clearTimeout(focusTimer);
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [open, closeOverlay]);
 
   const onDark = tone === "dark";
-  const textColor = onDark ? "text-white" : "text-foreground";
-  const placeholderColor = onDark ? "placeholder:text-white/70" : "placeholder:text-foreground/45";
-  const bgClass = onDark ? "bg-black/30 backdrop-blur-sm" : "bg-background";
 
   return (
-    <div className="w-full relative">
-      <div
-        className={`relative flex items-center gap-3 md:gap-4 border-2 border-[hsl(var(--accent))] ${bgClass} transition-colors duration-300 pl-5 pr-2 py-2 md:py-3`}
+    <div className="w-full">
+      {/* Trigger — looks like a search bar, opens the full overlay on click */}
+      <button
+        type="button"
+        onClick={() => setOpen(true)}
+        aria-label={t("open")}
+        className={`group w-full flex items-center gap-3 md:gap-4 border-2 border-[hsl(var(--accent))] transition-colors duration-300 pl-5 pr-2 py-2 md:py-3 text-left ${
+          onDark ? "bg-black/30 backdrop-blur-sm" : "bg-background"
+        }`}
       >
         <Search className="h-4 w-4 md:h-5 md:w-5 text-[hsl(var(--accent))] shrink-0" />
-        <input
-          ref={inputRef}
-          type="text"
-          value={input}
-          onChange={(e) => {
-            setInput(e.target.value);
-            setShowSuggestions(true);
-          }}
-          onFocus={() => {
-            setIsInputFocused(true);
-            setShowSuggestions(true);
-          }}
-          onBlur={() => {
-            setTimeout(() => {
-              setIsInputFocused(false);
-              setShowSuggestions(false);
-            }, 150);
-          }}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              handleSearch();
-            } else if (e.key === "ArrowDown") {
-              setHighlightIdx((i) => Math.min(i + 1, filtered.length - 1));
-            } else if (e.key === "ArrowUp") {
-              setHighlightIdx((i) => Math.max(i - 1, 0));
-            }
-          }}
-          placeholder={animatedPlaceholder}
-          className={`flex-1 min-w-0 bg-transparent outline-none border-none focus:ring-0 ${textColor} ${placeholderColor} text-base md:text-lg tracking-wide py-2`}
-          autoComplete="off"
-          aria-label="Search Life Upside View"
-        />
-        <button
-          onClick={handleSearch}
-          aria-label={t("button")}
-          type="button"
-          className="hidden md:inline-flex items-center bg-[hsl(var(--accent))] text-[hsl(var(--accent-foreground))] text-xs uppercase tracking-[0.22em] font-bold px-6 py-3 hover:brightness-95 transition-all"
+        <span
+          className={`flex-1 min-w-0 truncate text-base md:text-lg tracking-wide py-2 ${
+            onDark ? "text-white/70" : "text-foreground/45"
+          }`}
         >
-          {t("button")}
-        </button>
-      </div>
+          {animatedPlaceholder || t("placeholder.1")}
+        </span>
+        <span className="shrink-0 inline-flex items-center justify-center bg-[hsl(var(--accent))] text-[hsl(var(--accent-foreground))] text-xs uppercase tracking-[0.22em] font-bold px-4 md:px-6 py-3 group-hover:brightness-95 transition-all">
+          <span className="hidden md:inline">{t("button")}</span>
+          <ArrowRight className="h-5 w-5 md:hidden" />
+        </span>
+      </button>
 
-      <AnimatePresence>
-        {showSuggestions && filtered.length > 0 && (
-          <motion.div
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.2 }}
-            className="absolute left-0 right-0 top-full mt-3 bg-background border border-border shadow-xl max-h-80 overflow-y-auto z-50"
-          >
-            {Object.entries(grouped).map(([type, items]) => (
-              <div key={type} className="py-2">
-                <p className="px-5 pt-3 pb-2 eyebrow">{type}</p>
-                <ul>
-                  {items.map((item, i) => (
-                    <li
-                      key={item.key}
-                      className={`px-5 py-3 cursor-pointer transition-colors ${
-                        i === highlightIdx ? "bg-muted" : "hover:bg-muted/60"
-                      }`}
-                      onMouseDown={() => {
-                        router.push(item.href);
-                        setShowSuggestions(false);
-                      }}
-                      onMouseEnter={() => setHighlightIdx(i)}
+      {mounted &&
+        createPortal(
+          <AnimatePresence>
+            {open && (
+              <motion.div
+                key="search-overlay"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                role="dialog"
+                aria-modal="true"
+                aria-label={t("open")}
+                className="fixed inset-0 z-[100] bg-[hsl(var(--accent))] text-[hsl(var(--accent-foreground))] flex flex-col"
+              >
+                {/* Header: close + search field (stays put while results scroll) */}
+                <div className="editorial-container pt-5 md:pt-8 pb-4 md:pb-6 shrink-0">
+                  <div className="flex justify-end">
+                    <button
+                      type="button"
+                      onClick={closeOverlay}
+                      aria-label={t("close")}
+                      className="inline-flex items-center justify-center h-10 w-10 -mr-2 text-[hsl(var(--accent-foreground))]/70 hover:text-[hsl(var(--accent-foreground))] transition-colors"
                     >
-                      <p className="font-semibold text-base text-foreground">{item.label}</p>
-                      <p className="text-xs text-muted-foreground mt-0.5">{item.description}</p>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </motion.div>
+                      <X className="h-6 w-6" />
+                    </button>
+                  </div>
+
+                  <motion.div
+                    initial={{ y: -12, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.25, delay: 0.05 }}
+                    className="mt-1 flex items-center gap-2 md:gap-4 border-2 border-[hsl(var(--accent-foreground))] px-4 md:px-6 py-2.5 md:py-3"
+                  >
+                    <Search className="h-5 w-5 md:h-6 md:w-6 shrink-0" />
+                    <input
+                      ref={inputRef}
+                      type="text"
+                      value={input}
+                      onChange={(e) => setInput(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                          if (highlightIdx >= 0 && flatItems[highlightIdx]) {
+                            goToItem(flatItems[highlightIdx].href);
+                          } else {
+                            handleSearch();
+                          }
+                        } else if (e.key === "ArrowDown") {
+                          e.preventDefault();
+                          setHighlightIdx((i) => Math.min(i + 1, flatItems.length - 1));
+                        } else if (e.key === "ArrowUp") {
+                          e.preventDefault();
+                          setHighlightIdx((i) => Math.max(i - 1, 0));
+                        }
+                      }}
+                      placeholder={animatedPlaceholder || t("placeholder.1")}
+                      className="flex-1 min-w-0 bg-transparent outline-none border-none focus:ring-0 text-base md:text-2xl tracking-wide py-1.5 text-[hsl(var(--accent-foreground))] placeholder:text-[hsl(var(--accent-foreground))]/45"
+                      autoComplete="off"
+                      role="combobox"
+                      aria-expanded={hasQuery && filtered.length > 0}
+                      aria-controls="search-overlay-results"
+                      aria-label={t("open")}
+                    />
+                    {input && (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setInput("");
+                          inputRef.current?.focus();
+                        }}
+                        aria-label={t("clear")}
+                        className="shrink-0 inline-flex items-center justify-center h-8 w-8 rounded-full text-[hsl(var(--accent-foreground))]/60 hover:text-[hsl(var(--accent-foreground))] hover:bg-[hsl(var(--accent-foreground))]/10 transition-colors"
+                      >
+                        <X className="h-4 w-4" />
+                      </button>
+                    )}
+                    <button
+                      type="button"
+                      onClick={handleSearch}
+                      aria-label={t("button")}
+                      className="shrink-0 inline-flex items-center justify-center bg-[hsl(var(--accent-foreground))] text-[hsl(var(--accent))] text-xs uppercase tracking-[0.22em] font-bold px-4 md:px-8 py-3 md:py-3.5 hover:opacity-90 transition-opacity"
+                    >
+                      <span className="hidden md:inline">{t("button")}</span>
+                      <ArrowRight className="h-5 w-5 md:hidden" />
+                    </button>
+                  </motion.div>
+                </div>
+
+                {/* Scrollable content */}
+                <div
+                  id="search-overlay-results"
+                  className="flex-1 overflow-y-auto editorial-container pb-10"
+                >
+                  {hasQuery ? (
+                    filtered.length > 0 ? (
+                      <div className="pt-2">
+                        {(() => {
+                          let runningIndex = -1;
+                          return Object.entries(grouped).map(([type, items]) => (
+                            <div key={type} className="mb-6">
+                              <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[hsl(var(--accent-foreground))]/60 mb-1">
+                                {type}
+                              </p>
+                              <ul className="divide-y divide-[hsl(var(--accent-foreground))]/15">
+                                {items.map((item) => {
+                                  runningIndex += 1;
+                                  const idx = runningIndex;
+                                  return (
+                                    <li key={item.key}>
+                                      <button
+                                        type="button"
+                                        role="option"
+                                        aria-selected={idx === highlightIdx}
+                                        onClick={() => goToItem(item.href)}
+                                        onMouseEnter={() => setHighlightIdx(idx)}
+                                        className={`w-full text-left px-3 py-3 md:py-4 transition-colors ${
+                                          idx === highlightIdx
+                                            ? "bg-[hsl(var(--accent-foreground))]/10"
+                                            : "hover:bg-[hsl(var(--accent-foreground))]/5"
+                                        }`}
+                                      >
+                                        <p className="font-serif text-lg md:text-xl tracking-tight">
+                                          {item.label}
+                                        </p>
+                                        <p className="text-sm text-[hsl(var(--accent-foreground))]/70 mt-0.5">
+                                          {item.description}
+                                        </p>
+                                      </button>
+                                    </li>
+                                  );
+                                })}
+                              </ul>
+                            </div>
+                          ));
+                        })()}
+                        <p className="text-center text-xs uppercase tracking-[0.22em] font-semibold text-[hsl(var(--accent-foreground))]/70 border-t border-[hsl(var(--accent-foreground))]/15 pt-6 mt-2">
+                          {filtered.length}{" "}
+                          {filtered.length === 1 ? t("resultSingular") : t("resultPlural")}
+                        </p>
+                      </div>
+                    ) : (
+                      <p className="text-center font-serif text-xl md:text-2xl tracking-tight py-16">
+                        {t("noResults")}
+                      </p>
+                    )
+                  ) : (
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-14 pt-4">
+                      {/* Featured */}
+                      <div className="lg:col-span-2">
+                        <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[hsl(var(--accent-foreground))]/60 mb-5">
+                          {t("featured")}
+                        </p>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5">
+                          {FEATURED.map((story) => (
+                            <Link
+                              key={story.href}
+                              href={story.href}
+                              onClick={closeOverlay}
+                              className="group relative block aspect-[16/10] overflow-hidden bg-[hsl(var(--accent-foreground))]/10"
+                            >
+                              <Image
+                                src={story.image}
+                                alt={tRoot(story.titleKey)}
+                                fill
+                                className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                              <h3 className="absolute bottom-3 left-3 right-3 font-serif text-white text-lg md:text-xl leading-tight tracking-tight">
+                                {tRoot(story.titleKey)}
+                              </h3>
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Trending */}
+                      <div>
+                        <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[hsl(var(--accent-foreground))]/60 mb-5">
+                          {t("trending")}
+                        </p>
+                        <div className="flex flex-wrap gap-2.5">
+                          {TRENDING.map((item) => (
+                            <button
+                              key={item.labelKey}
+                              type="button"
+                              onClick={() => {
+                                setInput(item.query);
+                                inputRef.current?.focus();
+                              }}
+                              className="border border-[hsl(var(--accent-foreground))]/40 px-4 py-2 text-xs md:text-sm uppercase tracking-[0.12em] font-medium hover:bg-[hsl(var(--accent-foreground))] hover:text-[hsl(var(--accent))] transition-colors"
+                            >
+                              {t(item.labelKey)}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>,
+          document.body
         )}
-      </AnimatePresence>
     </div>
   );
 }
