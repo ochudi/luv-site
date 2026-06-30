@@ -229,7 +229,7 @@
     "eyebrowContribute": "Contribute",
     "eyebrowWrite": "Write",
     "h1": "Share your <em>experience.</em>",
-    "lede": "Your story might be the lifeline someone else is searching for. Tell us in your own words — we read every submission with care.",
+    "lede": "Your story might be the lifeline someone else is searching for. Tell us in your own words. We read every submission with care.",
     "form": "Form",
     "fieldName": "Name",
     "placeholderName": "Your name",
@@ -270,9 +270,9 @@
     "eyebrowFeatured": "Featured",
     "eyebrowSubscribe": "Subscribe",
     "pageTitle": "Beneath the Surface",
-    "pageSubtitle": "Real stories of navigating the unseen — and finding light in it",
+    "pageSubtitle": "Real stories of navigating the unseen, and finding light in it",
     "storiesThatHeal": "Stories that heal",
-    "storiesThatHealDesc": "Reflections, reckonings, and revelations — told by those who've lived them.",
+    "storiesThatHealDesc": "Reflections, reckonings, and revelations, told by those who've lived them.",
     "viewAllStories": "View all stories",
     "allStories": "All stories",
     "allStoriesDesc": "Read every inspiring, honest, and deeply personal story shared on Life Upside View.",
@@ -280,7 +280,7 @@
     "previousStory": "Previous story",
     "nextStory": "Next story",
     "diveDeeperTitle": "Dive deeper",
-    "diveDeeperDesc": "Get fresh stories, small wins, and honest voices in your inbox — every few weeks.",
+    "diveDeeperDesc": "Get fresh stories, small wins, and honest voices in your inbox, every few weeks.",
     "emailPlaceholder": "Your email address",
     "subscribe": "Subscribe",
     "subscribed": "Subscribed!",
@@ -325,7 +325,7 @@
   "reflect": {
     "eyebrowSub": "Insight",
     "title": "Reflect",
-    "subtitle": "Dive into shared insights that help you see life in new ways — with clarity, grace, and deeper meaning.",
+    "subtitle": "Dive into shared insights that help you see life in new ways, with clarity, grace, and deeper meaning.",
     "lettingGo": "Letting Go of Control",
     "beautyInUncertainty": "The Beauty in Uncertainty",
     "learningFromStillness": "Learning from Stillness",
@@ -362,45 +362,97 @@
   },
   "about": {
     "heroEyebrow": "About",
-    "heroLine1": "Who we are.",
-    "heroLine2": "Why we do this.",
+    "heroLine1": "",
+    "heroLine2": "",
     "eyebrowLeadership": "Leadership",
     "whoWeAre": "Who we are",
     "whoWeAreDesc1": "Life Upside View is a heartfelt initiative driven by a simple truth: stories heal. We are a collective of advocates, artists, and everyday people committed to creating space for vulnerability, reflection, and transformation.",
-    "whoWeAreDesc2": "Through storytelling and community dialogue, we work to destigmatize mental health, spotlight human resilience, and offer hope — especially in places where silence often wins.",
+    "whoWeAreDesc2": "Through storytelling and community dialogue, we work to destigmatize mental health, spotlight human resilience, and offer hope, especially in places where silence often wins.",
     "ourMission": "Our mission",
-    "ourMissionDesc1": "To amplify lived experiences and elevate conversations around mental health, trauma, and healing — especially within African communities and underrepresented voices.",
-    "ourMissionDesc2": "We strive to normalize emotional honesty, honor pain and joy equally, and build spaces where people feel seen, heard, and valued — just as they are.",
+    "ourMissionDesc1": "To amplify lived experiences and elevate conversations around mental health, trauma, and healing, especially within African communities and underrepresented voices.",
+    "ourMissionDesc2": "We strive to normalize emotional honesty, honor pain and joy equally, and build spaces where people feel seen, heard, and valued, just as they are.",
     "ourValues": "Our values",
     "empathy": "Empathy",
     "empathyDesc": "We listen with compassion and lead with kindness.",
     "authenticity": "Authenticity",
     "authenticityDesc": "Every voice matters, and every story is valid.",
     "community": "Community",
-    "communityDesc": "Healing doesn't happen in isolation — we show up together.",
+    "communityDesc": "Healing doesn't happen in isolation. We show up together.",
     "transparency": "Transparency",
     "transparencyDesc": "We share our truths and honor others' with respect.",
     "resilience": "Resilience",
     "resilienceDesc": "We believe in the human spirit's ability to rise and rebuild.",
     "ourLeadership": "Our leadership",
-    "ourLeadershipDesc": "Meet the people behind Life Upside View — storytellers, advocates, and everyday changemakers committed to mental wellness and meaningful connection.",
+    "ourLeadershipDesc": "Meet the people behind Life Upside View: storytellers, advocates, and everyday changemakers committed to mental wellness and meaningful connection.",
     "teamMembers": {
-      "ernest": { "name": "Ernest Nwachukwu", "title": "Founder & Mental Health Advocate", "country": "Nigeria" },
-      "ruqaiyah": { "name": "Ruqaiyah Umar Shuwa", "title": "Legal Advisor & Mental Health Advocate", "country": "Nigeria" },
-      "omkar": { "name": "Omkar Khadamkar", "title": "UX Designer & Story Strategist", "country": "India" },
-      "saadatu": { "name": "Sa'adatu Ali Shuwa", "title": "HR Advisor & Well-being Advocate", "country": "Nigeria" },
-      "chinedu": { "name": "Chinedu Michael Dike", "title": "Medical Advisor & Family Doctor", "country": "Nigeria" },
-      "abdulwahab": { "name": "Abdulwahab Umar Shuwa", "title": "Tech Volunteer & Mental Health Promoter", "country": "Nigeria" },
-      "happiness": { "name": "Happiness Enogela", "title": "Team Support & Content Manager", "country": "Nigeria" },
-      "fredrick": { "name": "Ogieriakhi Fredrick", "title": "Social Media Manager", "country": "Nigeria" },
-      "chukwudi": { "name": "Chukwudi Ofoma", "title": "Software Engineer & Tech Lead", "country": "Nigeria" }
-    }
+      "ernest": {
+        "name": "Ernest Nwachukwu",
+        "title": "Founder & Mental Health Advocate",
+        "country": "Nigeria"
+      },
+      "ruqaiyah": {
+        "name": "Ruqaiyah Umar Shuwa",
+        "title": "Legal Advisor & Mental Health Advocate",
+        "country": "Nigeria"
+      },
+      "omkar": {
+        "name": "Omkar Khadamkar",
+        "title": "UX Designer & Story Strategist",
+        "country": "India"
+      },
+      "saadatu": {
+        "name": "Sa'adatu Ali Shuwa",
+        "title": "HR Advisor & Well-being Advocate",
+        "country": "Nigeria"
+      },
+      "chinedu": {
+        "name": "Chinedu Michael Dike",
+        "title": "Medical Advisor & Family Doctor",
+        "country": "Nigeria"
+      },
+      "abdulwahab": {
+        "name": "Abdulwahab Umar Shuwa",
+        "title": "Tech Volunteer & Mental Health Promoter",
+        "country": "Nigeria"
+      },
+      "happiness": {
+        "name": "Happiness Enogela",
+        "title": "Team Support & Content Manager",
+        "country": "Nigeria"
+      },
+      "fredrick": {
+        "name": "Ogieriakhi Fredrick",
+        "title": "Social Media Manager",
+        "country": "Nigeria"
+      },
+      "chukwudi": {
+        "name": "Chukwudi Ofoma",
+        "title": "Software Engineer & Tech Lead",
+        "country": "Nigeria"
+      }
+    },
+    "soundOn": "Sound on",
+    "soundOff": "Sound off",
+    "mute": "Mute",
+    "unmute": "Unmute"
   },
   "featuredStories": {
-    "story1": { "title": "From Broken Bones To Unbreakable Dreams", "description": "My journey through adversity" },
-    "story2": { "title": "My Upside View of Sickle Cell Anemia", "description": "A personal look at living with sickle cell" },
-    "story3": { "title": "Saffiya's Story: Part 1 & 2", "description": "Courage through complexity" },
-    "story4": { "title": "Supported by my Fears", "description": "Finding strength through struggle" }
+    "story1": {
+      "title": "From Broken Bones To Unbreakable Dreams",
+      "description": "My journey through adversity"
+    },
+    "story2": {
+      "title": "My Upside View of Sickle Cell Anemia",
+      "description": "A personal look at living with sickle cell"
+    },
+    "story3": {
+      "title": "Saffiya's Story: Part 1 & 2",
+      "description": "Courage through complexity"
+    },
+    "story4": {
+      "title": "Supported by my Fears",
+      "description": "Finding strength through struggle"
+    }
   },
   "policies": {
     "backToHome": "← Back to Home",

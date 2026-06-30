@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { Volume2, VolumeX } from "lucide-react";
 import { useTranslations } from "next-intl";
@@ -19,7 +19,21 @@ const fadeUp = {
 export default function AboutPage() {
   const t = useTranslations("about");
   const containerRef = useRef(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  // Autoplay must start muted to satisfy browser policy; visitors can turn
+  // sound on with the always-visible control. Sync the DOM property directly
+  // because React does not reliably update `muted` after the first render.
   const [muted, setMuted] = useState(true);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    video.muted = muted;
+    if (!muted) {
+      // Resume playback in case the browser paused it on the mute change.
+      void video.play().catch(() => undefined);
+    }
+  }, [muted]);
 
   const values = [
     { key: "empathy" },
@@ -50,41 +64,25 @@ export default function AboutPage() {
       >
         <div className="absolute inset-0 z-0">
           <video
+            ref={videoRef}
             src="/videos/about.mp4"
             autoPlay
             loop
             playsInline
-            muted={muted}
+            muted
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/40 to-black/85" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/55" />
         </div>
 
         <button
           onClick={() => setMuted((p) => !p)}
-          className="absolute bottom-6 right-6 z-10 p-2 border border-white/40 text-white hover:bg-white hover:text-black transition-colors opacity-0 group-hover:opacity-100"
-          aria-label={muted ? "Unmute" : "Mute"}
+          className="absolute bottom-6 right-6 z-10 inline-flex items-center gap-2 px-4 py-2.5 border border-white/50 bg-black/30 backdrop-blur-sm text-white text-[11px] uppercase tracking-[0.18em] font-semibold hover:bg-white hover:text-black transition-colors"
+          aria-label={muted ? t("unmute") : t("mute")}
         >
           {muted ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
+          <span>{muted ? t("soundOff") : t("soundOn")}</span>
         </button>
-
-        <div className="editorial-container relative z-10 pb-16 md:pb-24 pt-32 w-full">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 1.1,
-              ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
-            }}
-            className="max-w-4xl"
-          >
-            <p className="eyebrow text-white/80 mb-8">{t("heroEyebrow")}</p>
-            <h1 className="font-serif text-white display-1">
-              {t("heroLine1")}{" "}
-              <span className="italic text-white/85">{t("heroLine2")}</span>
-            </h1>
-          </motion.div>
-        </div>
       </section>
 
       {/* WHO WE ARE */}
@@ -99,9 +97,9 @@ export default function AboutPage() {
               <p className="eyebrow mt-1">{t("whoWeAre")}</p>
             </div>
             <div className="md:col-span-9 space-y-6">
-              <h2 className="font-serif display-2 tracking-tight max-w-3xl mb-6">
+              <h1 className="font-serif display-2 tracking-tight max-w-3xl mb-6">
                 {t("whoWeAre")}
-              </h2>
+              </h1>
               <p className="lede text-foreground/80 max-w-3xl">
                 {t("whoWeAreDesc1")}
               </p>

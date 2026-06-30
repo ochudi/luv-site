@@ -20,15 +20,18 @@ const fadeUp = {
 export default function Home() {
   const t = useTranslations("home");
 
-  // Scroll-linked transforms for the second video (y.co-style)
-  const parallaxRef = useRef<HTMLDivElement>(null);
+  // Scroll-linked transforms for the promise video (y.co-style reveal).
+  // The video pins and scrolls over the promise statement, then scrolls away as
+  // the next section rises over it. Kept subtle, per the reviewer's note.
+  const revealRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
-    target: parallaxRef,
-    offset: ["start end", "end start"],
+    target: revealRef,
+    offset: ["start start", "end end"],
   });
-  const videoScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.85, 1, 0.92]);
-  const videoY = useTransform(scrollYProgress, [0, 1], ["8%", "-8%"]);
-  const overlayOpacity = useTransform(scrollYProgress, [0, 0.4, 0.7, 1], [0.55, 0.25, 0.25, 0.55]);
+  // The video rises from below over the promise, covers the frame, then holds
+  // until the section unpins and the next block scrolls over it.
+  const videoRise = useTransform(scrollYProgress, [0, 0.6, 1], ["100%", "0%", "0%"]);
+  const videoScale = useTransform(scrollYProgress, [0, 0.6], [1.18, 1]);
 
   const supportPaths = [1, 2, 3].map((i) => ({
     number: `0${i}`,
@@ -72,17 +75,21 @@ export default function Home() {
         </div>
 
         <div className="editorial-container relative z-10 w-full">
-          <motion.h1
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 1.4,
-              ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
-            }}
-            className="font-serif text-white text-center display-1"
-          >
-            {t("heroHeadline")}
-          </motion.h1>
+          <h1 className="font-serif text-white text-center display-1">
+            <span className="block overflow-hidden pb-[0.12em]">
+              <motion.span
+                initial={{ y: "115%" }}
+                animate={{ y: 0 }}
+                transition={{
+                  duration: 1.3,
+                  ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
+                }}
+                className="block"
+              >
+                {t("heroHeadline")}
+              </motion.span>
+            </span>
+          </h1>
         </div>
 
         {/* Yellow-bordered search bar at the bottom, y.co-style */}
@@ -102,40 +109,54 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* ───── PATHS ─ three tiles ───── */}
+      {/* ───── PATHS ─ left-aligned editorial list ───── */}
       <section className="py-28 md:py-40">
         <div className="editorial-container">
-          <motion.div {...fadeUp} className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 mb-20 md:mb-24">
-            <div className="md:col-span-3">
-              <p className="eyebrow text-accent-warm">01</p>
-              <p className="eyebrow mt-1">{t("eyebrowWhoWeSupport")}</p>
+          {/* Heading — left aligned */}
+          <motion.div {...fadeUp} className="max-w-3xl mb-16 md:mb-24">
+            <div className="flex items-center gap-3 mb-7">
+              <span className="eyebrow text-accent-warm">01</span>
+              <span className="h-px w-8 bg-foreground/25" />
+              <span className="eyebrow">{t("eyebrowWhoWeSupport")}</span>
             </div>
-            <div className="md:col-span-9">
-              <h2 className="font-serif display-2 max-w-3xl">
-                {t("whoWeSupportH2")}
-              </h2>
-            </div>
+            <h2 className="font-serif display-2 leading-[1.05]">
+              {t("whoWeSupportH2")}
+            </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-16">
+          {/* Paths — premium, left-aligned rows */}
+          <div className="border-t border-foreground/15">
             {supportPaths.map((item, i) => (
               <motion.div
                 key={item.title}
                 {...fadeUp}
                 transition={{ ...fadeUp.transition, delay: 0.08 * i }}
-                className="group relative pt-8 border-t-2 border-foreground"
+                className="border-b border-foreground/15"
               >
-                <p className="font-serif text-3xl text-accent-warm mb-6">
-                  {item.number}
-                </p>
-                <h3 className="font-serif text-xl md:text-2xl tracking-tight mb-3">
-                  {item.title}
-                </h3>
-                <p className="text-[15px] text-muted-foreground leading-relaxed mb-6 max-w-sm">
-                  {item.description}
-                </p>
-                <Link href={item.href} className="link-quiet text-foreground">
-                  {item.cta} <ArrowUpRight className="h-3.5 w-3.5" />
+                <Link
+                  href={item.href}
+                  className="group grid grid-cols-1 md:grid-cols-12 gap-y-4 gap-x-6 md:gap-x-10 py-9 md:py-12
+                             transition-[padding] duration-500 ease-out md:hover:pl-4"
+                >
+                  <div className="md:col-span-1 font-serif text-2xl md:text-3xl text-accent-warm leading-none">
+                    {item.number}
+                  </div>
+                  <div className="md:col-span-4">
+                    <h3 className="font-serif text-2xl md:text-3xl tracking-tight leading-tight group-hover:opacity-60 transition-opacity duration-300">
+                      {item.title}
+                    </h3>
+                  </div>
+                  <div className="md:col-span-5">
+                    <p className="text-[15px] md:text-base text-muted-foreground leading-relaxed max-w-md">
+                      {item.description}
+                    </p>
+                  </div>
+                  <div className="md:col-span-2 flex md:justify-end items-start">
+                    <span className="link-quiet text-foreground">
+                      {item.cta}
+                      <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </span>
+                  </div>
                 </Link>
               </motion.div>
             ))}
@@ -143,49 +164,48 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ───── PARALLAX VIDEO ─ y.co-style scrolling video ───── */}
-      <section
-        ref={parallaxRef}
-        className="relative h-[120vh] md:h-[140vh] bg-background overflow-hidden"
-      >
-        <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
+      {/* ───── PROMISE + VIDEO ─ y.co-style scroll-over reveal ───── */}
+      <section ref={revealRef} className="relative bg-background md:h-[240vh]">
+        {/* Desktop: promise sits small + left; the right-anchored video rises up
+            over it, holds full-frame, then scrolls away as the next section rises. */}
+        <div className="hidden md:block sticky top-0 h-screen overflow-hidden">
           <motion.div
-            style={{ scale: videoScale, y: videoY }}
-            className="absolute inset-0 will-change-transform"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-120px" }}
+            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+            className="absolute top-[15vh] left-0 z-10 px-10 lg:px-16 max-w-[32vw] lg:max-w-[28vw]"
           >
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full h-full object-cover"
-            >
+            <p className="eyebrow text-accent-warm mb-5">{t("eyebrowNote")}</p>
+            <h2 className="font-serif display-3 leading-[1.12]">{t("missionLine")}</h2>
+          </motion.div>
+
+          <motion.div
+            style={{ y: videoRise }}
+            className="absolute inset-y-0 right-0 left-[40%] lg:left-[42%] overflow-hidden will-change-transform"
+          >
+            <motion.div style={{ scale: videoScale }} className="absolute -inset-[6%]">
+              <video autoPlay loop muted playsInline className="w-full h-full object-cover">
+                <source src="/videos/beyond.mp4" type="video/mp4" />
+              </video>
+            </motion.div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent" />
+          </motion.div>
+        </div>
+
+        {/* Mobile: clean stacked layout — promise, then the video. */}
+        <div className="md:hidden">
+          <motion.div {...fadeUp} className="editorial-container pt-20 pb-14">
+            <p className="eyebrow text-accent-warm mb-5">{t("eyebrowNote")}</p>
+            <h2 className="font-serif display-2 leading-[1.1] max-w-sm">
+              {t("missionLine")}
+            </h2>
+          </motion.div>
+          <div className="relative h-[68svh] overflow-hidden">
+            <video autoPlay loop muted playsInline className="w-full h-full object-cover">
               <source src="/videos/beyond.mp4" type="video/mp4" />
             </video>
-            <motion.div
-              style={{ opacity: overlayOpacity }}
-              className="absolute inset-0 bg-black"
-            />
-          </motion.div>
-          <div className="editorial-container relative z-10 text-center text-white">
-            <motion.p
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1.2 }}
-              className="eyebrow text-[hsl(var(--accent))] mb-6"
-            >
-              {t("eyebrowNote")}
-            </motion.p>
-            <motion.h2
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1, delay: 0.15 }}
-              className="font-serif display-2 max-w-4xl mx-auto"
-            >
-              {t("missionLine")}
-            </motion.h2>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
           </div>
         </div>
       </section>
