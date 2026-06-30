@@ -60,8 +60,11 @@ const config = {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        sans: ["var(--font-sans)", "ui-sans-serif", "system-ui", "sans-serif"],
-        serif: ["var(--font-sans)", "ui-sans-serif", "system-ui", "sans-serif"],
+        // Body — GT America Standard (licensed) with Inter as the live fallback
+        sans: ['"GT America"', '"GT America Standard"', "var(--font-sans)", "ui-sans-serif", "system-ui", "sans-serif"],
+        // Headings — GT America Compressed (licensed) with Oswald as the live fallback
+        serif: ['"GT America Compressed"', "var(--font-display)", '"Arial Narrow"', "Impact", "sans-serif"],
+        display: ['"GT America Compressed"', "var(--font-display)", '"Arial Narrow"', "Impact", "sans-serif"],
       },
       letterSpacing: {
         tightest: "-0.025em",

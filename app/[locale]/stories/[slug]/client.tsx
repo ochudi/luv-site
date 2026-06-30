@@ -4,7 +4,7 @@ import { notFound, useParams } from "next/navigation";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { Link } from "@/i18n/routing";
-import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { getStoryBySlug, getStories } from "@/lib/stories-i18n";
 import { useTranslations } from "next-intl";
 
@@ -47,15 +47,8 @@ export default function StoryPage() {
             }}
             className="max-w-4xl"
           >
-            <Link
-              href="/stories/all-stories"
-              className="inline-flex items-center gap-2 text-white/80 hover:text-white text-[11px] uppercase tracking-[0.24em] mb-10 transition-colors"
-            >
-              <ArrowLeft className="h-3.5 w-3.5" />
-              {t("stories.backToStories")}
-            </Link>
             <p className="eyebrow text-white/80 mb-8">{t("stories.storyEyebrow")}</p>
-            <h1 className="font-serif text-white display-1 mb-8">
+            <h1 className="font-serif text-white display-2 mb-8">
               {story.title}
             </h1>
             <p className="text-white/85 text-lg md:text-xl max-w-2xl">
@@ -76,20 +69,20 @@ export default function StoryPage() {
               duration: 0.9,
               ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
             }}
-            className="mx-auto max-w-2xl prose font-serif text-lg leading-[1.75] text-foreground/85"
+            className="mx-auto max-w-2xl prose text-lg leading-[1.75] text-foreground/85"
           >
             {story.content.map((paragraph, i) => (
               <div key={i}>
                 <p>{paragraph}</p>
                 {story.images?.[i] && (
-                  <figure className="my-16 -mx-6 md:-mx-24 lg:-mx-40">
-                    <div className="relative aspect-[3/2] md:aspect-[16/10]">
+                  <figure className="my-12 md:my-14">
+                    <div className="relative aspect-[3/2]">
                       <Image
                         src={story.images[i]}
                         alt={`${story.title} · figure ${i + 1}`}
                         fill
                         className="object-cover"
-                        sizes="(max-width: 768px) 100vw, 80vw"
+                        sizes="(max-width: 768px) 100vw, 672px"
                       />
                     </div>
                   </figure>

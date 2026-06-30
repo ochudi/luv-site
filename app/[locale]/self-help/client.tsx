@@ -64,7 +64,7 @@ export default function SelfHelpPage() {
               <p className="eyebrow mt-1">{t("eyebrowSelfHelp")}</p>
             </div>
             <div className="md:col-span-9">
-              <h1 className="font-serif display-1 tracking-tight mb-8 max-w-4xl">
+              <h1 className="font-serif display-2 tracking-tight mb-8 max-w-4xl">
                 {t.rich("h1", { em: emphasis })}
               </h1>
               <p className="lede text-muted-foreground max-w-2xl">
@@ -142,7 +142,7 @@ export default function SelfHelpPage() {
                     key={item.trigger}
                     className="border-l-2 border-foreground/20 pl-5"
                   >
-                    <p className="font-serif italic text-foreground mb-2">
+                    <p className="font-sans italic text-foreground mb-2">
                       &ldquo;{item.trigger}&rdquo;
                     </p>
                     <p className="text-[14px] text-muted-foreground leading-relaxed">
@@ -200,7 +200,7 @@ export default function SelfHelpPage() {
 
               <div className="pt-8 border-t border-border">
                 <p className="eyebrow mb-3 text-foreground/60">{t("moodToday")}</p>
-                <p className="font-serif text-xl md:text-2xl tracking-tight leading-snug">
+                <p className="font-sans text-xl md:text-2xl tracking-tight leading-snug">
                   {moodGuidance}
                 </p>
               </div>

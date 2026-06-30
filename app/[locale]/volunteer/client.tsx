@@ -53,7 +53,7 @@ export default function VolunteerPage() {
               <p className="eyebrow mt-1">{t("eyebrowVolunteer")}</p>
             </div>
             <div className="md:col-span-9">
-              <h1 className="font-serif display-1 tracking-tight mb-8 max-w-4xl">
+              <h1 className="font-serif display-2 tracking-tight mb-8 max-w-4xl">
                 {t.rich("h1", { em: emphasis })}
               </h1>
               <p className="lede text-muted-foreground max-w-2xl">{t("lede")}</p>

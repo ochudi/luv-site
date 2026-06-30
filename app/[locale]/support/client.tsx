@@ -46,7 +46,7 @@ export default function SupportPage() {
               <p className="eyebrow mt-1">{t("eyebrowSupport")}</p>
             </div>
             <div className="md:col-span-9">
-              <h1 className="font-serif display-1 tracking-tight mb-8 max-w-4xl">
+              <h1 className="font-serif display-2 tracking-tight mb-8 max-w-4xl">
                 {t.rich("h1", { em: emphasis })}
               </h1>
               <p className="lede text-muted-foreground max-w-2xl">{t("lede")}</p>
@@ -159,7 +159,7 @@ export default function SupportPage() {
               <h2 className="font-serif display-2 tracking-tight mb-10">
                 {t("askingH2")}
               </h2>
-              <blockquote className="font-serif italic text-2xl md:text-3xl tracking-tight leading-snug border-l-2 border-foreground pl-6 md:pl-8 mb-10 max-w-2xl">
+              <blockquote className="font-sans italic text-2xl md:text-3xl tracking-tight leading-snug border-l-2 border-foreground pl-6 md:pl-8 mb-10 max-w-2xl">
                 &ldquo;{t("askingQuote")}&rdquo;
               </blockquote>
               <p className="text-[15px] text-muted-foreground mb-10 max-w-xl">

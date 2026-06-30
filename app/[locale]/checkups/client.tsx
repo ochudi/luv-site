@@ -74,7 +74,7 @@ export default function CheckupsPage() {
               <p className="eyebrow mt-1">{t("eyebrowSelfAssessment")}</p>
             </div>
             <div className="md:col-span-9">
-              <h1 className="font-serif display-1 tracking-tight mb-8 max-w-4xl">
+              <h1 className="font-serif display-2 tracking-tight mb-8 max-w-4xl">
                 {t.rich("h1", { em: emphasis })}
               </h1>
               <p className="lede text-muted-foreground max-w-2xl">{t("lede")}</p>
@@ -99,7 +99,7 @@ export default function CheckupsPage() {
                     Q · 0{index + 1}
                   </span>
                 </div>
-                <p className="font-serif text-xl md:text-2xl tracking-tight leading-snug mb-8 max-w-2xl">
+                <p className="font-sans text-xl md:text-2xl tracking-tight leading-snug mb-8 max-w-2xl">
                   {question}
                 </p>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-2">

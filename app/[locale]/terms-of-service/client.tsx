@@ -34,7 +34,7 @@ export default function TermsOfServicePage() {
               <p className="eyebrow mt-1">Terms</p>
             </div>
             <div className="md:col-span-9">
-              <h1 className="font-serif display-1 tracking-tight max-w-3xl">
+              <h1 className="font-serif display-2 tracking-tight max-w-3xl">
                 {p("title")}
               </h1>
             </div>

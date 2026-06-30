@@ -1,19 +1,11 @@
 import type React from "react";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { CommandMenu } from "@/components/command-menu";
 import FloatingBotButton from "@/components/FloatingBotButton";
 import { Toaster } from "@/components/ui/toaster";
-
-const inter = Inter({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
-  variable: "--font-sans",
-  display: "swap",
-});
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -136,7 +128,7 @@ export default async function LocaleLayout({
   await params;
 
   return (
-    <div className={`${inter.variable} font-sans antialiased`}>
+    <div className="font-sans antialiased">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}

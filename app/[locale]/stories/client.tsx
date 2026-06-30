@@ -80,7 +80,7 @@ export default function StoriesPage() {
             className="max-w-4xl"
           >
             <p className="eyebrow text-white/80 mb-8">{t("stories.heroEyebrow")}</p>
-            <h1 className="font-serif text-white display-1">
+            <h1 className="font-serif text-white display-2">
               {t("stories.pageTitle")}
             </h1>
             <p className="text-white/85 text-lg md:text-xl mt-8 max-w-2xl">

@@ -81,7 +81,7 @@ export default function AllStoriesPage() {
               <p className="eyebrow mt-1">{t("stories.allStories")}</p>
             </div>
             <div className="md:col-span-9">
-              <h1 className="font-serif display-1 tracking-tight mb-8 max-w-3xl">
+              <h1 className="font-serif display-2 tracking-tight mb-8 max-w-3xl">
                 {t("stories.allStories")}
               </h1>
               <p className="lede text-muted-foreground max-w-2xl">
@@ -138,7 +138,7 @@ export default function AllStoriesPage() {
           {filteredStories.length === 0 ? (
             <div className="border border-border p-10 md:p-16 text-center max-w-2xl mx-auto">
               <p className="eyebrow mb-4">{t("stories.noMatches")}</p>
-              <p className="font-serif text-2xl md:text-3xl tracking-tight">
+              <p className="font-sans text-2xl md:text-3xl tracking-tight max-w-md mx-auto">
                 {t("stories.noStoriesMatch")}
               </p>
             </div>

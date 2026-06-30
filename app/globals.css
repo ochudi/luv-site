@@ -62,13 +62,14 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+    font-family: "GT America", "GT America Standard", var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   }
-  /* Single font for everything — same as y.co. */
+  /* Headings — GT America Compressed (Oswald fallback): big, bold, uppercase. */
   h1, h2, h3, h4, .display, .font-serif {
-    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
-    font-weight: 800;
-    letter-spacing: -0.01em;
+    font-family: "GT America Compressed", var(--font-display), "Arial Narrow", Impact, sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.005em;
+    text-transform: uppercase;
   }
 }
 

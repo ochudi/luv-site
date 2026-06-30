@@ -166,30 +166,35 @@ export default function Home() {
 
       {/* ───── PROMISE + VIDEO ─ y.co-style scroll-over reveal ───── */}
       <section ref={revealRef} className="relative bg-background md:h-[240vh]">
-        {/* Desktop: promise sits small + left; the right-anchored video rises up
-            over it, holds full-frame, then scrolls away as the next section rises. */}
+        {/* Desktop: a big full-width statement, with the video scrolling up over
+            it (full-frame), holding, then scrolling away as the next section rises. */}
         <div className="hidden md:block sticky top-0 h-screen overflow-hidden">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-120px" }}
-            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute top-[15vh] left-0 z-10 px-10 lg:px-16 max-w-[32vw] lg:max-w-[28vw]"
-          >
-            <p className="eyebrow text-accent-warm mb-5">{t("eyebrowNote")}</p>
-            <h2 className="font-serif display-3 leading-[1.12]">{t("missionLine")}</h2>
-          </motion.div>
+          <div className="absolute inset-0 flex items-start">
+            <div className="editorial-container pt-[18vh]">
+              <motion.div
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-120px" }}
+                transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+                className="max-w-5xl"
+              >
+                <p className="eyebrow text-accent-warm mb-6">{t("eyebrowNote")}</p>
+                <h2 className="font-serif display-1 leading-[0.95]">{t("missionLine")}</h2>
+              </motion.div>
+            </div>
+          </div>
 
+          {/* Covers the right 3/4 so the left of the statement stays visible. */}
           <motion.div
             style={{ y: videoRise }}
-            className="absolute inset-y-0 right-0 left-[40%] lg:left-[42%] overflow-hidden will-change-transform"
+            className="absolute inset-y-0 right-0 left-1/4 overflow-hidden will-change-transform"
           >
             <motion.div style={{ scale: videoScale }} className="absolute -inset-[6%]">
               <video autoPlay loop muted playsInline className="w-full h-full object-cover">
                 <source src="/videos/beyond.mp4" type="video/mp4" />
               </video>
             </motion.div>
-            <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-black/10" />
           </motion.div>
         </div>
 

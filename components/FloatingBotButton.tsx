@@ -11,13 +11,7 @@ import {
   DialogFooter,
   DialogClose,
 } from "@/components/ui/dialog";
-import { MessageCircle } from "lucide-react";
-import {
-  Tooltip,
-  TooltipTrigger,
-  TooltipContent,
-  TooltipProvider,
-} from "@/components/ui/tooltip";
+import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
 
 const categories = [
@@ -47,35 +41,28 @@ export default function FloatingBotButton() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-40">
+    <div
+      className={cn(
+        "fixed z-40 inset-x-4 bottom-4 md:inset-x-auto md:left-auto md:right-6 md:bottom-6",
+        // On mobile the full-width bar only appears past the hero so it never
+        // collides with the hero search bar; the desktop bubble always shows.
+        scrolled ? "block" : "hidden md:block"
+      )}
+    >
       <Dialog>
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <DialogTrigger asChild>
-                <button
-                  aria-label={t("title")}
-                  className={`group inline-flex items-center gap-2 text-white font-medium uppercase tracking-[0.22em] text-[10px] transition-all duration-300 animate-soft-bounce animate-soft-pulse bg-[linear-gradient(135deg,hsl(var(--accent)),hsl(var(--primary)))] hover:brightness-110 ${
-                    scrolled
-                      ? "pl-4 pr-5 py-3"
-                      : "rounded-full h-12 w-12 p-0 justify-center"
-                  }`}
-                >
-                  <MessageCircle className={`${scrolled ? "h-4 w-4" : "h-5 w-5"} shrink-0`} />
-                  {scrolled && <span>{t("title")}</span>}
-                </button>
-              </DialogTrigger>
-            </TooltipTrigger>
-            {!scrolled && (
-              <TooltipContent
-                side="left"
-                className="bg-foreground text-background text-[10px] uppercase tracking-[0.22em] font-medium"
-              >
-                {t("title")}
-              </TooltipContent>
+        <DialogTrigger asChild>
+          <button
+            aria-label={t("title")}
+            className={cn(
+              "inline-flex items-center justify-center bg-[hsl(var(--accent))] text-[hsl(var(--accent-foreground))]",
+              "uppercase tracking-[0.22em] font-bold hover:brightness-95 transition-all",
+              // Mobile: a full-width centered CTA bar; desktop: a tidy pill
+              "w-full py-4 text-[11px] md:w-auto md:px-7 md:py-3.5 md:text-[10px] md:shadow-[0_10px_30px_-8px_rgba(0,0,0,0.35)]"
             )}
-          </Tooltip>
-        </TooltipProvider>
+          >
+            {t("title")}
+          </button>
+        </DialogTrigger>
 
         <DialogContent className="p-0 border border-border bg-background max-w-[95vw] sm:max-w-md rounded-none">
           <div className="p-6 md:p-8">

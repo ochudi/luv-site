@@ -216,7 +216,7 @@ export default function SearchHero({ tone = "dark" }: SearchHeroProps) {
                 role="dialog"
                 aria-modal="true"
                 aria-label={t("open")}
-                className="fixed inset-0 z-[100] bg-[hsl(var(--accent))] text-[hsl(var(--accent-foreground))] flex flex-col"
+                className="fixed inset-x-0 bottom-0 top-[88px] md:top-[96px] z-[100] bg-[hsl(var(--accent))] text-[hsl(var(--accent-foreground))] flex flex-col"
               >
                 {/* Header: close + search field (stays put while results scroll) */}
                 <div className="editorial-container pt-5 md:pt-8 pb-4 md:pb-6 shrink-0">

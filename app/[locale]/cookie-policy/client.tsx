@@ -33,7 +33,7 @@ export default function CookiePolicyPage() {
               <p className="eyebrow mt-1">Cookies</p>
             </div>
             <div className="md:col-span-9">
-              <h1 className="font-serif display-1 tracking-tight max-w-3xl">
+              <h1 className="font-serif display-2 tracking-tight max-w-3xl">
                 {p("title")}
               </h1>
             </div>

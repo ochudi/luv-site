@@ -96,14 +96,14 @@ function SearchResults() {
             </div>
             <div className="md:col-span-9">
               {q ? (
-                <h1 className="font-serif display-1 tracking-tight max-w-4xl">
+                <h1 className="font-serif display-2 tracking-tight max-w-4xl">
                   {t("resultsFor")}{" "}
                   <span className="italic text-foreground/55">
                     &ldquo;{q}&rdquo;
                   </span>
                 </h1>
               ) : (
-                <h1 className="font-serif display-1 tracking-tight max-w-4xl">
+                <h1 className="font-serif display-2 tracking-tight max-w-4xl">
                   {t("enterTerm")}
                 </h1>
               )}
